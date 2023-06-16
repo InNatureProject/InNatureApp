@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- cores padrão ^_^ -->
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
@@ -7,4 +8,11 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    
+    
+    <!-- Cores do App (▀̿Ĺ̯▀̿ ̿)-->
+    <color name="VerdeClaro_Widgets">#ddf3de</color>
+    <color name="VerdeMedio_BordasWidgets">#97bd99</color>
+    <color name="FundoApp">#FFFFFFFF</color>
+
 </resources>

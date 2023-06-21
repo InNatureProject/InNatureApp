@@ -8,11 +8,12 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    
+
     
     <!-- Cores do App (▀̿Ĺ̯▀̿ ̿)-->
     <color name="VerdeClaro_Widgets">#ddf3de</color>
     <color name="VerdeMedio_BordasWidgets">#97bd99</color>
     <color name="FundoApp">#FFFFFFFF</color>
+
 
 </resources>

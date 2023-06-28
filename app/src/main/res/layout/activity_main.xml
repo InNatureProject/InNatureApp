@@ -11,15 +11,14 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:background="@drawable/painel_bg"
+        android:background="@drawable/painelplantas_bg"
         app:layout_constraintBottom_toTopOf="@+id/toolbar6"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName16" />
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -88,20 +87,6 @@
         app:layout_constraintStart_toEndOf="@+id/button2"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
 
-    <EditText
-        android:id="@+id/editTextTextPersonName16"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/campos_bg"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="   Buscas recentes:"
-        app:layout_constraintBottom_toTopOf="@+id/recyclerView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button2" />
-
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar6"
         android:layout_width="409dp"
@@ -114,5 +99,18 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/campos_bg"
+        android:text="    BUSCAS RECENTES:"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

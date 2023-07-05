@@ -22,16 +22,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
-    <com.google.android.material.bottomappbar.BottomAppBar
-        android:id="@+id/bottomAppBar5"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        app:backgroundTint="?attr/colorPrimary"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="0dp"
@@ -253,44 +243,5 @@
             app:layout_constraintStart_toEndOf="@+id/imageView3"
             app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName14" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <ImageView
-        android:id="@+id/imageView8"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        app:srcCompat="@android:drawable/btn_star_big_off"
-        tools:layout_editor_absoluteX="40dp"
-        tools:layout_editor_absoluteY="685dp" />
-
-    <ImageButton
-        android:id="@+id/imageButton15"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@android:drawable/btn_star_big_on"
-        tools:layout_editor_absoluteX="158dp"
-        tools:layout_editor_absoluteY="675dp" />
-
-    <ImageButton
-        android:id="@+id/imageButton16"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@android:drawable/btn_star_big_off"
-        tools:layout_editor_absoluteX="301dp"
-        tools:layout_editor_absoluteY="677dp" />
-
-    <ImageButton
-        android:id="@+id/imageButton17"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@android:drawable/ic_menu_revert"
-        tools:layout_editor_absoluteX="12dp"
-        tools:layout_editor_absoluteY="4dp" />
-
-    <ImageButton
-        android:id="@+id/imageButton18"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@android:drawable/ic_menu_search"
-        tools:layout_editor_absoluteX="327dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

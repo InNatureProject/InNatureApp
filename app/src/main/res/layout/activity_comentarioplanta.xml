@@ -228,43 +228,4 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <ImageView
-        android:id="@+id/imageView25"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@android:drawable/ic_menu_revert"
-        tools:layout_editor_absoluteX="17dp"
-        tools:layout_editor_absoluteY="16dp" />
-
-    <ImageView
-        android:id="@+id/imageView26"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@android:drawable/ic_menu_search"
-        tools:layout_editor_absoluteX="321dp"
-        tools:layout_editor_absoluteY="16dp" />
-
-    <ImageView
-        android:id="@+id/imageView27"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@android:drawable/btn_star"
-        tools:layout_editor_absoluteX="39dp"
-        tools:layout_editor_absoluteY="683dp" />
-
-    <ImageView
-        android:id="@+id/imageView28"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@android:drawable/btn_star_big_on"
-        tools:layout_editor_absoluteX="155dp"
-        tools:layout_editor_absoluteY="683dp" />
-
-    <ImageView
-        android:id="@+id/imageView29"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@android:drawable/btn_star_big_off"
-        tools:layout_editor_absoluteX="307dp"
-        tools:layout_editor_absoluteY="683dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

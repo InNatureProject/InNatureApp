@@ -1,14 +1,16 @@
-package joao.nicolly.daianny.elisa;
+package joao.nicolly.daianny.elisa.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class MainActivity extends AppCompatActivity {
+import joao.nicolly.daianny.elisa.R;
+
+public class FavoritosActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_favoritos);
     }
 }

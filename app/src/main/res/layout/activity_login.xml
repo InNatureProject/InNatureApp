@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/FundoApp"
     android:backgroundTint="@color/FundoApp"
-    tools:context=".LoginActivity">
+    tools:context=".activity.LoginActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

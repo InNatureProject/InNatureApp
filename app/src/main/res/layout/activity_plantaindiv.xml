@@ -140,14 +140,6 @@
         tools:layout_editor_absoluteY="7dp" />
 
     <ImageButton
-        android:id="@+id/imageButton20"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@android:drawable/ic_menu_search"
-        tools:layout_editor_absoluteX="324dp"
-        tools:layout_editor_absoluteY="5dp" />
-
-    <ImageButton
         android:id="@+id/imageButton21"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

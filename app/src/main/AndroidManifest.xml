@@ -15,9 +15,6 @@
             android:name=".activity.PlantaActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.FavoritosActivity"
-            android:exported="false" />
-        <activity
             android:name=".activity.CadastroActivity"
             android:exported="false" />
         <activity

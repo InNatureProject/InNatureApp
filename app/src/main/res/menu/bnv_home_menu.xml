@@ -3,12 +3,18 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/favViewOp"
         android:icon="@drawable/baseline_star_24"
-        android:title="Favoritos" />
+        android:title="Favoritos"
+        app:showAsAction="ifRoom" />
     <item
+        android:id="@+id/homeViewOp"
         android:icon="@drawable/baseline_home_24"
-        android:title="Home" />
+        android:title="Home"
+        app:showAsAction="ifRoom" />
     <item
+        android:id="@+id/perfilViewOp"
         android:icon="@drawable/baseline_person_24"
-        android:title="Perfil" />
+        android:title="Perfil"
+        app:showAsAction="ifRoom" />
 </menu>

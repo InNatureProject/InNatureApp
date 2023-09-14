@@ -92,7 +92,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="42dp"
         android:layout_marginEnd="32dp"
-        android:background="@drawable/painel_bg"
+        android:background="@drawable/painelplantas_bg"
         android:text="Nome de Usuário:"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"

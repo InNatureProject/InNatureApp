@@ -121,7 +121,6 @@
             android:weightSum="1"
             app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toBottomOf="@+id/textView21"
             app:layout_constraintStart_toStartOf="parent">
 
             <TextView

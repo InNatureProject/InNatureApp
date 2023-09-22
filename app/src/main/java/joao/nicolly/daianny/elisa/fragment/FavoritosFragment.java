@@ -1,4 +1,4 @@
-package joao.nicolly.daianny.elisa.activity.fragment;
+package joao.nicolly.daianny.elisa.fragment;
 
 import android.os.Bundle;
 

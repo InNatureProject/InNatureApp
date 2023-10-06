@@ -2,7 +2,6 @@ package joao.nicolly.daianny.elisa.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -12,7 +11,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
 import joao.nicolly.daianny.elisa.R;
-import joao.nicolly.daianny.elisa.auxiliares.MainViewModel;
 
 public class MainActivity extends AppCompatActivity {
     //Variáveis

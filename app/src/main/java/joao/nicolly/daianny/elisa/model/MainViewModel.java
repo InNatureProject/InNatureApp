@@ -1,4 +1,4 @@
-package joao.nicolly.daianny.elisa.auxiliares;
+package joao.nicolly.daianny.elisa.model;
 
 import android.app.Application;
 

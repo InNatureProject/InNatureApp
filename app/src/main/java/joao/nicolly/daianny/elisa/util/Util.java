@@ -254,4 +254,18 @@ public class Util {
         byte[] imageAsBytes = Base64.decode(myImageData.getBytes(),Base64.DEFAULT);
         return BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
     }
+
+    /**
+     * Converte um inputstream para Bitmap
+     * @param is inputstream da imagem
+     * @return o Bitmap.
+     * @throws IOException se o arquivo nao existe
+     */
+    public static Bitmap inputStream2Bitmap(InputStream is) throws IOException {
+        try {
+            return BitmapFactory.decodeStream(is);
+        } finally {
+            is.close();
+        }
+    }
 }

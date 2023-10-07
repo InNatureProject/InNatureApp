@@ -1,5 +1,12 @@
 package joao.nicolly.daianny.elisa.activity;
 
+/**
+ * App do In Nature. Pela app será possível
+ * visualizar as informações,
+ * criar uma conta, logar, deletar a conta e
+ * favoritar receitas assím como escrever comentários.*/
+
+/* TODO fazer nave navegação da home, favoritos e usuarios */
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 

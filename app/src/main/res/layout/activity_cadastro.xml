@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/btnCadastrar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -38,7 +38,7 @@
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="55dp"
         android:background="@drawable/painelplantas_bg"
-        app:layout_constraintBottom_toTopOf="@+id/button4"
+        app:layout_constraintBottom_toTopOf="@+id/btnCadastrar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2">
@@ -59,7 +59,7 @@
             app:layout_constraintTop_toTopOf="@+id/clPainelCadastro" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName3"
+            android:id="@+id/etNomeUsuario"
             android:layout_width="0dp"
             android:layout_height="50sp"
             android:layout_marginStart="16dp"
@@ -84,10 +84,10 @@
             android:textSize="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName3" />
+            app:layout_constraintTop_toBottomOf="@+id/etNomeUsuario" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName2"
+            android:id="@+id/etEmailUsuario"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_marginStart="16dp"
@@ -112,10 +112,10 @@
             android:textSize="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
+            app:layout_constraintTop_toBottomOf="@+id/etEmailUsuario" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName4"
+            android:id="@+id/etSenha"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_marginStart="16dp"
@@ -124,6 +124,7 @@
             android:ems="10"
             android:hint="senha"
             android:inputType="textPersonName"
+            android:password="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -141,10 +142,10 @@
             android:textSize="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName4" />
+            app:layout_constraintTop_toBottomOf="@+id/etSenha" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName5"
+            android:id="@+id/etConfSenha"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_marginStart="16dp"
@@ -153,6 +154,7 @@
             android:ems="10"
             android:hint="comfime senha"
             android:inputType="textPersonName"
+            android:password="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView32" />

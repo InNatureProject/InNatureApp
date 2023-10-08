@@ -7,10 +7,10 @@ import android.app.Application;
  */
 public class InNatureRepository {
     public <T extends Application> InNatureRepository(T application) {
-        //TODO checar se está certo esta t=estrutura e terminá-la
+        //TODO checar se está certo esta estrutura e terminá-la
     }
 
     public boolean cadastrar(String nome, String email, String senha) {
-        return true;
+        return true;//TODO fazer método cadastro
     }
 }

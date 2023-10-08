@@ -17,7 +17,7 @@ import joao.nicolly.daianny.elisa.model.CadastroViewModel;
 import joao.nicolly.daianny.elisa.util.Config;
 
 //TODO sanitizar para impedir sql injection ou outros ataques;
-//TODO efetuar o cadastro; (ainda falta construir os métodos e o construtor de InNatureRepository para completar)
+//TODO efetuar o cadastro; (anida falta alguns ajustes em InNatureRepository)
 
 public  class CadastroActivity extends AppCompatActivity {
 

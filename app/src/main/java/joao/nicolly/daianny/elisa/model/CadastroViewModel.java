@@ -28,7 +28,7 @@ public class CadastroViewModel extends AndroidViewModel{
              */
             @Override
             public void run() {
-                // TODO checar InNatureRepository porque ainda faltam alguns ajustes
+            // TODO checar InNatureRepository porque ainda faltam alguns ajustes
                 InNatureRepository inNatureRepository = new InNatureRepository(getApplication());
 
                 boolean b = inNatureRepository.cadastrar(nome, email, senha);

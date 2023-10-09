@@ -110,7 +110,7 @@ public  class CadastroActivity extends AppCompatActivity {
                             //Na activity Diz que quando finalizamos (finish()) voltamos para a tela de login, ou seja, para a tela que estávamos. Porque?
                             // Não encontrei metodos referentes a isto
                             //Observei também que após o cadastro o cliente é obrigado a fazer login, mas gostaria que ao fazer o cadastro o login também acontecesse.
-                            // desta maneira facilitaria a compreensão e a agilidade das coisas
+                            // desta maneira facilitaria a compreensão e agilizaria as coisas
                         }
                         else{
                             Toast.makeText(CadastroActivity.this,"Erro ao cadastrar novo usuário!",Toast.LENGTH_LONG).show();

@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 
 import joao.nicolly.daianny.elisa.R;
 
+//TODO: aqui te, que requisitar todas as plantas cadastradas e ordenálas  ou por ordem alfabética ou pelas mais populares
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link HomeFragment#newInstance} factory method to

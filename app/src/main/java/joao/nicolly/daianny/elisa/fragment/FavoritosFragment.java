@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import joao.nicolly.daianny.elisa.R;
-
+//TODO: aquitem que haver a requisição das receitas que p usuário favoritou
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link FavoritosFragment#newInstance} factory method to

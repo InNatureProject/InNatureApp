@@ -12,6 +12,9 @@
         android:theme="@style/Theme.InNatureApp"
         tools:targetApi="31">
         <activity
+            android:name=".LoginCadastroActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.ReceitaPreparoActivity"
             android:exported="false" />
         <activity

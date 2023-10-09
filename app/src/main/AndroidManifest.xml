@@ -18,13 +18,7 @@
             android:name=".activity.EditUserActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.QuandoUsarActivity"
-            android:exported="false" />
-        <activity
             android:name=".activity.PreparosActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activity.EfeitosActivity"
             android:exported="false" />
         <activity
             android:name=".activity.ComentandoActivity"

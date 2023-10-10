@@ -9,7 +9,7 @@
     tools:context=".activity.LoginActivity">
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/btnAcessar"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginEnd="16dp"
@@ -46,7 +46,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName9"
+            android:id="@+id/etEmail"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_marginStart="32dp"
@@ -59,7 +59,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView36" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName7"
+            android:id="@+id/etSenha"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_marginStart="32dp"
@@ -83,7 +83,7 @@
             android:textSize="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName9" />
+            app:layout_constraintTop_toBottomOf="@+id/etEmail" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView

@@ -17,7 +17,6 @@ import joao.nicolly.daianny.elisa.model.CadastroViewModel;
 import joao.nicolly.daianny.elisa.util.Config;
 
 //TODO sanitizar para impedir sql injection ou outros ataques;
-//TODO efetuar o cadastro; (anida falta alguns ajustes em InNatureRepository)
 
 public  class CadastroActivity extends AppCompatActivity {
 
@@ -88,6 +87,9 @@ public  class CadastroActivity extends AppCompatActivity {
                 *   Lembrar de perguntar sobre a necessidade de sanitizar o cadastro no mobile ao prof Daniel
                 *   Estou avaliando a possibilidade de criar um metodo que procura na string por tais caracteres e se os encontra devolve uma confimação, se este já não existir
                 *   Assim seria fácil sanitizar os dados tanto aqui quanto no Login*/
+
+                /*TODO:para sanitizar
+                *  */
 
                 //Criando a conta
                 result = cadastroViewModel.cadastrar(etNomeUsuarioText,etEmailUsuarioText,etSenhaText);

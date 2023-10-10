@@ -3,12 +3,18 @@ package joao.nicolly.daianny.elisa.model;
 import android.app.Application;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
 
-public class MainViewModel {
+import joao.nicolly.daianny.elisa.R;
+
+public class MainViewModel extends AndroidViewModel {
+    int navigationOpSelected = R.id.homeViewOp;
+
 
     public MainViewModel(@NonNull Application application){
-        super();
+        super(application);
     }
-    public void setNavigationOpSelected(int itemId) {
+    public void setNavigationOpSelected(int navigationOpSelected) {
+        this.navigationOpSelected = navigationOpSelected;
     }
 }

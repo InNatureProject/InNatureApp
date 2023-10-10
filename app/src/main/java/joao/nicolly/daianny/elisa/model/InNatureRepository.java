@@ -27,15 +27,12 @@ public class InNatureRepository {
 
         //Requisição HTTP com parametros pro servidor
 
-        /*TODO  se não me engano a string doparametro tem que ser o nome da coluna em que tais parametros serão armazenados
-            checar se estou correta
-            descobrir o nomedas colunas caso esteja cera ou
-            descobrir o que tem que vir aqui
-        */
-        HttpRequest httpRequest = new HttpRequest(Config.PRODUCTS_APP_URL + "função desejada", "POST", "UTF-8");
-        httpRequest.addParam("Nome da coluna", nome);
-        httpRequest.addParam("Nome da coluna", email);
-        httpRequest.addParam("Nome da coluna", senha);
+        HttpRequest httpRequest = new HttpRequest(Config.PRODUCTS_APP_URL + "api/users/cadastro", "POST", "UTF-8");
+        /** Adição as tabelas
+         *      Os informações obtidas serão */
+        httpRequest.addParam("nome", nome);
+        httpRequest.addParam("email", email);
+        httpRequest.addParam("senha", senha);
 
         String result = "";
 

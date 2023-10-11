@@ -45,5 +45,13 @@ dependencies {
     //dependencia que permite imagens circulares, mas ainda tem que ver se funciona ou como usar
     implementation 'de.hdodenhof:circleimageview:2.0.0'
 
-    //dependencias que permite usar o
+
+    //dependencias que permite usar o Paging 3 pra fazer a paginação das telas.
+
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    def paging_version = "3.1.1"
+
+// optional - Guava ListenableFuture support
+    implementation "androidx.paging:paging-guava:$paging_version"
+    implementation "androidx.paging:paging-runtime:$paging_version"
 }

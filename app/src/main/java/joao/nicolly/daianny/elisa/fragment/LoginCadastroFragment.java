@@ -1,4 +1,4 @@
-package joao.nicolly.daianny.elisa;
+package joao.nicolly.daianny.elisa.fragment;
 
 import android.os.Bundle;
 
@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import joao.nicolly.daianny.elisa.R;
 
 /**
  * A simple {@link Fragment} subclass.

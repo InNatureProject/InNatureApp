@@ -5,29 +5,6 @@ import android.graphics.Bitmap;
 import java.util.ArrayList;
 
 public class Planta {
-    public String getNome() {
-        return nome;
-    }
-
-    public String getNome_cientifico() {
-        return nome_cientifico;
-    }
-
-    public Bitmap getImagem() {
-        return imagem;
-    }
-
-    public String getInformacao() {
-        return informacao;
-    }
-
-    public ArrayList<Preparo> getPreparos() {
-        return preparos;
-    }
-
-    public ArrayList<Comentario> getComentarios() {
-        return comentarios;
-    }
 
     private String nome;
     private String nome_cientifico;

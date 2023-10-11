@@ -47,24 +47,21 @@ public class MainActivity extends AppCompatActivity {
                 vm.setNavigationOpSelected(item.getItemId());
                 switch (item.getItemId()){
                     case R.id.favViewOp:
-
-                        //TODO: o erro é porque falta alterar os parametros necessários em FavoritosFragment
+                        // inicializa o Fragmento coloca-o no frame layout, este passo se repete nos outros casos
                         FavoritosFragment favoritosFragment = FavoritosFragment.newInstance();
                         setFragment(favoritosFragment);
                         break;
                     case R.id.homeViewOp:
-                        //TODO: o erro é porque falta alterar os parametros necessários em HomeFragment
                         HomeFragment homeFragment = HomeFragment.newInstance();
                         setFragment(homeFragment);
                         break;
                     case R.id.perfilViewOp:
-                        //TODO: o erro é porque falta alterar os parametros necessários em UserFragment
                         UserFragment userFragment = UserFragment.newInstance();
                         setFragment(userFragment);
                         break;
 
                 }
-                return false;
+                return true;
             }
         });
     }

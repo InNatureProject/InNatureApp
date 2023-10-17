@@ -7,7 +7,7 @@ import androidx.lifecycle.AndroidViewModel;
 
 import joao.nicolly.daianny.elisa.R;
 
-public class MainViewModel extends AndroidViewModel {
+public class MainViewModel extends AndroidViewModel {//atualizando
     int navigationOpSelected = R.id.homeViewOp;
 
 

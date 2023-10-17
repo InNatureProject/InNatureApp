@@ -20,7 +20,7 @@ import joao.nicolly.daianny.elisa.util.Config;
 
 public  class CadastroActivity extends AppCompatActivity {
 
-    //Variáveis
+    //Variáveis teste
     CadastroViewModel cadastroViewModel;
     Button btnCadastrar;
     EditText etNomeUsuario;

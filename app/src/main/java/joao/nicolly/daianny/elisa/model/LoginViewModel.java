@@ -1,4 +1,4 @@
 package joao.nicolly.daianny.elisa.model;
 
-public class LoginViewModel {
+public class LoginViewModel {//atualizando
 }

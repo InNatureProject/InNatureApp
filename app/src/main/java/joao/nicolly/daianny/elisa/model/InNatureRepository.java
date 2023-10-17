@@ -17,7 +17,7 @@ import joao.nicolly.daianny.elisa.util.Util;
 /**
  * Essa classe concentra todos os métodos de conexão entre a app e o servidor web
  */
-public class InNatureRepository {
+public class InNatureRepository {////atualizando
 
     //Variaveis
     Context context;

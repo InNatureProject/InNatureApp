@@ -27,7 +27,7 @@ public class UserFragment extends Fragment {
     private String mParam2;
 
     public UserFragment() {
-        // Required empty public constructor
+        // Required empty public constructor oioi
     }
 
     /**

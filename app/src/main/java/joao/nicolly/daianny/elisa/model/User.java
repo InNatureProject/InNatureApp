@@ -4,7 +4,7 @@ import android.graphics.Bitmap;
 
 import java.util.ArrayList;
 
-public class User {
+public class User {//atualizando
 
     private Bitmap fotoDePerfil;
     private String nomeDeUsuario;

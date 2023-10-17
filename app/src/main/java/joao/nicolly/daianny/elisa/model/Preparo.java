@@ -2,7 +2,7 @@ package joao.nicolly.daianny.elisa.model;
 
 import java.util.ArrayList;
 
-public class Preparo {
+public class Preparo {//atualizando
     private String nome;
     private ArrayList<String> ingredientes;
     private ArrayList<String> passos;

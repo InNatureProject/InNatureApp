@@ -25,7 +25,7 @@ public class FavoritosFragment extends Fragment {
     //Variáveis
 
     private MainViewModel mainViewModel;
-    FavoritosAdapter favoritosAdapter;
+    private FavoritosAdapter favoritosAdapter;
 
     public FavoritosFragment() {
         // Required empty public constructor

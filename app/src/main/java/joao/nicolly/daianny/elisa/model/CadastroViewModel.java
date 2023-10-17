@@ -27,7 +27,7 @@ public class CadastroViewModel extends AndroidViewModel{
              * de execução.
              */
             @Override
-            public void run() {
+            public void run() {//ooo
 
                 InNatureRepository inNatureRepository = new InNatureRepository(getApplication());
 

@@ -3,7 +3,7 @@ package joao.nicolly.daianny.elisa.model;
 import java.util.Date;
 
 public class Comentario {
-    private String autor;
+    private String autor;//oooo
     private Date data;
     private String comentario;
 

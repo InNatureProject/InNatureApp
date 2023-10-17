@@ -25,14 +25,13 @@ public class LoginActivity extends AppCompatActivity {
         loginViewlModel= new ViewModelProvider(this).get(LoginViewModel.class);
 
         Button btnAcessar=findViewById(R.id.btnAcessar);
-        btnAcessar.setOnClickListener(new View.OnClickListener(){
+        btnAcessar.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
-                EditText etEmail=findViewById(R.id.etEmail);
-
-                EditText etSenha=findViewById(R.id.etSenha);
-
+                //pega os elementos digitados pelo usuário
+                EditText etEmail = findViewById(R.id.etEmail);
+                EditText etSenha= findViewById(R.id.etSenha)
 
 
             }

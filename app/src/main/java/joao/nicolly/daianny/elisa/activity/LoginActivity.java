@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import joao.nicolly.daianny.elisa.R;
-import joao.nicolly.daianny.elisa.auxiliares.LoginViewModel;
+import joao.nicolly.daianny.elisa.model.LoginViewModel;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -31,10 +31,10 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 //pega os elementos digitados pelo usuário
                 EditText etEmail = findViewById(R.id.etEmail);
-                EditText etSenha= findViewById(R.id.etSenha)
+                EditText etSenha= findViewById(R.id.etSenha);
 
 
             }
-        }
+        });
     }
 }

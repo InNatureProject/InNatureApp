@@ -5,7 +5,9 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.paging.PagingData;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +15,8 @@ import android.view.ViewGroup;
 
 import joao.nicolly.daianny.elisa.R;
 import joao.nicolly.daianny.elisa.adapter.FavoritosAdapter;
+import joao.nicolly.daianny.elisa.model.Planta;
+import joao.nicolly.daianny.elisa.model.PlantaComparator;
 import joao.nicolly.daianny.elisa.model.MainViewModel;
 //TODO: aquitem que haver a requisição das receitas que o usuário favoritou
 /**
@@ -50,6 +54,8 @@ public class FavoritosFragment extends Fragment {
     public void OnViewCreated(@NonNull View view, @Nullable Bundle savadInstanceState){
         super.onViewCreated(view,savadInstanceState);
         mainViewModel = new ViewModelProvider(getActivity()).get(MainViewModel.class);
+        favoritosAdapter = new FavoritosAdapter(new PlantaComparator());
+        LiveData<PagingData<Planta>> liveData mainViewModel.getPageLv();
 
     }
 }

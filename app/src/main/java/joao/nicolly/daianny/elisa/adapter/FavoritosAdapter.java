@@ -1,6 +1,5 @@
 package joao.nicolly.daianny.elisa.adapter;
 
-import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +8,7 @@ import android.widget.TextView;
 
 import joao.nicolly.daianny.elisa.R;
 import joao.nicolly.daianny.elisa.model.Planta;
+import joao.nicolly.daianny.elisa.model.PlantaComparator;
 import kotlinx.coroutines.CoroutineDispatcher;
 
 import androidx.annotation.NonNull;
@@ -16,8 +16,9 @@ import androidx.paging.PagingDataAdapter;
 import androidx.recyclerview.widget.DiffUtil;
 
 public class FavoritosAdapter extends PagingDataAdapter<Planta,MyViewHolder>{
-    public FavoritosAdapter(@NonNull DiffUtil.ItemCallback<Planta> diffCallback, @NonNull CoroutineDispatcher mainDispatcher) {
-        super(diffCallback, mainDispatcher);
+
+    public FavoritosAdapter(DiffUtil.ItemCallback<Planta> diffCallback) {
+        super(diffCallback);
     }
 
     @NonNull

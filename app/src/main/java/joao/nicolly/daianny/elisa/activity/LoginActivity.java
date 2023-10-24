@@ -10,6 +10,7 @@ import android.widget.EditText;
 
 import joao.nicolly.daianny.elisa.R;
 import joao.nicolly.daianny.elisa.model.LoginViewModel;
+import sun.jvm.hotspot.utilities.Observer;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -31,7 +32,38 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 //pega os elementos digitados pelo usuário
                 EditText etEmail = findViewById(R.id.etEmail);
+                final String email =etEmail.getText().toString();
+
                 EditText etSenha= findViewById(R.id.etSenha);
+                final String senha=etSenha.get.Text().toString();
+
+                //método  login está no viewmodel, envia informações de senha e email para o servidor.
+                // O servidor tem que verificar as informações
+                LiveData<boolean>resultLD= loginViewlModel.login(senha,email);
+
+                // LiveData trás a resposta do servidor
+                resultLD.observe(LoginActivity.this,new Observer<boolean>()){
+
+                    @Override
+                    public void onChange(Boolean aBoolean){
+                        // aBoolean contém o resultado do loguin. Se a resposta for true, as informações foram  enviadas
+                        // e estão corretas. Guardando a senha e o email
+                    if(aBoolean){
+                        // guarda os dados de login e senha no app
+                        Config.setEmail(LoginActivity.this,email);
+                        Config.setSenha(LoginActivity.this,senha);
+
+                        Toast.makeText(LoginActivity.this,"Login realizado com sucesso",Toast.LENGTH_LONG).show();
+
+                        Intent i =new Intent(LoginActivity.this,MainActivity.class);
+                        startActivity(i);
+                    }
+                    else{
+
+                        android.widget.Toast.makeText(LoginActivity.this, "Não foi possível realizar login", Toast.LENGTH_SHORT).show();
+                    }
+                    }
+                }
 
 
             }

@@ -31,6 +31,8 @@ public class FavoritosFragment extends Fragment {
     private MainViewModel mainViewModel;
     private FavoritosAdapter favoritosAdapter;
 
+
+    //CONTRUTOR
     public FavoritosFragment() {
         // Required empty public constructor
     }
@@ -39,6 +41,8 @@ public class FavoritosFragment extends Fragment {
      * Use this factory method to create a new instance
      * @return A new instance of fragment FavoritosFragment.
      */
+
+    //MÉTODOS
 
     //new instance retorna uma variável do tipo FavoritosFragent
     public static FavoritosFragment newInstance() {return new FavoritosFragment(); }
@@ -56,6 +60,7 @@ public class FavoritosFragment extends Fragment {
         mainViewModel = new ViewModelProvider(getActivity()).get(MainViewModel.class);
         favoritosAdapter = new FavoritosAdapter(new PlantaComparator());
         LiveData<PagingData<Planta>> liveData mainViewModel.getPageLv();
+        //TODO: fazer método getPageLv dentro de MainViewHolder
 
     }
 }

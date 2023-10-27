@@ -40,13 +40,11 @@ public class FavoritosFragment extends Fragment {
         // Required empty public constructor
     }
 
+    //MÉTODOS
     /**
      * Use this factory method to create a new instance
      * @return A new instance of fragment FavoritosFragment.
      */
-
-    //MÉTODOS
-
     //new instance retorna uma variável do tipo FavoritosFragent
     public static FavoritosFragment newInstance() {return new FavoritosFragment(); }
 

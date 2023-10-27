@@ -4,7 +4,7 @@ import android.graphics.Bitmap;
 
 import java.util.ArrayList;
 
-public class Planta {//atualizando
+public class Planta {
 
     private String nome;
     private String nome_cientifico;

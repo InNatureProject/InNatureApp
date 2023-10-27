@@ -9,6 +9,8 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import joao.nicolly.daianny.elisa.util.Config;
 import joao.nicolly.daianny.elisa.util.HttpRequest;
@@ -17,7 +19,7 @@ import joao.nicolly.daianny.elisa.util.Util;
 /**
  * Essa classe concentra todos os métodos de conexão entre a app e o servidor web
  */
-public class InNatureRepository {////atualizando
+public class InNatureRepository {
 
     //Variaveis
     Context context;
@@ -63,4 +65,21 @@ public class InNatureRepository {////atualizando
         }
         return false;
     }
+
+    //TODO: Fazer Função loadPlanta
+
+    /**
+     *Este método será usado para puxar do Banco de Dados uma quantidae determinada, pelo loadSize, de plantas.
+     * O método para carregar os comentários será semelhante.
+     * Para visualizar as plantas tanto quanto para visualizar comentários não será necessário login.*/
+    public List<Planta> loadPlanta(Integer limit, Integer offSet) {
+
+        List<Planta> plantaList = new ArrayList<>();
+
+        HttpRequest httpRequest = new HttpRequest(Config.PRODUCTS_APP_URL +"pegar_produtos.php", "GET", "UTF-8");
+        httpRequest.addParam("limit", limit.toString());
+        httpRequest.addParam("offset",offSet.toString());
+
+
+    } //este erro é devido a falta de return
 }

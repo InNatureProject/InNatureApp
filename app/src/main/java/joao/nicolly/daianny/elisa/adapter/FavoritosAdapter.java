@@ -17,10 +17,16 @@ import androidx.recyclerview.widget.DiffUtil;
 
 public class FavoritosAdapter extends PagingDataAdapter<Planta,MyViewHolder>{
 
+
+    //CONSTRUTOR
+
     public FavoritosAdapter(DiffUtil.ItemCallback<Planta> diffCallback) {
         super(diffCallback);
     }
 
+    //MÉTODOS
+
+    //TODO: Verificar se métodos estão funcionais eonde estão sendo chamados
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

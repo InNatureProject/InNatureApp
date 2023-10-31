@@ -17,7 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import joao.nicolly.daianny.elisa.R;
-import joao.nicolly.daianny.elisa.adapter.FavoritosAdapter;
+import joao.nicolly.daianny.elisa.adapter.HomeAdapter;
 import joao.nicolly.daianny.elisa.model.MainViewModel;
 import joao.nicolly.daianny.elisa.model.Planta;
 import joao.nicolly.daianny.elisa.model.PlantaComparator;
@@ -34,7 +34,7 @@ public class HomeFragment extends Fragment {
     //VARIÁVEIS
 
     private MainViewModel mainViewModel;
-    private HomeAdapter HomeAdapter;
+    private HomeAdapter homeAdapter;
 
     //CONSTRUTORES
     public HomeFragment() {
@@ -61,18 +61,23 @@ public class HomeFragment extends Fragment {
     public void OnViewCreated(@NonNull View view, @Nullable Bundle savadInstanceState){
         super.onViewCreated(view,savadInstanceState);
         mainViewModel = new ViewModelProvider(getActivity()).get(MainViewModel.class);
-        favoritosAdapter = new FavoritosAdapter(new PlantaComparator());
+        homeAdapter = new HomeAdapter(new PlantaComparator());
         LiveData<PagingData<Planta>> liveData = mainViewModel.getPageLv();
 
         liveData.observe(getViewLifecycleOwner(), new Observer<PagingData<Planta>>() {
             @Override
             public void onChanged(PagingData<Planta> plantaPagingData) {
-                favoritosAdapter.submitData(getViewLifecycleOwner().getLifecycle(), plantaPagingData);
+                homeAdapter.submitData(getViewLifecycleOwner().getLifecycle(), plantaPagingData);
             }
         });
-        RecyclerView rvFavoritosFragment = (RecyclerView) view.findViewById(R.id.rvFavoritosFragment);
-        rvFavoritosFragment.setAdapter(favoritosAdapter);
-        rvFavoritosFragment.setLayoutManager(new LinearLayoutManager(getContext()));
+        RecyclerView rvHomeFragment = (RecyclerView) view.findViewById(R.id.rvHomeFragment);
+        rvHomeFragment.setAdapter(homeAdapter);
+        rvHomeFragment.setLayoutManager(new LinearLayoutManager(getContext()));
 
     }
+
+    //TODO: a pesquisa ainda não foi feita
+    /*TODO: Para fazer a parte da pesquisa é necessário colocar um listerning na variável do botão de pesquisa
+    *   quando o botão for apertado disparará uma requisição para o banco de dados procurando plantas que contenham a
+    *   string inserida */
 }

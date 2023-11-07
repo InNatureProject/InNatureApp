@@ -52,6 +52,12 @@ public class InNatureRepository {
             httpRequest.finish();
 
             // o resultado é transformado em objeto json que pode ser utilizado
+            /** TODO: Modificações a serem feitas:
+             *      Esta parte foi feita com base no código do professor.
+             *      Para adaptar para nosso trabalho é necessário saber o que a api do João vai nos entregar
+             *      A API está com bug, então vai demorar a saber.
+             *      quando solbermos devemos validar se está correto.
+             *      Se estiver correto devemos guardar tanto o tolking quanto o login e a senha na APP*/
             JSONObject jsonObject = new JSONObject(result);
 
             int sucesso = jsonObject.getInt("sucesso");
@@ -98,6 +104,9 @@ public class InNatureRepository {
             //executando a requisição
             InputStream is = httpRequest.execute();//Este erro é devido a falta do catch
             //resultado provavelmente será em uma string de formato JSON que preciso perguntar ao João como virá
+            /** TODO: O resulte receberá uma string que virá em formato JSON
+             *      Depois de transformar a string em objeto JSON devemos manipular estes dados de maneira
+             *      que devolvamos uma lista de Objetos contendo as informações pertinentes a dada planta.*/
             result = Util.inputStream2String(is,"UTF-8");//Este erro é devido a falta do catch
 
             //fechando conecção com servidor

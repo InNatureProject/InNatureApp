@@ -1,16 +1,23 @@
 package joao.nicolly.daianny.elisa.activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import joao.nicolly.daianny.elisa.R;
 import joao.nicolly.daianny.elisa.util.Config;
@@ -70,5 +77,39 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
+        // caso o usuário não tenha login ele não poderá favoritar ou comentar
+
+    }
+    // Verificação das permições necessárias
+    private void checkForPermissions(List<String>permissions){
+        List<String> permissionsNotGrated= new ArrayList<>();
+
+        for(String permission: permissions) {
+            if (!hasPermission(permission)) {
+                permissionsNotGrated.add(permission);
+            }
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+            if (permissionsNotGrated.size()>0) {
+                requestPermissions(permissionsNotGrated.toArray(new String[permissionsNotGrated.size()]), RESULT_REQUEST_PERMISSION);
+            }
+        }
+    }
+   // Verifica se a permissão foi concedida
+    private boolean hasPermission(String permission) {
+        if(Build.VERSION.SDK_INT>= Build.VERSION_CODES.M){
+            return ActivityCompat.checkSelfPermission(LoginActivity.this,permission)== PackageManager.PERMISSION_GRANTED;
+
+
+        }
+        return false;
+    }
+
+    /**
+     * Método chamado após deposi que o usuário já escolheu as permissãoes. O método indica o resultado
+     */
+    @Override
+    public void onRequestPermissionsResult(int requestCode),@NonNull String[] permissions,@NonNull int[] gratResults){
+    super.onRequestPermissionsResult(requestCode,);
     }
 }

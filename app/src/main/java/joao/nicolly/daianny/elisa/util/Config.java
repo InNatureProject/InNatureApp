@@ -10,7 +10,7 @@ import android.content.SharedPreferences;
 public class Config {
 
     // endereço base do servidor web
-    public static String PRODUCTS_APP_URL = "https://productifes-dispmoveisbsi.b4a.run/";
+    public static String INNATURE_URL = "https://busy-ruby-shrimp-yoke.cyclic.app/";
 
     /**
      * Salva o login no espaço reservado da app

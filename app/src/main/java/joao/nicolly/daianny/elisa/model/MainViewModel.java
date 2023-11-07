@@ -24,6 +24,7 @@ public class MainViewModel extends AndroidViewModel {
     public MainViewModel(@NonNull Application application) {
 
         super(application);
+        //criação e inicialização de variáveis
         InNatureRepository inNatureRepository = new InNatureRepository(application);
         InNaturePagingSource inNaturePagingSource = new InNaturePagingSource(inNatureRepository);
 

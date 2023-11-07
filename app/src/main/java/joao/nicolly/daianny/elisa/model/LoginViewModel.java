@@ -24,9 +24,9 @@ public class LoginViewModel extends AndroidViewModel {
             @Override
             public void run() {
                 InNatureRepository inNatureRepository= new  InNatureRepository(getApplication());
-                boolean b = inNatureRepository.login(email,senha);
+//                boolean b = inNatureRepository.login(email,senha);
                 //TODO:é necessário criar o método login em InNatureRepository
-                result.postValue(b);
+//                result.postValue(b);
             }
         });
         return result;

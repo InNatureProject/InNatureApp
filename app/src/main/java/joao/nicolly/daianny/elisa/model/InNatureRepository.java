@@ -19,6 +19,8 @@ import joao.nicolly.daianny.elisa.util.Util;
 /**
  * Essa classe concentra todos os métodos de conexão entre a app e o servidor web
  */
+
+/***/
 public class InNatureRepository {
 
     //Variaveis
@@ -29,7 +31,7 @@ public class InNatureRepository {
 
         //Requisição HTTP com parametros pro servidor
 
-        HttpRequest httpRequest = new HttpRequest(Config.PRODUCTS_APP_URL + "api/users/cadastro", "POST", "UTF-8");
+        HttpRequest httpRequest = new HttpRequest(Config.INNATURE_URL + "api/users/cadastro", "POST", "UTF-8");
         /** Adição as tabelas
          *      Os informações obtidas serão */
         httpRequest.addParam("nome", nome);
@@ -55,6 +57,8 @@ public class InNatureRepository {
             int sucesso = jsonObject.getInt("sucesso");
 
             if(sucesso == 1){
+                //TODO: Ver se a mensagem que retorna quando o cadastro é efetiVADO REALMENTE É SUCESSO = 1
+                //TODO: Nesta parte pegar o tolking e setá-lo na app, pois é oque usaremos para comentar e favoritar.
                 return true;
             }
         } catch(IOException e){
@@ -66,19 +70,41 @@ public class InNatureRepository {
         return false;
     }
 
-    //TODO: Fazer Função loadPlanta
 
     /**
      *Este método será usado para puxar do Banco de Dados uma quantidae determinada, pelo loadSize, de plantas.
      * O método para carregar os comentários será semelhante.
      * Para visualizar as plantas tanto quanto para visualizar comentários não será necessário login.*/
+
+
+    //TODO: Fazer Função loadPlanta
     public List<Planta> loadPlanta(Integer limit, Integer offSet) {
 
+        /**Não é necessário validação de usuário (login, senha ou tolking) para carregar as plantas*/
+
+        // cria a lista de produtos incicialmente vazia, que será retornada como resultado
         List<Planta> plantaList = new ArrayList<>();
 
-        HttpRequest httpRequest = new HttpRequest(Config.PRODUCTS_APP_URL +"pegar_produtos.php", "GET", "UTF-8");
+        // Cria uma requisição HTTP a adiciona o parâmetros que devem ser enviados ao servidor
+        HttpRequest httpRequest = new HttpRequest(Config.INNATURE_URL +"api/command/falta parte do comando", "GET", "UTF-8");
         httpRequest.addParam("limit", limit.toString());
         httpRequest.addParam("offset",offSet.toString());
+
+        //String onde será guardado o resultado retornado pelo servidor
+        String result = "";
+
+        // Tentativa de Conexão
+        try{
+            //executando a requisição
+            InputStream is = httpRequest.execute();//Este erro é devido a falta do catch
+            //resultado provavelmente será em uma string de formato JSON que preciso perguntar ao João como virá
+            result = Util.inputStream2String(is,"UTF-8");//Este erro é devido a falta do catch
+
+            //fechando conecção com servidor
+            httpRequest.finish();//Este erro é devido a falta do catch
+
+            Log.i("HTTP RESULTADO   DA REQUISIÇÃO",result);
+        }//Este erro é devido a falta do catch
 
 
     } //este erro é devido a falta de return

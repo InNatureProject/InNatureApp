@@ -43,17 +43,21 @@ public class FavoritosAdapter extends PagingDataAdapter<Planta,MyViewHolder>{
 
         //Aqui pegaremos a informação necessárias da planta e a dentro dos devidos elementos do item_planta;
 
+        //colocando a imagem
+        ImageView imgvImagemPlanta = holder.itemView.findViewById(R.id.imgvImagemPlanta);
+        imgvImagemPlanta.setImageBitmap(planta.getImagem());
+
+        //colocando o nome
         TextView tvNome = holder.itemView.findViewById(R.id.tvNome);
         tvNome.setText(planta.getNome());
 
+        //colocando o nome cientifico
         TextView tvNomeCientifico = holder.itemView.findViewById(R.id.tvNoomeCientifico);
         tvNomeCientifico.setText(planta.getNome_cientifico());
 
+        //colocando a descrição
         TextView tvDescricaoPlanta = holder.itemView.findViewById(R.id.tvDescricaoPlanta);
         tvDescricaoPlanta.setText(planta.getInformacao());
-
-        ImageView imgvImagemPlanta = holder.itemView.findViewById(R.id.imgvImagemPlanta);
-        imgvImagemPlanta.setImageBitmap(planta.getImagem());
 
 
     }

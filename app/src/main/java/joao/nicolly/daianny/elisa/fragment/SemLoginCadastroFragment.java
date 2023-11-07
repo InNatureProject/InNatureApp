@@ -15,7 +15,7 @@ import joao.nicolly.daianny.elisa.R;
  * Use the {@link SemLoginCadastroFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class SemLoginCadastroFragment extends Fragment {//oioi
+public class SemLoginCadastroFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER

@@ -22,7 +22,7 @@ import joao.nicolly.daianny.elisa.model.MainViewModel;
 import joao.nicolly.daianny.elisa.model.Planta;
 import joao.nicolly.daianny.elisa.model.PlantaComparator;
 
-//TODO: aqui te, que requisitar todas as plantas cadastradas e ordenálas  ou por ordem alfabética ou pelas mais populares
+//TODO: aqui tem, que requisitar as plantas cadastradas e ordenálas  ou por ordem alfabética ou pelas mais populares
 
 /**
  * A simple {@link Fragment} subclass.
@@ -47,8 +47,9 @@ public class HomeFragment extends Fragment {
      * Use this factory method to create a new instance
      * @return A new instance of fragment HomeFragment.
      */
+
     // TODO: Delete os parametors
-    //new instance retorna uma variável do tipo HomeFragment
+    //new instance retorna a inicioalização de HomeFragment
     public static HomeFragment newInstance() {return new HomeFragment(); }
 
 
@@ -61,7 +62,8 @@ public class HomeFragment extends Fragment {
     public void OnViewCreated(@NonNull View view, @Nullable Bundle savadInstanceState){
         super.onViewCreated(view,savadInstanceState);
         mainViewModel = new ViewModelProvider(getActivity()).get(MainViewModel.class);
-        homeAdapter = new HomeAdapter(new PlantaComparator());
+        homeAdapter = new HomeAdapter(new PlantaComparator());//homeAdapter está pronto
+
         LiveData<PagingData<Planta>> liveData = mainViewModel.getPageLv();
 
         liveData.observe(getViewLifecycleOwner(), new Observer<PagingData<Planta>>() {

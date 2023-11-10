@@ -1,6 +1,5 @@
 package joao.nicolly.daianny.elisa.model;
 
-import android.app.Application;
 import android.content.Context;
 import android.util.Log;
 
@@ -75,7 +74,47 @@ public class InNatureRepository {
         }
         return false;
     }
+  /** MÉTODO LOGIN QUE FAZ A VERIFICAÇÃO NA API E RTORNA SE O USUÁRIO FINALIZOU O LOGIN OU NÃO
+    /***/
+    public boolean login(String email, String senha ){
 
+        // Resquisição para o servidor
+
+        HttpRequest httpRequest= new HttpRequest(Config.INNATURE_URL+"command/login", "POST", "UTF-8");
+        /** Adição as tabelas
+         * As informações obtidas serão */
+        httpRequest.addParam("email", email);
+        httpRequest.addParam("senha", senha);
+
+        String result="";
+
+        try {
+            // executa a requisição HTTP. É neste momento que o servidor é consultado
+            InputStream is = httpRequest.execute();
+
+
+
+            result = Util.inputStream2String(is,"UTF-8");
+            Log.i("HTTP RESULTADO DO CADASTRO",result);
+
+            JSONObject jsonObject = new JSONObject(result);
+
+            // Obtem vo valor da chave sucesso para verificar se a ação ocorreu da forma esperada
+            int sucesso= jsonObject.getInt("sucesso");
+
+            // ferificação que informa se o usuário fo autenticaddo
+            if (sucesso==1){
+                return true;
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+
+        return false;
+    }
 
     /**
      *Este método será usado para puxar do Banco de Dados uma quantidae determinada, pelo loadSize, de plantas.

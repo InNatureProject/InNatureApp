@@ -30,7 +30,7 @@ public class InNatureRepository {
 
         //Requisição HTTP com parametros pro servidor
 
-        HttpRequest httpRequest = new HttpRequest(Config.INNATURE_URL + "api/users/cadastro", "POST", "UTF-8");
+        HttpRequest httpRequest = new HttpRequest(Config.INNATURE_URL + "command/cadastrar", "POST", "UTF-8");
         /** Adição as tabelas
          *      Os informações obtidas serão */
         httpRequest.addParam("nome", nome);
@@ -58,6 +58,7 @@ public class InNatureRepository {
              *      quando solbermos devemos validar se está correto.
              *      Se estiver correto devemos guardar tanto o tolking quanto o login e a senha na APP*/
             JSONObject jsonObject = new JSONObject(result);
+
 
             int sucesso = jsonObject.getInt("sucesso");
 
@@ -124,6 +125,8 @@ public class InNatureRepository {
 
     //TODO: Fazer Função loadPlanta
     public List<Planta> loadPlanta(Integer limit, Integer offSet) {
+        //o limit é a quantidade de itens (neste caso plantas) que requisitaremos do banco de dados
+        //o offSet sete determina a partir de qual item (neste caso planta) pegaremos a quantidade requisitada "limit"
 
         /**Não é necessário validação de usuário (login, senha ou tolking) para carregar as plantas*/
 
@@ -138,22 +141,22 @@ public class InNatureRepository {
         //String onde será guardado o resultado retornado pelo servidor
         String result = "";
 
-        // Tentativa de Conexão
-        try{
-            //executando a requisição
-            InputStream is = httpRequest.execute();//Este erro é devido a falta do catch
-            //resultado provavelmente será em uma string de formato JSON que preciso perguntar ao João como virá
-            /** TODO: O resulte receberá uma string que virá em formato JSON
-             *      Depois de transformar a string em objeto JSON devemos manipular estes dados de maneira
-             *      que devolvamos uma lista de Objetos contendo as informações pertinentes a dada planta.*/
-            result = Util.inputStream2String(is,"UTF-8");//Este erro é devido a falta do catch
+//        // Tentativa de Conexão
+//        try{
+//            //executando a requisição
+//            InputStream is = httpRequest.execute();//Este erro é devido a falta do catch
+//            //resultado provavelmente será em uma string de formato JSON que preciso perguntar ao João como virá
+//            /** TODO: O resulte receberá uma string que virá em formato JSON
+//             *      Depois de transformar a string em objeto JSON devemos manipular estes dados de maneira
+//             *      que devolvamos uma lista de Objetos contendo as informações pertinentes a dada planta.*/
+//            result = Util.inputStream2String(is,"UTF-8");//Este erro é devido a falta do catch
+//
+//            //fechando conecção com servidor
+//            httpRequest.finish();//Este erro é devido a falta do catch
+//
+//            Log.i("HTTP RESULTADO   DA REQUISIÇÃO",result);
+//        }//Este erro é devido a falta do catch
 
-            //fechando conecção com servidor
-            httpRequest.finish();//Este erro é devido a falta do catch
-
-            Log.i("HTTP RESULTADO   DA REQUISIÇÃO",result);
-        }//Este erro é devido a falta do catch
-
-
+        return null;
     } //este erro é devido a falta de return
 }

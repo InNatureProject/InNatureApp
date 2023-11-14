@@ -61,9 +61,12 @@ public class HomeFragment extends Fragment {
 
     public void OnViewCreated(@NonNull View view, @Nullable Bundle savadInstanceState){
         super.onViewCreated(view,savadInstanceState);
+
+        //iniciando as variáveis mainViewModel e home Adapter
         mainViewModel = new ViewModelProvider(getActivity()).get(MainViewModel.class);
         homeAdapter = new HomeAdapter(new PlantaComparator());//homeAdapter está pronto
 
+        //liveData g
         LiveData<PagingData<Planta>> liveData = mainViewModel.getPageLv();
 
         liveData.observe(getViewLifecycleOwner(), new Observer<PagingData<Planta>>() {

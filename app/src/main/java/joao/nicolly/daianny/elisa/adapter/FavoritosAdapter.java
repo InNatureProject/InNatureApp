@@ -33,7 +33,7 @@ public class FavoritosAdapter extends PagingDataAdapter<Planta,MyViewHolder>{
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View view = layoutInflater.inflate(R.layout.item_planta,parent,false);
         return new MyViewHolder(view);
-    }//oi
+    }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {

@@ -66,19 +66,17 @@ public class InNaturePagingSource extends ListenableFuturePagingSource<Integer,P
             @Override
             public LoadResult<Integer, Planta> call() throws Exception {
                 List<Planta> plantaList = null;
-                try{
-                    plantaList = inNatureRepository.loadPlanta(loadParams.getLoadSize(),finalOffSet);
-                    Integer nextKey = null;
+                //a explicação do que é loadParams.getLoadSize e do que é finalOffSet está em loadPlanta
+                plantaList = inNatureRepository.loadPlanta(loadParams.getLoadSize(),finalOffSet);
+                Integer nextKey = null;
 
-                    //Se o tamanho da lista for
-                    if(plantaList.size() >= loadParams.getLoadSize()){
-                        nextKey = finalNextPageNumber + 1;
-                    }
-                    return new LoadResult.Page<Integer,Planta>(plantaList, null,nextKey);
-
-                } catch(FileNotFoundException e ){//O erro pode ser devido a que o método loadPlanta ainda não foi feito
-                    return new LoadResult.Error<>(e);
+                //Se o tamanho da lista for
+                if(plantaList.size() >= loadParams.getLoadSize()){
+                    nextKey = finalNextPageNumber + 1;
                 }
+                return new LoadResult.Page<Integer,Planta>(plantaList, null,nextKey);
+
+
             }
         });
         return lf;

@@ -1,27 +1,25 @@
 package joao.nicolly.daianny.elisa.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.paging.PagingData;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
 import joao.nicolly.daianny.elisa.R;
-import joao.nicolly.daianny.elisa.adapter.HomeAdapter;
-import joao.nicolly.daianny.elisa.adapter.UserAdapter;
+import joao.nicolly.daianny.elisa.activity.EditUserActivity;
+import joao.nicolly.daianny.elisa.activity.AjudaActivity;
+import joao.nicolly.daianny.elisa.activity.SobreNosActivity;
 import joao.nicolly.daianny.elisa.model.MainViewModel;
-import joao.nicolly.daianny.elisa.model.Planta;
-import joao.nicolly.daianny.elisa.model.PlantaComparator;
+import joao.nicolly.daianny.elisa.util.Config;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,9 +27,16 @@ import joao.nicolly.daianny.elisa.model.PlantaComparator;
  * create an instance of this fragment.
  */
 public class UserFragment extends Fragment {
+    //VARIÁVEIS
+    TextView tvName;
+    TextView tvEmail;
+    Button btnEditarPerfil;
+    Button btnSobreNos;
+    Button btnAjuda;
+    Button btnDeslogar;
+
 
     private MainViewModel mainViewModel;
-    private UserAdapter userAdapter;
 
     //CONSTRUTOR
     public UserFragment() {
@@ -56,6 +61,67 @@ public class UserFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_user, container, false);
+    }
+
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savadInstanceState) {
+        super.onViewCreated(view, savadInstanceState);
+
+        // INICIALIZANDO VARIÁVEIS
+        // Aqui pegamos cada elemento da tela e jogamos dentro de sua variável
+
+        tvName = view.findViewById(R.id.tvName);
+        tvEmail = view.findViewById(R.id.tvEmail);
+        btnEditarPerfil = view.findViewById(R.id.btnEditarPerfil);
+        btnSobreNos = view.findViewById(R.id.btnSobreNos);
+        btnAjuda = view.findViewById(R.id.btnAjuda);
+        btnDeslogar  = view.findViewById(R.id.btnDeslogar);
+
+        //Para que o usuário seja capaz de visualizar seu nome e email:
+        tvName.setText(Config.getName(view.getContext()));//TODO: perguntar o prof se assim está certo
+        tvEmail.setText(Config.getEmail(view.getContext()));//TODO: perguntar ao prof se assim está certo
+
+        /**Cada botão leva para uma tela diferente, então colocaremos onclick listenner em todos e criaremos um intent levando para a tela desejada*/
+
+        //Para editar o perfil
+        btnEditarPerfil.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view){
+                Intent i = new Intent(view.getContext(), EditUserActivity.class); // cria uma variavel intent que fará a comunicação entre ambas as telas
+                startActivity(i); // inicializa o intente, ou seja, vai para a tela desejada.
+            }
+        });
+
+        //Para saber mais sobre nós
+        btnSobreNos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(view.getContext(), SobreNosActivity.class); // cria uma variavel intent que fará a comunicação entre ambas as telas
+                startActivity(i); // inicializa o intente, ou seja, vai para a tela desejada.
+            }
+        });
+
+
+        //Intente para PrecisaAjudaActivity
+        btnAjuda.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(view.getContext(), AjudaActivity.class); // cria uma variavel intent que fará a comunicação entre ambas as telas
+                startActivity(i); // inicializa o intente, ou seja, vai para a tela desejada.
+            }
+        });
+
+        btnAlgoErrado.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(view.getContext(), AjudaActivity.class); // cria uma variavel intent que fará a comunicação entre ambas as telas
+                startActivity(i); // inicializa o intente, ou seja, vai para a tela desejada.
+            }
+        });
+
+
+
+
+
+
     }
 
 }

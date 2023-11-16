@@ -60,7 +60,7 @@ public class LoginActivity extends AppCompatActivity {
                         // e estão corretas. Guardando a senha e o email
                         if(aBoolean){
                             // guarda os dados de login e senha no app
-                            Config.setLogin(LoginActivity.this,email);
+                            Config.setEmail(LoginActivity.this,email);
                             Config.setPassword(LoginActivity.this,senha);
 
                             Toast.makeText(LoginActivity.this,"Login realizado com sucesso",Toast.LENGTH_LONG).show();

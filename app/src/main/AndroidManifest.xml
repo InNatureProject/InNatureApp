@@ -16,6 +16,8 @@
         <activity
             android:name=".activity.LoginCadastroActivity"
             android:exported="false" />
+        <activity android:name=".activity.AjudaActivity"
+            android:exported="false"/>
         <activity
             android:name=".activity.ReceitaPreparoActivity"
             android:exported="false" />

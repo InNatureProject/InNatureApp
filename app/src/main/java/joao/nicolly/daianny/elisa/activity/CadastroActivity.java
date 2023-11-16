@@ -99,7 +99,7 @@ public  class CadastroActivity extends AppCompatActivity {
                     public void onChanged(Boolean aBoolean) {
                         if(aBoolean){
                             //gardado dados do login em local seguro da aplicação
-                            Config.setLogin(CadastroActivity.this,etEmailUsuarioText);
+                            Config.setEmail(CadastroActivity.this,etEmailUsuarioText);
                             Config.setPassword(CadastroActivity.this,etConfSenhaText);
                             Config.setName(CadastroActivity.this,etNomeUsuarioText);
 

@@ -17,7 +17,7 @@ public class Config {
      * @param context contexto da app
      * @param login o login
      */
-    public static void setLogin(Context context, String login) {
+    public static void setEmail(Context context, String login) {
         SharedPreferences mPrefs = context.getSharedPreferences("configs", 0);
         SharedPreferences.Editor mEditor = mPrefs.edit();
         mEditor.putString("login", login).commit();
@@ -28,7 +28,7 @@ public class Config {
      * @param context
      * @return
      */
-    public static String getLogin(Context context) {
+    public static String getEmail(Context context) {
         SharedPreferences mPrefs = context.getSharedPreferences("configs", 0);
         return mPrefs.getString("login", "");
     }

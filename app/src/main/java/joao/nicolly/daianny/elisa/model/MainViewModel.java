@@ -18,7 +18,7 @@ public class MainViewModel extends AndroidViewModel {
 
     // VARIÁVEIS
     int navigationOpSelected = R.id.homeViewOp;
-    LiveData<PagingData<Planta>> pageLv;
+    private LiveData<PagingData<Planta>> pageLv;
 
     //CONSTRUTOR
     public MainViewModel(@NonNull Application application) {

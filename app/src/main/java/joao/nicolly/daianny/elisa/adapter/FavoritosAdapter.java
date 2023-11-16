@@ -26,7 +26,7 @@ public class FavoritosAdapter extends PagingDataAdapter<Planta,MyViewHolder>{
 
     //MÉTODOS
 
-    //TODO: Verificar se métodos estão funcionais eonde estão sendo chamados
+    //TODO: Verificar se métodos estão funcionais e onde estão sendo chamados
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

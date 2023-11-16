@@ -101,6 +101,7 @@ public  class CadastroActivity extends AppCompatActivity {
                             //gardado dados do login em local seguro da aplicação
                             Config.setLogin(CadastroActivity.this,etEmailUsuarioText);
                             Config.setPassword(CadastroActivity.this,etConfSenhaText);
+                            Config.setName(CadastroActivity.this,etNomeUsuarioText);
 
                             Toast.makeText(CadastroActivity.this,"Novo usuário cadastrado com sucesso!",Toast.LENGTH_LONG).show();
 

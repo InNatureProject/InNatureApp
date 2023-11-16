@@ -52,21 +52,23 @@ public class HomeFragment extends Fragment {
     //new instance retorna a inicioalização de HomeFragment
     public static HomeFragment newInstance() {return new HomeFragment(); }
 
-
+    //override significa que estamos  sobrescrevendo UM MÉTODO DO PAI, ou seja, estamos mudando sua funcionalidade, o que ele faz
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_home, container, false);
     }
 
-    public void OnViewCreated(@NonNull View view, @Nullable Bundle savadInstanceState){
+    //override significa que estamos  sobrescrevendo UM MÉTODO DO PAI, ou seja, estamos mudando sua funcionalidade, o que ele faz
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savadInstanceState){
         super.onViewCreated(view,savadInstanceState);
 
         //iniciando as variáveis mainViewModel e home Adapter
         mainViewModel = new ViewModelProvider(getActivity()).get(MainViewModel.class);
         homeAdapter = new HomeAdapter(new PlantaComparator());//homeAdapter está pronto
 
-        //liveData g
+        //liveData recebe
         LiveData<PagingData<Planta>> liveData = mainViewModel.getPageLv();
 
         liveData.observe(getViewLifecycleOwner(), new Observer<PagingData<Planta>>() {

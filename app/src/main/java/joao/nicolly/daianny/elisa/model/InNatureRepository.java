@@ -75,7 +75,7 @@ public class InNatureRepository {
         }
         return false;
     }
-  /** MÉTODO LOGIN QUE FAZ A VERIFICAÇÃO NA API E RTORNA SE O USUÁRIO FINALIZOU O LOGIN OU NÃO
+  /** MÉTODO LOGIN QUE FAZ A VERIFICAÇÃO NA API E RETORNA SE O USUÁRIO FINALIZOU O LOGIN OU NÃO
     /***/
     public boolean login(String email, String senha ){
 

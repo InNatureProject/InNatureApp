@@ -51,4 +51,13 @@ public class Config {
         SharedPreferences mPrefs = context.getSharedPreferences("configs", 0);
         return mPrefs.getString("password", "");
     }
+    public static void setName(Context context, String name){
+        SharedPreferences mPrefs = context.getSharedPreferences("configs",0);
+        SharedPreferences.Editor mEditor = mPrefs.edit();
+        mEditor.putString("name", name);
+    }
+    public static String getName(Context context){
+        SharedPreferences mPrefs = context.getSharedPreferences("configs", 0);
+        return mPrefs.getString("name","");
+    }
 }

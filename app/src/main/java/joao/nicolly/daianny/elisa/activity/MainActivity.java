@@ -24,8 +24,10 @@ import com.google.android.material.navigation.NavigationBarView;
 import joao.nicolly.daianny.elisa.R;
 import joao.nicolly.daianny.elisa.fragment.FavoritosFragment;
 import joao.nicolly.daianny.elisa.fragment.HomeFragment;
+import joao.nicolly.daianny.elisa.fragment.SemLoginCadastroFragment;
 import joao.nicolly.daianny.elisa.fragment.UserFragment;
 import joao.nicolly.daianny.elisa.model.MainViewModel;
+import joao.nicolly.daianny.elisa.util.Config;
 
 public class MainActivity extends AppCompatActivity {
     //Variáveis
@@ -48,20 +50,31 @@ public class MainActivity extends AppCompatActivity {
                 switch (item.getItemId()){
                     case R.id.favViewOp:
                         // inicializa o Fragmento coloca-o no frame layout, este passo se repete nos outros casos
-                        FavoritosFragment favoritosFragment = FavoritosFragment.newInstance();
-                        setFragment(favoritosFragment);
+                        if(Config.getEmail(MainActivity.this) == ""){
+                            SemLoginCadastroFragment semLoginCadastroFragment = SemLoginCadastroFragment.newInstance();//TODO: falta deletar os parametros
+                            setFragment(semLoginCadastroFragment);
+                        }
+                        else{FavoritosFragment favoritosFragment = FavoritosFragment.newInstance();
+                            setFragment(favoritosFragment);
+                        }
                         break;
                     case R.id.homeViewOp:
                         HomeFragment homeFragment = HomeFragment.newInstance();
                         setFragment(homeFragment);
                         break;
                     case R.id.perfilViewOp:
-                        UserFragment userFragment = UserFragment.newInstance();
-                        setFragment(userFragment);
+                        if(Config.getEmail(MainActivity.this) == ""){
+                            SemLoginCadastroFragment semLoginCadastroFragment = SemLoginCadastroFragment.newInstance();//TODO: falta deletar os parametros
+                            setFragment(semLoginCadastroFragment);
+                        }
+                        else{
+                            UserFragment userFragment = UserFragment.newInstance();
+                            setFragment(userFragment);
+                        }
                         break;
 
                 }
-                return true;//socorro
+                return true;
             }
         });
     }

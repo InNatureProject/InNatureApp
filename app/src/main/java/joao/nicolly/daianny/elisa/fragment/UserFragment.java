@@ -16,6 +16,7 @@ import android.widget.TextView;
 import joao.nicolly.daianny.elisa.R;
 import joao.nicolly.daianny.elisa.activity.EditUserActivity;
 import joao.nicolly.daianny.elisa.activity.AjudaActivity;
+import joao.nicolly.daianny.elisa.activity.MainActivity;
 import joao.nicolly.daianny.elisa.activity.SobreNosActivity;
 import joao.nicolly.daianny.elisa.model.MainViewModel;
 import joao.nicolly.daianny.elisa.util.Config;
@@ -100,7 +101,7 @@ public class UserFragment extends Fragment {
         });
 
 
-        //Intente para PrecisaAjudaActivity
+        //Intente para AjudaActivity
         btnAjuda.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -109,10 +110,13 @@ public class UserFragment extends Fragment {
             }
         });
 
-        btnAlgoErrado.setOnClickListener(new View.OnClickListener() {
+        btnDeslogar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(view.getContext(), AjudaActivity.class); // cria uma variavel intent que fará a comunicação entre ambas as telas
+                Config.setName(view.getContext(),"");
+                Config.setEmail(view.getContext(),"");
+                Config.setPassword(view.getContext(),"");
+                Intent i = new Intent(view.getContext(), MainActivity.class); // cria uma variavel intent que fará a comunicação entre ambas as telas
                 startActivity(i); // inicializa o intente, ou seja, vai para a tela desejada.
             }
         });

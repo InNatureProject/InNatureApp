@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import joao.nicolly.daianny.elisa.R;
+import joao.nicolly.daianny.elisa.fragment.FavoritosFragment;
 import joao.nicolly.daianny.elisa.model.Planta;
 import joao.nicolly.daianny.elisa.model.PlantaComparator;
 import kotlinx.coroutines.CoroutineDispatcher;
@@ -17,11 +18,14 @@ import androidx.recyclerview.widget.DiffUtil;
 
 public class FavoritosAdapter extends PagingDataAdapter<Planta,MyViewHolder>{
 
+    FavoritosFragment favoritosFragment;
+
 
     //CONSTRUTOR
 
-    public FavoritosAdapter(DiffUtil.ItemCallback<Planta> diffCallback) {
+    public FavoritosAdapter(DiffUtil.ItemCallback<Planta> diffCallback, FavoritosFragment favoritosFragment) {
         super(diffCallback);
+        this.favoritosFragment = favoritosFragment;
     }
 
     //MÉTODOS
@@ -58,6 +62,15 @@ public class FavoritosAdapter extends PagingDataAdapter<Planta,MyViewHolder>{
         //colocando a descrição
         TextView tvDescricaoPlanta = holder.itemView.findViewById(R.id.tvDescricaoPlanta);
         tvDescricaoPlanta.setText(planta.getInformacao());
+
+
+        /**quando o usuário clicar no item_planta será levado para a tela com as informações da planta*/
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                favoritosFragment.navPlanta(planta.getId());
+            }
+        });
 
 
     }

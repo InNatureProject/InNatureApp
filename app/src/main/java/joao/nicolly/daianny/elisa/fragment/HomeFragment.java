@@ -1,5 +1,6 @@
 package joao.nicolly.daianny.elisa.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -17,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import joao.nicolly.daianny.elisa.R;
+import joao.nicolly.daianny.elisa.activity.PlantaActivity;
 import joao.nicolly.daianny.elisa.adapter.HomeAdapter;
 import joao.nicolly.daianny.elisa.model.MainViewModel;
 import joao.nicolly.daianny.elisa.model.Planta;
@@ -66,7 +68,7 @@ public class HomeFragment extends Fragment {
 
         //iniciando as variáveis mainViewModel e home Adapter
         mainViewModel = new ViewModelProvider(getActivity()).get(MainViewModel.class);
-        homeAdapter = new HomeAdapter(new PlantaComparator());//homeAdapter está pronto
+        homeAdapter = new HomeAdapter(new PlantaComparator(),this);//homeAdapter está pronto
 
         //liveData recebe
         LiveData<PagingData<Planta>> liveData = mainViewModel.getPageLv();
@@ -81,6 +83,11 @@ public class HomeFragment extends Fragment {
         rvHomeFragment.setAdapter(homeAdapter);
         rvHomeFragment.setLayoutManager(new LinearLayoutManager(getContext()));
 
+    }
+    public void navPlanta(int id){
+        Intent i = new Intent(getContext(), PlantaActivity.class); // cria uma variavel intent que fará a comunicação entre ambas as telas// cria uma variavel intent que fará a comunicação entre ambas as telas
+        i.putExtra("id",id);
+        startActivity(i);
     }
 
     //TODO: a pesquisa ainda não foi feita

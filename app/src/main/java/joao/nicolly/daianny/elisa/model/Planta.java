@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 public class Planta {
 
+    private int id;
     private String nome;
     private String nome_cientifico;
     private Bitmap imagem;
@@ -13,7 +14,9 @@ public class Planta {
     private ArrayList<Preparo> preparos;
     private ArrayList<Comentario> comentarios;
 
-    public Planta(String nome, String nomeCientifico, Bitmap imagem, String informacao, ArrayList<Preparo> preparos, ArrayList<Comentario> comentarios) {
+
+    public Planta(int id, String nome, String nomeCientifico, Bitmap imagem, String informacao, ArrayList<Preparo> preparos, ArrayList<Comentario> comentarios) {
+        this.id = id;
         this.nome = nome;
         this.nome_cientifico = nomeCientifico;
         this.imagem = imagem;
@@ -21,6 +24,8 @@ public class Planta {
         this.preparos = preparos;
         this.comentarios = comentarios;
     }
+
+    public int getId() {return id;}
 
     public String getNome() {
         return nome;

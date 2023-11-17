@@ -1,5 +1,6 @@
 package joao.nicolly.daianny.elisa.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -17,6 +18,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import joao.nicolly.daianny.elisa.R;
+import joao.nicolly.daianny.elisa.activity.MainActivity;
+import joao.nicolly.daianny.elisa.activity.PlantaActivity;
 import joao.nicolly.daianny.elisa.adapter.FavoritosAdapter;
 import joao.nicolly.daianny.elisa.model.Planta;
 import joao.nicolly.daianny.elisa.model.PlantaComparator;
@@ -64,7 +67,7 @@ public class FavoritosFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savadInstanceState){
         super.onViewCreated(view,savadInstanceState);
         mainViewModel = new ViewModelProvider(getActivity()).get(MainViewModel.class);
-        favoritosAdapter = new FavoritosAdapter(new PlantaComparator());
+        favoritosAdapter = new FavoritosAdapter(new PlantaComparator(), this);
         LiveData<PagingData<Planta>> liveData = mainViewModel.getPageLv();
 
         liveData.observe(getViewLifecycleOwner(), new Observer<PagingData<Planta>>() {
@@ -77,5 +80,10 @@ public class FavoritosFragment extends Fragment {
         rvFavoritosFragment.setAdapter(favoritosAdapter);
         rvFavoritosFragment.setLayoutManager(new LinearLayoutManager(getContext()));
 
+    }
+    public void navPlanta(int id){
+        Intent i = new Intent(getContext(), PlantaActivity.class); // cria uma variavel intent que fará a comunicação entre ambas as telas// cria uma variavel intent que fará a comunicação entre ambas as telas
+        i.putExtra("id",id);
+        startActivity(i);
     }
 }

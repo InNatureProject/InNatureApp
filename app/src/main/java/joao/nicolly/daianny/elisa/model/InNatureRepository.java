@@ -134,9 +134,9 @@ public class InNatureRepository {
         List<Planta> plantaList = new ArrayList<>();
 
         // Cria uma requisição HTTP a adiciona o parâmetros que devem ser enviados ao servidor
-        HttpRequest httpRequest = new HttpRequest(Config.INNATURE_URL +"api/command/falta parte do comando", "GET", "UTF-8");
-        httpRequest.addParam("limit", limit.toString());
-        httpRequest.addParam("offset",offSet.toString());
+        HttpRequest httpRequest = new HttpRequest(Config.INNATURE_URL +"command/plantas", "GET", "UTF-8");
+//        httpRequest.addParam("limit", limit.toString());
+//        httpRequest.addParam("offset",offSet.toString());
 
         //String onde será guardado o resultado retornado pelo servidor
         String result = "";

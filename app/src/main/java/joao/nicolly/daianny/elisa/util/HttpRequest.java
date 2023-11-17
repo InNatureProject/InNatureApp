@@ -150,8 +150,8 @@ public class HttpRequest {
                 writer.append("--" + boundary).append(LINE_FEED);
                 writer.append("Content-Disposition: form-data; name=\"" + pair.getKey().toString() + "\"")
                         .append(LINE_FEED);
-                writer.append("Content-Type: text/plain; charset=" + charset).append(
-                        LINE_FEED);
+                //writer.append("Content-Type: text/plain; charset=" + charset).append(
+                        //LINE_FEED);
                 writer.append(LINE_FEED);
                 writer.append(pair.getValue().toString()).append(LINE_FEED);
                 writer.flush();

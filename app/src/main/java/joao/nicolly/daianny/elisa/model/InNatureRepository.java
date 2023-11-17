@@ -112,7 +112,7 @@ public class InNatureRepository {
             e.printStackTrace();
         } catch (JSONException e) {
             throw new RuntimeException(e);
-        }
+         }
 
         return false;
     }

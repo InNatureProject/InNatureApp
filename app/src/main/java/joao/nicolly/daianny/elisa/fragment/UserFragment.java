@@ -86,7 +86,7 @@ public class UserFragment extends Fragment {
         //Para editar o perfil
         btnEditarPerfil.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-                Intent i = new Intent(view.getContext(), EditUserActivity.class); // cria uma variavel intent que fará a comunicação entre ambas as telas
+                Intent i = new Intent(getContext(), EditUserActivity.class); // cria uma variavel intent que fará a comunicação entre ambas as telas
                 startActivity(i); // inicializa o intente, ou seja, vai para a tela desejada.
             }
         });
@@ -95,7 +95,7 @@ public class UserFragment extends Fragment {
         btnSobreNos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(view.getContext(), SobreNosActivity.class); // cria uma variavel intent que fará a comunicação entre ambas as telas
+                Intent i = new Intent(getContext(), SobreNosActivity.class); // cria uma variavel intent que fará a comunicação entre ambas as telas
                 startActivity(i); // inicializa o intente, ou seja, vai para a tela desejada.
             }
         });
@@ -105,7 +105,7 @@ public class UserFragment extends Fragment {
         btnAjuda.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(view.getContext(), AjudaActivity.class); // cria uma variavel intent que fará a comunicação entre ambas as telas
+                Intent i = new Intent(getContext(), AjudaActivity.class); // cria uma variavel intent que fará a comunicação entre ambas as telas
                 startActivity(i); // inicializa o intente, ou seja, vai para a tela desejada.
             }
         });
@@ -113,11 +113,15 @@ public class UserFragment extends Fragment {
         btnDeslogar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Config.setName(view.getContext(),"");
-                Config.setEmail(view.getContext(),"");
-                Config.setPassword(view.getContext(),"");
-                Intent i = new Intent(view.getContext(), MainActivity.class); // cria uma variavel intent que fará a comunicação entre ambas as telas
+                Config.setName(getContext(),"");
+                Config.setEmail(getContext(),"");
+                Config.setPassword(getContext(),"");
+
+                Intent i = new Intent(getContext(), MainActivity.class); // cria uma variavel intent que fará a comunicação entre ambas as telas
                 startActivity(i); // inicializa o intente, ou seja, vai para a tela desejada.
+
+
+
             }
         });
 

@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
                 switch (item.getItemId()){
                     case R.id.favViewOp:
                         // inicializa o Fragmento coloca-o no frame layout, este passo se repete nos outros casos
-                        if(Config.getEmail(MainActivity.this) == ""){
+                        if(Config.getEmail(MainActivity.this).isEmpty()){
                             SemLoginCadastroFragment semLoginCadastroFragment = SemLoginCadastroFragment.newInstance();//TODO: falta deletar os parametros
                             setFragment(semLoginCadastroFragment);
                         }
@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
                         setFragment(homeFragment);
                         break;
                     case R.id.perfilViewOp:
-                        if(Config.getEmail(MainActivity.this) == ""){
+                        if(Config.getEmail(MainActivity.this).isEmpty()){
                             SemLoginCadastroFragment semLoginCadastroFragment = SemLoginCadastroFragment.newInstance();//TODO: falta deletar os parametros
                             setFragment(semLoginCadastroFragment);
                         }
@@ -83,4 +83,5 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.fragContainer,fragment);
         fragmentTransaction.commit();
     }
+
 }

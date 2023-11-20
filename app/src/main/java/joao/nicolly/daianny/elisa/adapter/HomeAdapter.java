@@ -55,6 +55,8 @@ public class HomeAdapter extends PagingDataAdapter<Planta,MyViewHolder> {
         //colocando a descrição
         TextView tvDescricaoPlanta = holder.itemView.findViewById(R.id.tvDescricaoPlanta);
         tvDescricaoPlanta.setText(planta.getInformacao());
+        //TODO: pergunta ao prof comofazer pra limitar os caracteres que aparecerão na descrição;
+
 
         /**quando o usuário clicar no item_planta será levado para a tela com as informações da planta*/
         holder.itemView.setOnClickListener(new View.OnClickListener() {

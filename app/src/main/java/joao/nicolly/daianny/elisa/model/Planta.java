@@ -11,11 +11,11 @@ public class Planta {
     private String nome_cientifico;
     private Bitmap imagem;
     private String informacao;
-    private ArrayList<Preparo> preparos;
+    private ArrayList<TipoPreparo> preparos;
     private ArrayList<Comentario> comentarios;
 
 
-    public Planta(int id, String nome, String nomeCientifico, Bitmap imagem, String informacao, ArrayList<Preparo> preparos, ArrayList<Comentario> comentarios) {
+    public Planta(int id, String nome, String nomeCientifico, Bitmap imagem, String informacao, ArrayList<TipoPreparo> preparos, ArrayList<Comentario> comentarios) {
         this.id = id;
         this.nome = nome;
         this.nome_cientifico = nomeCientifico;
@@ -43,7 +43,7 @@ public class Planta {
         return informacao;
     }
 
-    public ArrayList<Preparo> getPreparos() {
+    public ArrayList<TipoPreparo> getPreparos() {
         return preparos;
     }
 

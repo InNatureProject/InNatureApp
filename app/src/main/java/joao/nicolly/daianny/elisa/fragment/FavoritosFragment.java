@@ -81,9 +81,11 @@ public class FavoritosFragment extends Fragment {
         rvFavoritosFragment.setLayoutManager(new LinearLayoutManager(getContext()));
 
     }
+    //Metodo de Navegação  que será utilizado por FavoritosAdapter para navegar para PlantaActivity
     public void navPlanta(int id){
-        Intent i = new Intent(getContext(), PlantaActivity.class); // cria uma variavel intent que fará a comunicação entre ambas as telas// cria uma variavel intent que fará a comunicação entre ambas as telas
-        i.putExtra("id",id);
-        startActivity(i);
+        /*Aqui cria-se um intente para a tela PlantaActivity, uma vez que não é possível fazer isto do Adapter (Apenas de Activity e Fragmento)*/
+        Intent i = new Intent(getContext(), PlantaActivity.class); // cria uma variavel intent que fará a comunicação entre ambas as telas
+        i.putExtra("id",id);//Adiciona o id, que será necessário para carregar as informações da planta
+        startActivity(i);//efetua a navegaçãossssssssssssssssssssssssssss
     }
 }

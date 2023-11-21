@@ -3,7 +3,9 @@ package joao.nicolly.daianny.elisa.model;
 import android.graphics.Bitmap;
 
 import java.util.ArrayList;
-
+/**Esta classe armazena as informações referentes a um Usuário.
+ * Provavelmente será apagada pois as informações estão sendo armazenadas em ul local mais seguro.
+ * Lembrando que só falta armazenar a imagem do usuário pois o nome, o email e a senha já estão sendo armazenados assim como um tolking*/
 public class User {
 
     private Bitmap fotoDePerfil;

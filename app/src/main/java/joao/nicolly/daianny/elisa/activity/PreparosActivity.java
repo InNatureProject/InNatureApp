@@ -12,10 +12,13 @@ import java.util.ArrayList;
 import joao.nicolly.daianny.elisa.R;
 import joao.nicolly.daianny.elisa.adapter.PreparosAdapter;
 import joao.nicolly.daianny.elisa.model.TipoPreparo;
+import joao.nicolly.daianny.elisa.adapter.TipoPreparoComparator;
 
 public class PreparosActivity extends AppCompatActivity {
 
     //Variáveis
+    //recebemos o id da planta e utilizamos para pegar o preparo
+    int plantaID;
     ArrayList<TipoPreparo> preparos;
     RecyclerView rvPreparos;
     PreparosAdapter preparosAdapter;
@@ -25,9 +28,9 @@ public class PreparosActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_preparos);
 
-        //Aqui pegamos o id recevido pelo intent e o guardamos
+        //Aqui pegamos o id recebido pelo intent e o guardamos
         Intent i = getIntent();
-        this.preparos = i.getParcelableArrayListExtra("preparos", 0);
+        this.plantaID = i.getIntExtra("id",0);
 
         //pegamos o recicleView
         rvPreparos = findViewById(R.id.rvPreparos);
@@ -35,7 +38,12 @@ public class PreparosActivity extends AppCompatActivity {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         rvPreparos.setLayoutManager(layoutManager);
 
-        preparosAdapter = new PreparosAdapter(this);
+        //Criamos o Adapter
+        preparosAdapter = new PreparosAdapter( new TipoPreparoComparator(),this);
+        //TODO: Fazer TipoPreparoComparator()
+        //TODO: Fazer PreparosAdapter
+
+
 
 
     }

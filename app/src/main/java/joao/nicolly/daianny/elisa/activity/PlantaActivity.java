@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 import joao.nicolly.daianny.elisa.R;
 import joao.nicolly.daianny.elisa.model.Planta;
+import joao.nicolly.daianny.elisa.model.TipoPreparo;
 
 /*TODO: qual a necessidade do scrollview em planta?
 *   se é necessária lá, porque não é necessária na activity_preparo?*/
@@ -35,7 +36,7 @@ public class PlantaActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(PlantaActivity.this,PreparosActivity.class);
-                i.putExtra("preparos", (ArrayList) planta.getPreparos());
+                i.putExtra("id", id);
                 startActivity(i);
             }
         });

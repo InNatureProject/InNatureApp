@@ -3,7 +3,7 @@ package joao.nicolly.daianny.elisa.model;
 import android.graphics.Bitmap;
 
 import java.util.ArrayList;
-
+/**Esta classe armazena as informações referentes ao objeto planta.*/
 public class Planta {
 
     private int id;

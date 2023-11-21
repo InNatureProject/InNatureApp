@@ -8,12 +8,12 @@ import androidx.recyclerview.widget.DiffUtil;
 
 import joao.nicolly.daianny.elisa.activity.PreparosActivity;
 import joao.nicolly.daianny.elisa.model.Planta;
-import joao.nicolly.daianny.elisa.model.Preparo;
+import joao.nicolly.daianny.elisa.model.TipoPreparo;
 import kotlinx.coroutines.CoroutineDispatcher;
 
-public class PreparosAdapter extends PagingDataAdapter<Planta,MyViewHolder> {
+public class PreparosAdapter extends PagingDataAdapter<TipoPreparo,MyViewHolder> {
     PreparosActivity preparosActivity;
-    public PreparosAdapter(@NonNull DiffUtil.ItemCallback<Preparo> diffCallback, PreparosActivity preparosActivity) {
+    public PreparosAdapter(@NonNull DiffUtil.ItemCallback<TipoPreparo> diffCallback, PreparosActivity preparosActivity) {
         super(diffCallback);
         this.preparosActivity = preparosActivity;
 

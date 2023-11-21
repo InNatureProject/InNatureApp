@@ -1,6 +1,7 @@
 package joao.nicolly.daianny.elisa.model;
 
 import java.util.ArrayList;
+/**Esta classe armazena as informações referentes ao objeto Preparo.*/
 
 public class Preparo {
     private String nome;

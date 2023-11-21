@@ -11,6 +11,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import joao.nicolly.daianny.elisa.activity.PlantaActivity;
 import joao.nicolly.daianny.elisa.util.Config;
 import joao.nicolly.daianny.elisa.util.HttpRequest;
 import joao.nicolly.daianny.elisa.util.Util;
@@ -159,4 +160,32 @@ public class InNatureRepository {
 
         return null;
     } //este erro é devido a falta de return
+
+    /** Método que cria uma requisição HTTP para obter uma página de plantas
+     * retorna as informações da planta
+     *
+     */
+    PlantaActivity loadPlantaDetail(int id){
+
+        // Cria uma requisisção HTTP a diciona os parâmetros que devem ser enviados ao servidor
+        HttpRequest httpRequest= new HttpRequest(Config.INNATURE_URL+"command/planta/1","GET","UTF-8");
+        httpRequest.addParam("id",id);
+
+        try{
+            InputStream is = httpRequest.execute();
+
+            /**Obtém a resposta fornecida pelo servidor.. O imputStrema é convertido em string
+             * e a string é a resposta do servidor web em formato JSON.
+             */
+            // Se a equisição retornar com sucesso a string JSON retornará no formato
+            // {"sucesso":1,"nome","planta 1"...}
+
+            String result = Util.inputStream2String(is, "UTF-8");
+            httpRequest.finish();
+
+            int httpsDetailsResult = Log.i("HTTPS DETAILS RESULT", result);
+
+        }
+    }
 }
+

@@ -106,7 +106,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     /**
-     * Método chamado após deposi que o usuário já escolheu as permissãoes. O método indica o resultado
+     * Método chamado depois que o usuário já escolheu as permissãoes. O método indica o resultado
      */
     @Override
     public void onRequestPermissionsResult(int requestCode,@NonNull String[] permissions,@NonNull int[] gratResults){

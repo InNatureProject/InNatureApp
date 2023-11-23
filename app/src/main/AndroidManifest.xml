@@ -33,9 +33,6 @@
             android:name=".activity.ComentandoActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.SobreNosActivity"
-            android:exported="false" />
-        <activity
             android:name=".activity.PlantaActivity"
             android:exported="false" />
         <activity

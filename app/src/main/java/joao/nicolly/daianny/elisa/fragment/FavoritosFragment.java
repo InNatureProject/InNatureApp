@@ -66,6 +66,8 @@ public class FavoritosFragment extends Fragment {
     @Override    //override significa que estamos  sobrescrevendo UM MÉTODO DO PAI, ou seja, estamos mudando sua funcionalidade, o que ele faz
     public void onViewCreated(@NonNull View view, @Nullable Bundle savadInstanceState){
         super.onViewCreated(view,savadInstanceState);
+
+        /**Aqui criamos um novo mainViewModel e um novo favoritosAdapter*/
         mainViewModel = new ViewModelProvider(getActivity()).get(MainViewModel.class);
         favoritosAdapter = new FavoritosAdapter(new PlantaComparator(), this);
         LiveData<PagingData<Planta>> liveData = mainViewModel.getPageLv();

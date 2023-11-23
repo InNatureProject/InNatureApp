@@ -1,6 +1,5 @@
 package joao.nicolly.daianny.elisa.util;
 
-
 import android.util.Base64;
 
 import java.io.File;
@@ -14,6 +13,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -57,6 +57,8 @@ public class HttpRequest {
     String user = "";
     String password = "";
 
+    String token = "";
+
     int timeout = 3000;
 
     private String boundary;
@@ -93,6 +95,10 @@ public class HttpRequest {
         this.password = password;
     }
 
+    public void setTokenAuth(String token) {
+        this.token = token;
+    }
+
     // Seta o tempo maximo (em milisegundos) de espera por uma resposta do servidor.
     public void setTimeout(int time) {
         this.timeout = time;
@@ -103,17 +109,20 @@ public class HttpRequest {
     // o qual deve ser convertido para o dado originalmente enviado.
     public InputStream execute() throws IOException {
 
-        if(method == "GET") {
-            requestUrl = requestUrl + "?";
+        String urlParameters  = "";
+        if(!params.isEmpty()) {
             Iterator it = params.entrySet().iterator();
             while (it.hasNext()) {
-                Map.Entry pair = (Map.Entry)it.next();
-                requestUrl = requestUrl + URLEncoder.encode(pair.getKey().toString(),"UTF-8");
-                requestUrl = requestUrl + "=";
-                requestUrl = requestUrl + URLEncoder.encode(pair.getValue().toString(),"UTF-8");
-                requestUrl = requestUrl + "&";
+                Map.Entry pair = (Map.Entry) it.next();
+                urlParameters = urlParameters + URLEncoder.encode(pair.getKey().toString(), this.charset);
+                urlParameters = urlParameters + "=";
+                urlParameters = urlParameters + URLEncoder.encode(pair.getValue().toString(), this.charset);
+                urlParameters = urlParameters + "&";
             }
-            requestUrl =  requestUrl.substring(0, requestUrl.length() - 1);
+            urlParameters = urlParameters.substring(0, urlParameters.length() - 1);
+        }
+        if(method == "GET") {
+            requestUrl = requestUrl + "?" + urlParameters;
         }
 
         URL url = new URL(this.requestUrl);
@@ -135,62 +144,79 @@ public class HttpRequest {
             httpConn.setRequestProperty("Authorization", authHeaderValue);
         }
 
+        if(!this.token.isEmpty()) {
+            String auth = this.token;
+            byte[] encodedAuth = Base64.encode(auth.getBytes(), Base64.NO_WRAP);
+            String authHeaderValue = "Bearer " + new String(encodedAuth);
+            httpConn.setRequestProperty("Authorization", authHeaderValue);
+        }
+
         if(method == "POST") {
-            boundary = "===" + System.currentTimeMillis() + "===";
             httpConn.setDoOutput(true);    // indicates POST method
-            httpConn.setRequestProperty("Content-Type",
-                    "multipart/form-data; boundary=" + boundary);
-            outputStream = httpConn.getOutputStream();
-            writer = new PrintWriter(new OutputStreamWriter(outputStream, charset),
-                    true);
-
-            Iterator itParams = params.entrySet().iterator();
-            while (itParams.hasNext()) {
-                Map.Entry pair = (Map.Entry) itParams.next();
-                writer.append("--" + boundary).append(LINE_FEED);
-                writer.append("Content-Disposition: form-data; name=\"" + pair.getKey().toString() + "\"")
-                        .append(LINE_FEED);
-                //writer.append("Content-Type: text/plain; charset=" + charset).append(
-                        //LINE_FEED);
-                writer.append(LINE_FEED);
-                writer.append(pair.getValue().toString()).append(LINE_FEED);
-                writer.flush();
+            if(files.isEmpty()) {
+                httpConn.setRequestProperty("Content-Type",
+                        "application/x-www-form-urlencoded");
+                byte[] postData       = urlParameters.getBytes( StandardCharsets.UTF_8 );
+                int    postDataLength = postData.length;
+                httpConn.setRequestProperty( "charset", this.charset);
+                httpConn.setRequestProperty( "Content-Length", Integer.toString( postDataLength ));
+                outputStream = httpConn.getOutputStream();
+                outputStream.write(postData);
             }
-
-            Iterator itFiles = files.entrySet().iterator();
-            while (itFiles.hasNext()) {
-                Map.Entry pair = (Map.Entry) itFiles.next();
-                File file = (File) pair.getValue();
-                String fileName = file.getName();
-                writer.append("--" + boundary).append(LINE_FEED);
-                writer.append(
-                                "Content-Disposition: form-data; name=\"" + pair.getKey().toString()
-                                        + "\"; filename=\"" + fileName + "\"")
-                        .append(LINE_FEED);
-                writer.append(
-                                "Content-Type: "
-                                        + URLConnection.guessContentTypeFromName(fileName))
-                        .append(LINE_FEED);
-                writer.append("Content-Transfer-Encoding: binary").append(LINE_FEED);
-                writer.append(LINE_FEED);
-                writer.flush();
-
-                FileInputStream inputStream = new FileInputStream(file);
-                byte[] buffer = new byte[4096];
-                int bytesRead = -1;
-                while ((bytesRead = inputStream.read(buffer)) != -1) {
-                    outputStream.write(buffer, 0, bytesRead);
+            else {
+                boundary = "===" + System.currentTimeMillis() + "===";
+                httpConn.setRequestProperty("Content-Type",
+                        "multipart/form-data; boundary=" + boundary);
+                outputStream = httpConn.getOutputStream();
+                writer = new PrintWriter(new OutputStreamWriter(outputStream, charset),
+                        true);
+                Iterator itParams = params.entrySet().iterator();
+                while (itParams.hasNext()) {
+                    Map.Entry pair = (Map.Entry) itParams.next();
+                    writer.append("--" + boundary).append(LINE_FEED);
+                    writer.append("Content-Disposition: form-data; name=\"" + pair.getKey().toString() + "\"")
+                            .append(LINE_FEED);
+                    writer.append("Content-Type: text/plain; charset=" + charset).append(
+                            LINE_FEED);
+                    writer.append(LINE_FEED);
+                    writer.append(pair.getValue().toString()).append(LINE_FEED);
+                    writer.flush();
                 }
-                outputStream.flush();
-                inputStream.close();
-                writer.append(LINE_FEED);
-                writer.flush();
 
+                Iterator itFiles = files.entrySet().iterator();
+                while (itFiles.hasNext()) {
+                    Map.Entry pair = (Map.Entry) itFiles.next();
+                    File file = (File) pair.getValue();
+                    String fileName = file.getName();
+                    writer.append("--" + boundary).append(LINE_FEED);
+                    writer.append("Content-Disposition: form-data; name=\"" + pair.getKey().toString()
+                                    + "\"; filename=\"" + fileName + "\"")
+                            .append(LINE_FEED);
+                    writer.append(
+                                    "Content-Type: "
+                                            + URLConnection.guessContentTypeFromName(fileName))
+                            .append(LINE_FEED);
+                    writer.append("Content-Transfer-Encoding: binary").append(LINE_FEED);
+                    writer.append(LINE_FEED);
+                    writer.flush();
+
+                    FileInputStream inputStream = new FileInputStream(file);
+                    byte[] buffer = new byte[4096];
+                    int bytesRead = -1;
+                    while ((bytesRead = inputStream.read(buffer)) != -1) {
+                        outputStream.write(buffer, 0, bytesRead);
+                    }
+                    outputStream.flush();
+                    inputStream.close();
+                    writer.append(LINE_FEED);
+                    writer.flush();
+
+                }
+
+                writer.append(LINE_FEED).flush();
+                writer.append("--" + boundary + "--").append(LINE_FEED);
+                writer.close();
             }
-
-            writer.append(LINE_FEED).flush();
-            writer.append("--" + boundary + "--").append(LINE_FEED);
-            writer.close();
         }
 
         int responseCode = httpConn.getResponseCode();

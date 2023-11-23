@@ -17,7 +17,6 @@ import joao.nicolly.daianny.elisa.R;
 import joao.nicolly.daianny.elisa.activity.EditUserActivity;
 import joao.nicolly.daianny.elisa.activity.AjudaActivity;
 import joao.nicolly.daianny.elisa.activity.MainActivity;
-import joao.nicolly.daianny.elisa.activity.SobreNosActivity;
 import joao.nicolly.daianny.elisa.model.MainViewModel;
 import joao.nicolly.daianny.elisa.util.Config;
 
@@ -32,7 +31,6 @@ public class UserFragment extends Fragment {
     TextView tvName;
     TextView tvEmail;
     Button btnEditarPerfil;
-    Button btnSobreNos;
     Button btnAjuda;
     Button btnDeslogar;
 
@@ -73,7 +71,6 @@ public class UserFragment extends Fragment {
         tvName = view.findViewById(R.id.tvName);
         tvEmail = view.findViewById(R.id.tvEmail);
         btnEditarPerfil = view.findViewById(R.id.btnEditarPerfil);
-        btnSobreNos = view.findViewById(R.id.btnSobreNos);
         btnAjuda = view.findViewById(R.id.btnAjuda);
         btnDeslogar  = view.findViewById(R.id.btnDeslogar);
 
@@ -87,15 +84,6 @@ public class UserFragment extends Fragment {
         btnEditarPerfil.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
                 Intent i = new Intent(getContext(), EditUserActivity.class); // cria uma variavel intent que fará a comunicação entre ambas as telas
-                startActivity(i); // inicializa o intente, ou seja, vai para a tela desejada.
-            }
-        });
-
-        //Para saber mais sobre nós
-        btnSobreNos.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getContext(), SobreNosActivity.class); // cria uma variavel intent que fará a comunicação entre ambas as telas
                 startActivity(i); // inicializa o intente, ou seja, vai para a tela desejada.
             }
         });

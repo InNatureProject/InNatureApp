@@ -35,10 +35,13 @@ public class MainViewModel extends AndroidViewModel {
     }
 
     //METODOS
+
+    /** Seta a opção de seleção*/
     public void setNavigationOpSelected(int navigationOpSelected) {
         this.navigationOpSelected = navigationOpSelected;
     }
 
+    /**retora um */
     public LiveData<PagingData<Planta>> getPageLv() {
         return this.pageLv;
     }

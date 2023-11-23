@@ -165,48 +165,48 @@ public class InNatureRepository {
      * LoadPlantaDetail
      */
 
-    Planta loadPlantaDetail(int id){
-
-        // CRIAÇÃO DA REQUISIÇÃO HTTP E ADICIONA OS PARÂMETROS QUE SERÃO ENVIADOS AO BANCO
-        HttpRequest httpRequest=new HttpRequest(Config.INNATURE_URL+"command/plantas/id","GET","UTF-8");
-        httpRequest.addParam("id".id);
-
-        String result= "";
-        try{
-            // executa arequisição HTTP.Momento em que o servidor web é conectado
-
-            InputStream is =httpRequest.execute();
-
-            result= Util.inputStream2String(is,"UTF-8");
-
-            httpRequest.finish();
-
-            Log.i("HTTP DETAILS RESULT", result);
-            //Veificarseo JSONbject é o mesmo no nosso caso
-
-            JSONObject jsonObject = new JSONObject(result);
-            int sucess=  jsonObject.getInt("Sucesso");
-
-
-            if(sucess==1){
-                int id= jsonObject.getInt("id");
-                String nome=jsonObject.getString("nome");
-                String nomeCientifico= jsonObject.getString("nomeCientifico");
-                //Bitmap imagem= jsonObject.
-                String informacao= jsonObject.getString("informações");
-                ArrayList<Preparo> =jsonObject.getJSONArray("preparo") ;
-                ArrayList<Comentario>= jsonObject.getJSONArray("comentarios") ;
-
-                //Cria um objeto Planta eguarda asseguintes iformações
-
-                Planta p = new Planta();
-                
-
-
-
-            }
-
-        }
-
-    }
+//    Planta loadPlantaDetail(int id){
+//
+//        // CRIAÇÃO DA REQUISIÇÃO HTTP E ADICIONA OS PARÂMETROS QUE SERÃO ENVIADOS AO BANCO
+//        HttpRequest httpRequest=new HttpRequest(Config.INNATURE_URL+"command/plantas/id","GET","UTF-8");
+//        httpRequest.addParam("id", String.valueOf(id));
+//
+//        String result= "";
+//        try{
+//            // executa arequisição HTTP.Momento em que o servidor web é conectado
+//
+//            InputStream is =httpRequest.execute();
+//
+//            result= Util.inputStream2String(is,"UTF-8");
+//
+//            httpRequest.finish();
+//
+//            Log.i("HTTP DETAILS RESULT", result);
+//            //Veificarseo JSONbject é o mesmo no nosso caso
+//
+//            JSONObject jsonObject = new JSONObject(result);
+//            int sucess=  jsonObject.getInt("Sucesso");
+//
+//
+//            if(sucess==1){
+//                int id= jsonObject.getInt("id");
+//                String nome=jsonObject.getString("nome");
+//                String nomeCientifico= jsonObject.getString("nomeCientifico");
+//                //Bitmap imagem= jsonObject.
+//                String informacao= jsonObject.getString("informações");
+//                ArrayList<Preparo> =jsonObject.getJSONArray("preparo") ;
+//                ArrayList<Comentario>= jsonObject.getJSONArray("comentarios") ;
+//
+//                //Cria um objeto Planta eguarda asseguintes iformações
+//
+//                Planta p = new Planta();
+//
+//
+//
+//
+//            }
+//
+//        }
+//
+//    }
 }

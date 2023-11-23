@@ -17,6 +17,8 @@ import joao.nicolly.daianny.elisa.util.Config;
 public class EditUserActivity extends AppCompatActivity {
 
     //VARIÁVEIS
+
+    //
     ImageView ivMudarFotoPerfil;
     TextView tvEmailVinc;
     TextView tvNomeVinc;
@@ -33,7 +35,7 @@ public class EditUserActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_user);
 
-        /*aqui pegamos os elemetos nome e email da tela e
+        /*aqui pegamos os textView nome e email da tela e
         modificamos o conteúdo para que receba o nome e email do usuário*/
 
         tvEmailVinc = findViewById(R.id.tvEmailVinc);

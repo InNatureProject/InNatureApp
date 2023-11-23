@@ -3,27 +3,20 @@ package joao.nicolly.daianny.elisa.model;
 import android.graphics.Bitmap;
 
 import java.util.ArrayList;
-
+/**Esta classe armazena as informações referentes ao objeto planta.*/
 public class Planta {
 
-    public Object name;
     private int id;
     private String nome;
-    private String nome_cientifico;
-    private Bitmap imagem;
-    private String informacao;
-    private ArrayList<Preparo> preparos;
-    private ArrayList<Comentario> comentarios;
+    private Bitmap imagem;//TODO: talvez teremos que armazenar uma url, volgo string, ao invés de um bitmap
 
 
-    public Planta(int id, String nome, String nomeCientifico, Bitmap imagem, String informacao, ArrayList<Preparo> preparos, ArrayList<Comentario> comentarios) {
+
+
+    public Planta(int id, String nome, Bitmap imagem) {
         this.id = id;
         this.nome = nome;
-        this.nome_cientifico = nomeCientifico;
         this.imagem = imagem;
-        this.informacao = informacao;
-        this.preparos = preparos;
-        this.comentarios = comentarios;
     }
 
     public int getId() {return id;}
@@ -32,23 +25,8 @@ public class Planta {
         return nome;
     }
 
-    public String getNome_cientifico() {
-        return nome_cientifico;
-    }
-
     public Bitmap getImagem() {
         return imagem;
     }
 
-    public String getInformacao() {
-        return informacao;
-    }
-
-    public ArrayList<Preparo> getPreparos() {
-        return preparos;
-    }
-
-    public ArrayList<Comentario> getComentarios() {
-        return comentarios;
-    }
 }

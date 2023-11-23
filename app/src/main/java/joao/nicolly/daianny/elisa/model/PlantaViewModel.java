@@ -33,11 +33,19 @@ public class PlantaViewModel  extends AndroidViewModel {
 
             @Override
             public void run(){
+                // Criação de uma instância de InNatureRepository
+                //classe com os métodos que se comunicamcom o servidor web
+                 Planta p = InNatureRepository.LoadPlantaDetaial(id);
+
+                 //    Resultado da operação dentro do LiveData
+
+                plantaDetailLD.postValue(p);
+
 
             }
 
         });
 
-        return null;
+        return plantaDetailLD;
     }
 }

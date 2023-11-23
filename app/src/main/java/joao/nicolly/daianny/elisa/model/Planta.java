@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 public class Planta {
 
+    public Object name;
     private int id;
     private String nome;
     private String nome_cientifico;

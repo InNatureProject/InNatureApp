@@ -18,7 +18,7 @@ public class EditUserActivity extends AppCompatActivity {
 
     //VARIÁVEIS
 
-    //
+    //TODO: falta colocar a foto do usuário no imageView
     ImageView ivMudarFotoPerfil;
     TextView tvEmailVinc;
     TextView tvNomeVinc;

@@ -22,7 +22,7 @@ import joao.nicolly.daianny.elisa.activity.PlantaActivity;
 import joao.nicolly.daianny.elisa.adapter.HomeAdapter;
 import joao.nicolly.daianny.elisa.model.MainViewModel;
 import joao.nicolly.daianny.elisa.model.Planta;
-import joao.nicolly.daianny.elisa.model.PlantaComparator;
+import joao.nicolly.daianny.elisa.adapter.PlantaComparator;
 
 //TODO: aqui tem, que requisitar as plantas cadastradas e ordenálas  ou por ordem alfabética ou pelas mais populares
 

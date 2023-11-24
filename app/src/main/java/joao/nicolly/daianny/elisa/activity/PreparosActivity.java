@@ -1,6 +1,7 @@
 package joao.nicolly.daianny.elisa.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -10,10 +11,12 @@ import android.os.Bundle;
 import joao.nicolly.daianny.elisa.R;
 import joao.nicolly.daianny.elisa.adapter.PreparosAdapter;
 import joao.nicolly.daianny.elisa.adapter.TipoPreparosComparator;
+import joao.nicolly.daianny.elisa.model.PreparosViewModel;
 
 public class PreparosActivity extends AppCompatActivity {
     int id;
     PreparosAdapter preparosAdapter;//TODO: Fazer PreparosAdapter
+    PreparosViewModel preparosViewModel;//TODO: Fazer PreparosViewModel
     RecyclerView rvPreparos;
 
 
@@ -32,7 +35,11 @@ public class PreparosActivity extends AppCompatActivity {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         rvPreparos.setLayoutManager(layoutManager);
 
-        preparosAdapter = new PreparosAdapter(PreparosActivity.this, new TipoPreparosComparator());
+        preparosAdapter = new PreparosAdapter(this, new TipoPreparosComparator());
         rvPreparos.setAdapter(preparosAdapter);
+
+
+        // obtemos o ViewModel pois é nele que está o método que se conecta ao servior web.
+        preparosViewModel = new ViewModelProvider(this).get(PreparosViewModel.class);
     }
 }

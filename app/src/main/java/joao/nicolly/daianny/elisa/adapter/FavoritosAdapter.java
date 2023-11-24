@@ -53,13 +53,6 @@ public class FavoritosAdapter extends PagingDataAdapter<Planta,MyViewHolder>{
         TextView tvNome = holder.itemView.findViewById(R.id.tvNome);
         tvNome.setText(planta.getNome());
 
-        //colocando o nome cientifico
-        TextView tvNomeCientifico = holder.itemView.findViewById(R.id.tvNoomeCientifico);
-        tvNomeCientifico.setText(planta.getNome_cientifico());
-
-        //colocando a descrição
-        TextView tvDescricaoPlanta = holder.itemView.findViewById(R.id.tvDescricaoPlanta);
-        tvDescricaoPlanta.setText(planta.getInformacao());
 
 
         /**quando o usuário clicar no item_planta será levado para a tela com as informações da planta*/

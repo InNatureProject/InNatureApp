@@ -106,9 +106,9 @@ public  class CadastroActivity extends AppCompatActivity {
                 }
                 /*Validando email
                  *      Aqui verificamos se a variável contendo o email  possui string com extensão de emails comuns*/
-                if(     etEmailUsuarioText.contains("@gmail.com") ||
+                if(    !( etEmailUsuarioText.contains("@gmail.com") ||
                         etEmailUsuarioText.contains("@outlook.com") ||
-                        etEmailUsuarioText.contains("@hotmail.com")){
+                        etEmailUsuarioText.contains("@hotmail.com"))){
                     Toast.makeText(CadastroActivity.this,"Favor inserir um email válido!",Toast.LENGTH_LONG).show();
                     return;
                 }
@@ -141,13 +141,15 @@ public  class CadastroActivity extends AppCompatActivity {
                             Config.setPassword(CadastroActivity.this,etConfSenhaText);
                             Config.setName(CadastroActivity.this,etNomeUsuarioText);
 
+                            finish();
+
                             Toast.makeText(CadastroActivity.this,"Novo usuário cadastrado com sucesso!",Toast.LENGTH_LONG).show();
 
                             Intent i = new Intent(CadastroActivity.this, MainActivity.class);
                             startActivity(i);
                             //Professor falou pra fazer a navegação por último mas são literalmente duas linhas, não resisti
 
-//                            finish();
+
                             //Na activity Diz que quando finalizamos (finish()) voltamos para a tela de login, ou seja, para a tela que estávamos. Porque?
                             // Não encontrei metodos referentes a isto
                             //Observei também que após o cadastro o cliente é obrigado a fazer login, mas gostaria que ao fazer o cadastro o login também acontecesse.
@@ -155,6 +157,7 @@ public  class CadastroActivity extends AppCompatActivity {
                         }
                         else{
                             Toast.makeText(CadastroActivity.this,"Erro ao cadastrar novo usuário!",Toast.LENGTH_LONG).show();
+                            return;
                         }
                     }
                 });

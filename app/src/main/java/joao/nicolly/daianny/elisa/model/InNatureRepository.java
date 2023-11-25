@@ -24,6 +24,7 @@ import joao.nicolly.daianny.elisa.util.Util;
 /***/
 public class InNatureRepository {
 
+
     //Variaveis
     Context context;
     public InNatureRepository(Context context) {this.context = context; }
@@ -59,14 +60,18 @@ public class InNatureRepository {
              *      A API está com bug, então vai demorar a saber.
              *      quando solbermos devemos validar se está correto.
              *      Se estiver correto devemos guardar tanto o tolking quanto o login e a senha na APP*/
+
+            /**Resulte virá com uma string contendo um JSON
+             * result = "{"Tolken":"Tolking gerado pelo servidor que devemos armadenar","result":true}"*/
             JSONObject jsonObject = new JSONObject(result);
 
 
-            int sucesso = jsonObject.getInt("sucesso");
+            Boolean resultado = jsonObject.getBoolean("result");
 
-            if(sucesso == 1){
-                //TODO: Ver se a mensagem que retorna quando o cadastro é efetiVADO REALMENTE É SUCESSO = 1
-                //TODO: Nesta parte pegar o tolking e setá-lo na app, pois é oque usaremos para comentar e favoritar.
+            if(resultado){
+                /**Aqui pegamos o tolken recebido e o armazenamos*/
+                String tolken = jsonObject.getString("Tolken");
+                Config.setTolken(context,tolken);
                 return true;
             }
         } catch(IOException e){

@@ -21,7 +21,11 @@ public class PlantaViewModel  extends AndroidViewModel {
      * Solicita o id do produto e retorna um LiveData
      */
 
-    public LiveData<Planta> getPlanta(int id, String nome, String nomeCientifico, Bitmap imagem, String informacao, ArrayList<Preparo> preparos, ArrayList<Comentario> comentarios) {
+    /**Nick precisei colocar return null e comentar algumas partes para testar o código.
+     * Também modifiquei as informações recebidas pois no banco de dados as plantas apenas possuem id, nome e imagem.
+     * então estou tendo que mudar isso no código inteiro, já mudei na classe planta.*/
+
+    public LiveData<Planta> getPlanta(int id, String nome, Bitmap imagem) {
 
        // Cria uma nova linha de execução (thread). O android obriga que chamadas de rede sejam feitas
         // em uma linha de execução separada da principal.
@@ -35,17 +39,17 @@ public class PlantaViewModel  extends AndroidViewModel {
             public void run(){
                 // Criação de uma instância de InNatureRepository
                 //classe com os métodos que se comunicamcom o servidor web
-                 Planta p = InNatureRepository.LoadPlantaDetaial(id);
+              //   Planta p = InNatureRepository.LoadPlantaDetaial(id);
 
                  //    Resultado da operação dentro do LiveData
 
-                plantaDetailLD.postValue(p);
+               // plantaDetailLD.postValue(p);
 
 
             }
 
         });
 
-        return plantaDetailLD;
+        return null;
     }
 }

@@ -60,4 +60,14 @@ public class Config {
         SharedPreferences mPrefs = context.getSharedPreferences("configs", 0);
         return mPrefs.getString("name","");
     }
+
+    public static void setTolken(Context context,String tolken){
+        SharedPreferences mPrefs = context.getSharedPreferences("configs",0);
+        SharedPreferences.Editor mEditor = mPrefs.edit();
+        mEditor.putString("tolken",tolken).commit();
+    }
+    public  static String getTolken(Context context){
+        SharedPreferences mPrefs = context.getSharedPreferences("configs",0);
+        return  mPrefs.getString("tolken","");
+    }
 }

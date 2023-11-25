@@ -57,6 +57,12 @@ public  class CadastroActivity extends AppCompatActivity {
                 final String etSenhaText       = etSenha.getText().toString();
                 final String etConfSenhaText   = etConfSenha.getText().toString();
 
+
+                /**A sanitização começa a partir daqui
+                 * Esta etapa é importante para garantir que não enviemos informações irrelevantes ou equivocadas para o banco de dados
+                 * validamos se as variaveis com as informações que pegamos do formulário não estão vazias, com dados que impeção o cadastro
+                 * ou se não são nocivas.*/
+
                 //Verificando se os campos foram preenchidos
                 if(etNomeUsuarioText.isEmpty()){
                     Toast.makeText(CadastroActivity.this,"O campo de nome não foi preenchido!",Toast.LENGTH_LONG).show();
@@ -81,15 +87,47 @@ public  class CadastroActivity extends AppCompatActivity {
                     return;
                 }
 
-                /* TODO fazer a sanitização aqui!
-                *   Deve-se checar se não há caracteres especiais ou se há palavras como insert ou drop, etc
-                *   é uma boa ideia perguntar ao João pq ele fez isso no web e pode nos falar o que é realmente nescessário
-                *   Lembrar de perguntar sobre a necessidade de sanitizar o cadastro no mobile ao prof Daniel
-                *   Estou avaliando a possibilidade de criar um metodo que procura na string por tais caracteres e se os encontra devolve uma confimação, se este já não existir
-                *   Assim seria fácil sanitizar os dados tanto aqui quanto no Login*/
+                //Aqui checamos se há espaços em senha e email e caso haja pedimos que o usuário os retire
+                //Este paço é importante pois caso haja espaço a API do joão rejeitará o cadastro/login do usuário
+                //A única campo, até então, que permite espaço é o nome
+                if(verifEspaco(etEmailUsuarioText)){
+                    Toast.makeText(CadastroActivity.this,"Não devem haver espaços no email!",Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if(verifEspaco(etSenhaText)){
+                    Toast.makeText(CadastroActivity.this,"Não devem haver espaços na senha!",Toast.LENGTH_LONG).show();
+                    return;
+                }
+                //Informamos ao usuário o tamanho mínimo da senha
+                //Caso a senha tenha menos de 6 dígitos o cadastro será impedido de ocorrer
+                if(etSenhaText.length() <6){
+                    Toast.makeText(CadastroActivity.this,"A senha precisa ter no mínimo 6 dígitos!",Toast.LENGTH_LONG).show();
+                    return;
+                }
+                /*Validando email
+                 *      Aqui verificamos se a variável contendo o email  possui string com extensão de emails comuns*/
+                if(     etEmailUsuarioText.contains("@gmail.com") ||
+                        etEmailUsuarioText.contains("@outlook.com") ||
+                        etEmailUsuarioText.contains("@hotmail.com")){
+                    Toast.makeText(CadastroActivity.this,"Favor inserir um email válido!",Toast.LENGTH_LONG).show();
+                    return;
+                }
+                //Sanitizando campos
+                //aqui checamos se não há caracteres maliciosos na string, como por exemplo os utilizados em sql inject
+                if(sanStr(etNomeUsuarioText)){
+                    Toast.makeText(CadastroActivity.this,"Favor utilizar apenas letras e números no nome!",Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if(sanStr(etSenhaText)){
+                    Toast.makeText(CadastroActivity.this,"Favor utilizar apenas letras e números na senha!",Toast.LENGTH_LONG).show();
+                    return;
+                }
 
-                /*TODO:para sanitizar
-                *  */
+                /** A parte de sanitização acabou aqui.
+                 * Para conseguir impedir os espaços e os caracteres maliciosos utilizei dois metodos  que estão no final
+                 * da página o sanStr() e o verifEspaco(). é só passar para ele a variável contendo a string a ser analizada
+                 * e eles vão devolver um Boolean. caso a string tenha caracteres maliciosos ou espaços eles devolvem true.
+                 */
 
                 //Criando a conta
                 result = cadastroViewModel.cadastrar(etNomeUsuarioText,etEmailUsuarioText,etSenhaText);
@@ -125,5 +163,23 @@ public  class CadastroActivity extends AppCompatActivity {
             }
         });
 
+    }
+    //método que verifica se há espaços na string
+    private Boolean verifEspaco(String str){
+        for(int i=0; i<str.length(); i++ ){
+            if( str.charAt(i) == ' ' ) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private Boolean sanStr(String str){
+        for(int i=0; i<str.length(); i++ ){
+            if( str.charAt(i) == '`' || str.charAt(i) == '´' || str.charAt(i) == '|' || str.charAt(i) == '/'  ) {
+                return true;
+            }
+        }
+        return false;
     }
 }

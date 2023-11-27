@@ -164,7 +164,7 @@ public class InNatureRepository {
 //            Log.i("HTTP RESULTADO   DA REQUISIÇÃO",result);
 //        }//Este erro é devido a falta do catch
 
-        return null;
+        return plantaList;
     } //este erro é devido a falta de return
     /** Método que cria a requisição httppara obter as informações das plantas
      * LoadPlantaDetail

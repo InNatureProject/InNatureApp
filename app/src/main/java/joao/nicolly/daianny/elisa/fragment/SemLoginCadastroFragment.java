@@ -65,7 +65,7 @@ public class SemLoginCadastroFragment extends Fragment {
         });
 
         //Faz o intent para CadastroActivity, ou seja , nos direciona para a tela de cadastro
-        btnTelaEntrar.setOnClickListener(new View.OnClickListener() {
+        btnTelaCadastro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(getContext(), CadastroActivity.class);

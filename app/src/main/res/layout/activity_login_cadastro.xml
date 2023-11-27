@@ -7,7 +7,7 @@
     tools:context=".activity.LoginCadastroActivity">
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/btnCadastrarAct"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginStart="8dp"
@@ -19,14 +19,14 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/btnEntrarAct"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:text="Entrar"
-        app:layout_constraintBottom_toTopOf="@+id/button3"
+        app:layout_constraintBottom_toTopOf="@+id/btnCadastrarAct"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
@@ -43,7 +43,7 @@
         android:textAlignment="center"
         android:textColor="#919191"
         android:textSize="34sp"
-        app:layout_constraintBottom_toTopOf="@+id/button4"
+        app:layout_constraintBottom_toTopOf="@+id/btnEntrarAct"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

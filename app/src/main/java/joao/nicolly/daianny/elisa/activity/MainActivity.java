@@ -42,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
 
         //Mudando com qual item selecionado a activity deve iniciar
         bottomNavigationView = findViewById(R.id.btNav);
-        Toolbar toolbar = findViewById(R.id.toolbar);
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {

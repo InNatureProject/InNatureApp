@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.util.Log;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -135,7 +136,7 @@ public class InNatureRepository {
         //o limit é a quantidade de itens (neste caso plantas) que requisitaremos do banco de dados
         //o offSet sete determina a partir de qual item (neste caso planta) pegaremos a quantidade requisitada "limit"
 
-        /**Não é necessário validação de usuário (login, senha ou tolking) para carregar as plantas*/
+        /**Não é necessário validação de usuário (login, senha ou token) para carregar as plantas*/
 
         // cria a lista de produtos incicialmente vazia, que será retornada como resultado
         List<Planta> plantaList = new ArrayList<>();
@@ -149,22 +150,62 @@ public class InNatureRepository {
         //String onde será guardado o resultado retornado pelo servidor
         String result = "";
 
-//        // Tentativa de Conexão
-//        try{
-//            //executando a requisição
-//            InputStream is = httpRequest.execute();//Este erro é devido a falta do catch
-//            //resultado provavelmente será em uma string de formato JSON que preciso perguntar ao João como virá
-//            /** TODO: O resulte receberá uma string que virá em formato JSON
-//             *      Depois de transformar a string em objeto JSON devemos manipular estes dados de maneira
-//             *      que devolvamos uma lista de Objetos contendo as informações pertinentes a dada planta.*/
-//            result = Util.inputStream2String(is,"UTF-8");//Este erro é devido a falta do catch
-//
-//            //fechando conecção com servidor
-//            httpRequest.finish();//Este erro é devido a falta do catch
-//
-//            Log.i("HTTP RESULTADO   DA REQUISIÇÃO",result);
-//        }//Este erro é devido a falta do catch
+        // Tentativa de Conexão
+        try{
+            //executando a requisição
+            InputStream is = httpRequest.execute();//Este erro é devido a falta do catch
 
+            //resultado provavelmente será em uma string de formato JSON que preciso perguntar ao João como virá
+            /** TODO: O resulte receberá uma string que virá em formato JSON
+             *      Depois de transformar a string em objeto JSON devemos manipular estes dados de maneira
+             *      que devolvamos uma lista de Objetos contendo as informações pertinentes a dada planta.*/
+            result = Util.inputStream2String(is,"UTF-8");//Este erro é devido a falta do catch
+
+            //fechando conecção com servidor
+            httpRequest.finish();//Este erro é devido a falta do catch
+
+            Log.i("HTTP RESULTADO   DA REQUISIÇÃO",result);
+
+            // A classe JSONObject recebe como parâmetro do construtor uma String no formato JSON e
+            // monta internamente uma estrutura de dados similar ao dicionário em python.
+            JSONObject jsonObject = new JSONObject(result);
+
+            // obtem o valor da chave sucesso para verificar se a ação ocorreu da forma esperada ou não.
+            Boolean success = jsonObject.getBoolean("sucesso");
+
+            // Se sucesso igual a true, os produtos são obtidos da String JSON e adicionados à lista de
+            // produtos a ser retornada como resultado.
+            if(success) {
+
+                // A chave produtos é um array de objetos do tipo json (JSONArray), onde cada um desses representa
+                // um produto
+                JSONArray jsonArray = jsonObject.getJSONArray("produtos");
+
+                // Cada elemento do JSONArray é um JSONObject que guarda os dados de um produto
+                for(int i = 0; i < jsonArray.length(); i++) {
+
+                    // Obtemos o JSONObject referente a um produto
+                    JSONObject jPlanta = jsonArray.getJSONObject(i);
+
+                    // Obtemos os dados de um produtos via JSONObject
+                    int id = jPlanta.getInt("id");
+                    String name = jPlanta.getString("nome");
+                    String img = jPlanta.getString("url");
+
+                    // Criamo um objeto do tipo Product para guardar esses dados
+                    Planta planta = new Planta(id,name, img);
+
+
+                    // Adicionamos o objeto product na lista de produtos
+                    plantaList.add(planta);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+            Log.e("HTTP RESULT", result);
+        }
         return plantaList;
     } //este erro é devido a falta de return
     /** Método que cria a requisição httppara obter as informações das plantas

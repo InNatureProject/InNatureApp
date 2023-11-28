@@ -45,6 +45,9 @@ dependencies {
     //dependencia que permite imagens circulares, mas ainda tem que ver se funciona ou como usar
     implementation 'de.hdodenhof:circleimageview:2.0.0'
 
+    //dependencia que pega a url e baixa a imagem
+    implementation 'com.squareup.picasso:picasso:2.5.2'
+
 
     //dependencias que permite usar o Paging 3 pra fazer a paginação das telas.
 

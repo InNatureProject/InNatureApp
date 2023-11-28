@@ -74,5 +74,9 @@ public class PreparosActivity extends AppCompatActivity {
         });
     }
 
-    public void startReceitaPreparoActivity(int id){}
+    public void startReceitaPreparoActivity(int id){
+        Intent i = new Intent(PreparosActivity.this,ReceitaPreparoActivity.class);
+        i.putExtra("id",id);
+        startActivity(i);
+    }
 }

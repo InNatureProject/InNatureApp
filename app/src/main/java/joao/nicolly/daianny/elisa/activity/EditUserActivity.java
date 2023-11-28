@@ -64,7 +64,7 @@ public class EditUserActivity extends AppCompatActivity {
                 if(!novoNome.isEmpty()){
                     Config.setName(EditUserActivity.this,novoNome);
                     Toast.makeText(EditUserActivity.this,"Nome de usuário atualizado com sucesso!",Toast.LENGTH_LONG).show();
-                    //TODO:devemos enviae  o novo nome para ser salvo no banco de dados, provavelmete será gerado um novo tolking de acesso
+                    //TODO:devemos enviar  o novo nome para ser salvo no banco de dados, provavelmete será gerado um novo tolken de acesso
                 }
                 if(!novaSenha.isEmpty()){
                     if(novaSenha.equals(confNovaSenha)){

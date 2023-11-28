@@ -62,15 +62,15 @@ public class InNatureRepository {
              *      Se estiver correto devemos guardar tanto o tolking quanto o login e a senha na APP*/
 
             /**Resulte virá com uma string contendo um JSON
-             * result = "{"Tolken":"Tolking gerado pelo servidor que devemos armadenar","result":true}"*/
+             * result = "{"Token":"Token gerado pelo servidor que devemos armadenar","result":true}"*/
             JSONObject jsonObject = new JSONObject(result);
 
 
             Boolean resultado = jsonObject.getBoolean("result");
 
             if(resultado){
-                /**Aqui pegamos o tolken recebido e o armazenamos*/
-                String tolken = jsonObject.getString("Tolken");
+                /**Aqui pegamos o token recebido e o armazenamos*/
+                String tolken = jsonObject.getString("Token");
                 Config.setTolken(context,tolken);
                 return true;
             }
@@ -142,6 +142,7 @@ public class InNatureRepository {
 
         // Cria uma requisição HTTP a adiciona o parâmetros que devem ser enviados ao servidor
         HttpRequest httpRequest = new HttpRequest(Config.INNATURE_URL +"command/plantas", "GET", "UTF-8");
+        /**Como não estamos fazendo paginação no banco de dados não enviamos o limit nem o offSet*/
 //        httpRequest.addParam("limit", limit.toString());
 //        httpRequest.addParam("offset",offSet.toString());
 

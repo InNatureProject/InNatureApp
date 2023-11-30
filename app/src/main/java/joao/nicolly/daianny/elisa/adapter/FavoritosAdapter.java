@@ -14,6 +14,8 @@ import androidx.annotation.NonNull;
 import androidx.paging.PagingDataAdapter;
 import androidx.recyclerview.widget.DiffUtil;
 
+import com.squareup.picasso.Picasso;
+
 public class FavoritosAdapter extends PagingDataAdapter<Planta,MyViewHolder>{
 
     FavoritosFragment favoritosFragment;
@@ -47,7 +49,12 @@ public class FavoritosAdapter extends PagingDataAdapter<Planta,MyViewHolder>{
 
         //colocando a imagem
         ImageView imgvImagemPlanta = holder.itemView.findViewById(R.id.imgvImagemPlanta);
-        imgvImagemPlanta.setImageBitmap(planta.getImagem());
+
+        //Utilizamos o picasso para baixar a imagem da url e colocar dentro do imageView
+        //passamos o contexto, a url e o image view
+        Picasso.with(favoritosFragment.getContext())
+                .load(planta.getImagem())
+                .into(imgvImagemPlanta);
 
         //colocando o nome
         TextView tvNome = holder.itemView.findViewById(R.id.tvNome);

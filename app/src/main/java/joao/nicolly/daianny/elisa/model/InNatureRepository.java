@@ -3,6 +3,7 @@ package joao.nicolly.daianny.elisa.model;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.util.Log;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -14,6 +15,7 @@ import java.lang.reflect.GenericArrayType;
 import java.util.ArrayList;
 import java.util.List;
 
+import joao.nicolly.daianny.elisa.activity.CadastroActivity;
 import joao.nicolly.daianny.elisa.util.Config;
 import joao.nicolly.daianny.elisa.util.HttpRequest;
 import joao.nicolly.daianny.elisa.util.Util;
@@ -138,7 +140,7 @@ public class InNatureRepository {
 
         /**Não é necessário validação de usuário (login, senha ou token) para carregar as plantas*/
 
-        // cria a lista de produtos incicialmente vazia, que será retornada como resultado
+        // cria a lista de plantas incicialmente vazia, que será retornada como resultado
         List<Planta> plantaList = new ArrayList<>();
 
         // Cria uma requisição HTTP a adiciona o parâmetros que devem ser enviados ao servidor
@@ -153,33 +155,35 @@ public class InNatureRepository {
         // Tentativa de Conexão
         try{
             //executando a requisição
-            InputStream is = httpRequest.execute();//Este erro é devido a falta do catch
+            InputStream is = httpRequest.execute();
 
             //resultado provavelmente será em uma string de formato JSON que preciso perguntar ao João como virá
             /** TODO: O resulte receberá uma string que virá em formato JSON
              *      Depois de transformar a string em objeto JSON devemos manipular estes dados de maneira
              *      que devolvamos uma lista de Objetos contendo as informações pertinentes a dada planta.*/
-            result = Util.inputStream2String(is,"UTF-8");//Este erro é devido a falta do catch
+            result = Util.inputStream2String(is,"UTF-8");
 
+            // result conterá a informação de todas as plantas
+            // reult = [{"cod_plt":1,"nome":"Capim Limão","imagem":"https://fenixculatra.github.io/PlantasMedicinais/imagens/capim-limao.jpg","descricao":null},{"cod_plt":2,"nome":"Camomila","imagem":"https://fenixculatra.github.io/PlantasMedicinais/imagens/camomila.jpg","descricao":null},{"cod_plt":3,"nome":"Hortelã","imagem":"https://fenixculatra.github.io/PlantasMedicinais/imagens/hortela.jpg","descricao":null},{"cod_plt":4,"nome":"Erva-Cidreira","imagem":"https://fenixculatra.github.io/PlantasMedicinais/imagens/erva-cidreira.jpg","descricao":null},{"cod_plt":5,"nome":"Chá Verde","imagem":"https://fenixculatra.github.io/PlantasMedicinais/imagens/cha-verde.jpg","descricao":null}]
             //fechando conecção com servidor
-            httpRequest.finish();//Este erro é devido a falta do catch
+            httpRequest.finish();
 
             Log.i("HTTP RESULTADO   DA REQUISIÇÃO",result);
 
             // A classe JSONObject recebe como parâmetro do construtor uma String no formato JSON e
             // monta internamente uma estrutura de dados similar ao dicionário em python.
-            JSONObject jsonObject = new JSONObject(result);
+            JSONArray jsonArray = new JSONArray(result);
 
             // obtem o valor da chave sucesso para verificar se a ação ocorreu da forma esperada ou não.
-            Boolean success = jsonObject.getBoolean("sucesso");
+            //Boolean success = jsonObject.getBoolean("sucesso");
 
             // Se sucesso igual a true, os produtos são obtidos da String JSON e adicionados à lista de
             // produtos a ser retornada como resultado.
-            if(success) {
+//            if(success) {
 
                 // A chave produtos é um array de objetos do tipo json (JSONArray), onde cada um desses representa
                 // um produto
-                JSONArray jsonArray = jsonObject.getJSONArray("produtos");
+                //JSONArray jsonArray = jsonObject.getJSONArray("produtos");
 
                 // Cada elemento do JSONArray é um JSONObject que guarda os dados de um produto
                 for(int i = 0; i < jsonArray.length(); i++) {
@@ -188,18 +192,21 @@ public class InNatureRepository {
                     JSONObject jPlanta = jsonArray.getJSONObject(i);
 
                     // Obtemos os dados de um produtos via JSONObject
-                    int id = jPlanta.getInt("id");
+                    int id = jPlanta.getInt("cod_plt");
                     String name = jPlanta.getString("nome");
-                    String img = jPlanta.getString("url");
+                    String img = jPlanta.getString("imagem");
+                    String desc = jPlanta.getString("descricao");
 
                     // Criamo um objeto do tipo Product para guardar esses dados
-                    Planta planta = new Planta(id,name, img);
+                    Planta planta = new Planta(id,name, img, desc);
 
 
                     // Adicionamos o objeto product na lista de produtos
                     plantaList.add(planta);
                 }
-            }
+//            }else{
+//                Toast.makeText(context,"Não foi possível pegar plantas!",Toast.LENGTH_LONG).show();
+//            }
         } catch (IOException e) {
             e.printStackTrace();
         } catch (JSONException e) {
@@ -207,7 +214,7 @@ public class InNatureRepository {
             Log.e("HTTP RESULT", result);
         }
         return plantaList;
-    } //este erro é devido a falta de return
+    }
     /** Método que cria a requisição httppara obter as informações das plantas
      * LoadPlantaDetail
      */

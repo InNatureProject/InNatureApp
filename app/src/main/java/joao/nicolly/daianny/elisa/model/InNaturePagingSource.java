@@ -56,12 +56,9 @@ public class InNaturePagingSource extends ListenableFuturePagingSource<Integer,P
 
         ListenableFuture<LoadResult<Integer,Planta>> lf = service.submit( new Callable<LoadResult<Integer,Planta>>() {
 
-            //TODO fazer método call
             /**
              * O método call pega os próximos 'n' itens a serem exibidos no formato de uma lista de plantas
              * este método chama o método loadPlanta de InNatureRepository*/
-
-            //TODO: Fazer método loadPlanta no InNatureRepository
 
             @Override
             public LoadResult<Integer, Planta> call() throws Exception {

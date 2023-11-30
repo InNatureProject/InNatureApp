@@ -37,6 +37,7 @@ public class HomeFragment extends Fragment {
 
     private MainViewModel mainViewModel;
     private HomeAdapter homeAdapter;
+    private RecyclerView rvHomeFragment;
 
     //CONSTRUTORES
     public HomeFragment() {
@@ -67,8 +68,12 @@ public class HomeFragment extends Fragment {
         super.onViewCreated(view,savadInstanceState);
 
         //iniciando as variáveis mainViewModel e home Adapter
+        rvHomeFragment = view.findViewById(R.id.rvHomeFragment);
+
         mainViewModel = new ViewModelProvider(getActivity()).get(MainViewModel.class);
         homeAdapter = new HomeAdapter(new PlantaComparator(),this);//homeAdapter está pronto
+
+        rvHomeFragment.setAdapter(homeAdapter);
 
         //liveData recebe
         LiveData<PagingData<Planta>> liveData = mainViewModel.getPageLv();

@@ -9,14 +9,16 @@ public class Planta {
     private int id;
     private String nome;
     private String imagem;//TODO: talvez teremos que armazenar uma url, volgo string, ao invés de um bitmap
+    private String desc;
 
 
 
 
-    public Planta(int id, String nome, String imagem) {
+    public Planta(int id, String nome, String imagem, String desc) {
         this.id = id;
         this.nome = nome;
         this.imagem = imagem;
+        this.desc = desc;
     }
 
     public int getId() {return id;}
@@ -29,4 +31,5 @@ public class Planta {
         return imagem;
     }
 
+    public String getDesc() {return desc;}
 }

@@ -157,14 +157,13 @@ public class InNatureRepository {
             //executando a requisição
             InputStream is = httpRequest.execute();
 
-            //resultado provavelmente será em uma string de formato JSON que preciso perguntar ao João como virá
-            /** TODO: O resulte receberá uma string que virá em formato JSON
-             *      Depois de transformar a string em objeto JSON devemos manipular estes dados de maneira
-             *      que devolvamos uma lista de Objetos contendo as informações pertinentes a dada planta.*/
+            //resultado provavelmente será em uma string de formato JSON que devemos manipular de maneira
+            // que devolvamos uma lista de Objetos contendo as informações pertinentes a cada planta.
+
             result = Util.inputStream2String(is,"UTF-8");
 
             // result conterá a informação de todas as plantas
-            // reult = [{"cod_plt":1,"nome":"Capim Limão","imagem":"https://fenixculatra.github.io/PlantasMedicinais/imagens/capim-limao.jpg","descricao":null},{"cod_plt":2,"nome":"Camomila","imagem":"https://fenixculatra.github.io/PlantasMedicinais/imagens/camomila.jpg","descricao":null},{"cod_plt":3,"nome":"Hortelã","imagem":"https://fenixculatra.github.io/PlantasMedicinais/imagens/hortela.jpg","descricao":null},{"cod_plt":4,"nome":"Erva-Cidreira","imagem":"https://fenixculatra.github.io/PlantasMedicinais/imagens/erva-cidreira.jpg","descricao":null},{"cod_plt":5,"nome":"Chá Verde","imagem":"https://fenixculatra.github.io/PlantasMedicinais/imagens/cha-verde.jpg","descricao":null}]
+            // result = [{"cod_plt":1,"nome":"Capim Limão","imagem":"https://fenixculatra.github.io/PlantasMedicinais/imagens/capim-limao.jpg","descricao":null},{"cod_plt":2,"nome":"Camomila","imagem":"https://fenixculatra.github.io/PlantasMedicinais/imagens/camomila.jpg","descricao":null},{"cod_plt":3,"nome":"Hortelã","imagem":"https://fenixculatra.github.io/PlantasMedicinais/imagens/hortela.jpg","descricao":null},{"cod_plt":4,"nome":"Erva-Cidreira","imagem":"https://fenixculatra.github.io/PlantasMedicinais/imagens/erva-cidreira.jpg","descricao":null},{"cod_plt":5,"nome":"Chá Verde","imagem":"https://fenixculatra.github.io/PlantasMedicinais/imagens/cha-verde.jpg","descricao":null}]
             //fechando conecção com servidor
             httpRequest.finish();
 
@@ -174,39 +173,28 @@ public class InNatureRepository {
             // monta internamente uma estrutura de dados similar ao dicionário em python.
             JSONArray jsonArray = new JSONArray(result);
 
-            // obtem o valor da chave sucesso para verificar se a ação ocorreu da forma esperada ou não.
-            //Boolean success = jsonObject.getBoolean("sucesso");
-
-            // Se sucesso igual a true, os produtos são obtidos da String JSON e adicionados à lista de
-            // produtos a ser retornada como resultado.
-//            if(success) {
-
-                // A chave produtos é um array de objetos do tipo json (JSONArray), onde cada um desses representa
-                // um produto
-                //JSONArray jsonArray = jsonObject.getJSONArray("produtos");
-
-                // Cada elemento do JSONArray é um JSONObject que guarda os dados de um produto
-                for(int i = 0; i < jsonArray.length(); i++) {
-
-                    // Obtemos o JSONObject referente a um produto
-                    JSONObject jPlanta = jsonArray.getJSONObject(i);
-
-                    // Obtemos os dados de um produtos via JSONObject
-                    int id = jPlanta.getInt("cod_plt");
-                    String name = jPlanta.getString("nome");
-                    String img = jPlanta.getString("imagem");
-                    String desc = jPlanta.getString("descricao");
-
-                    // Criamo um objeto do tipo Product para guardar esses dados
-                    Planta planta = new Planta(id,name, img, desc);
+            // os produtos são obtidos da String JSON e adicionados à lista de
+            // plantas a ser retornada como resultado.
 
 
-                    // Adicionamos o objeto product na lista de produtos
-                    plantaList.add(planta);
-                }
-//            }else{
-//                Toast.makeText(context,"Não foi possível pegar plantas!",Toast.LENGTH_LONG).show();
-//            }
+            // Cada elemento do JSONArray é um JSONObject que guarda os dados de um produto
+            for(int i = 0; i < jsonArray.length(); i++) {
+
+                // Obtemos o JSONObject referente a um produto
+                JSONObject jPlanta = jsonArray.getJSONObject(i);
+
+                // Obtemos os dados de um produtos via JSONObject
+                int id = jPlanta.getInt("cod_plt");
+                String name = jPlanta.getString("nome");
+                String img = jPlanta.getString("imagem");
+                String desc = jPlanta.getString("descricao");
+
+                // Criamo um objeto do tipo Product para guardar esses dados
+                Planta planta = new Planta(id,name, img, desc);
+
+                // Adicionamos o objeto product na lista de produtos
+                plantaList.add(planta);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         } catch (JSONException e) {
@@ -215,6 +203,71 @@ public class InNatureRepository {
         }
         return plantaList;
     }
+    /**Metodo que pega os tipos de preparo de uma planta*/
+
+    public List<TipoPreparo> loadTipoPreparos(Integer limit, Integer offSet){
+        //o limit é a quantidade de itens (neste caso TipoPreparo) que requisitaremos do banco de dados
+        //o offSet sete determina a partir de qual item pegaremos a quantidade requisitada "limit"
+
+        /**Não é necessário validação de usuário (login, senha ou token) para carregar as plantas*/
+
+        // cria a lista de plantas incicialmente vazia, que será retornada como resultado
+        List<TipoPreparo> tipoPreparoList = new ArrayList<>();
+
+        // Cria uma requisição HTTP a adiciona o parâmetros que devem ser enviados ao servidor
+        HttpRequest httpRequest = new HttpRequest(Config.INNATURE_URL +"command/plantas", "GET", "UTF-8");
+        /**Como não estamos fazendo paginação no banco de dados não enviamos o limit nem o offSet*/
+//        httpRequest.addParam("limit", limit.toString());
+//        httpRequest.addParam("offset",offSet.toString());
+
+        //String onde será guardado o resultado retornado pelo servidor
+        String result = "";
+        // Tentativa de Conexão
+        try{
+            //executando a requisição
+            InputStream is = httpRequest.execute();
+
+            //resultado provavelmente será em uma string de formato JSON que devemos manipular de maneira
+            //que devolvamos uma lista de Objetos contendo as informações pertinentes a cada tipoPreparo
+
+            result = Util.inputStream2String(is,"UTF-8");
+
+            // result conterá a informação de todos os tipoPreparo
+            //fechando conecção com servidor
+            httpRequest.finish();
+
+            Log.i("HTTP RESULTADO   DA REQUISIÇÃO",result);
+
+            // A classe JSONObject recebe como parâmetro do construtor uma String no formato JSON e
+            // monta internamente uma estrutura de dados similar ao dicionário em python.
+            JSONArray jsonArray = new JSONArray(result);
+
+            // Cada elemento do JSONArray é um JSONObject que guarda os dados de um tipoPreparo
+            for(int i = 0; i < jsonArray.length(); i++) {
+
+                // Obtemos o JSONObject referente a um produto
+                JSONObject jPlanta = jsonArray.getJSONObject(i);
+
+                // Obtemos os dados de um produtos via JSONObject
+                int id = jPlanta.getInt("cod_plt");
+                String name = jPlanta.getString("nome");
+
+                // Criamo um objeto do TipoPreparo para guardar esses dados
+                TipoPreparo tipoPreparo = new TipoPreparo(id,name);
+
+
+                // Adicionamos o objeto product na lista de produtos
+                tipoPreparoList.add(tipoPreparo);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+            Log.e("HTTP RESULT", result);
+        }
+        return tipoPreparoList;
+    }
+
     /** Método que cria a requisição httppara obter as informações das plantas
      * LoadPlantaDetail
      */

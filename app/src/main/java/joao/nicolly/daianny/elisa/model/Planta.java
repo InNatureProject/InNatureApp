@@ -8,7 +8,7 @@ public class Planta {
 
     private int id;
     private String nome;
-    private String imagem;//TODO: talvez teremos que armazenar uma url, volgo string, ao invés de um bitmap
+    private String imagem;
     private String desc;
 
 

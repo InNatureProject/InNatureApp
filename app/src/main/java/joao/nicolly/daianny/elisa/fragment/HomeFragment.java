@@ -16,6 +16,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageButton;
 
 import joao.nicolly.daianny.elisa.R;
 import joao.nicolly.daianny.elisa.activity.PlantaActivity;
@@ -25,6 +27,7 @@ import joao.nicolly.daianny.elisa.model.Planta;
 import joao.nicolly.daianny.elisa.adapter.PlantaComparator;
 
 //TODO: aqui tem, que requisitar as plantas cadastradas e ordenálas  ou por ordem alfabética ou pelas mais populares
+//TODO: como faço para pegar o objeto com plantas e utilizá-lo no resto do código, não apenas no adapter
 
 /**
  * A simple {@link Fragment} subclass.
@@ -38,6 +41,8 @@ public class HomeFragment extends Fragment {
     private MainViewModel mainViewModel;
     private HomeAdapter homeAdapter;
     private RecyclerView rvHomeFragment;
+    private EditText etPesquisa;
+    private ImageButton imbtnPesquisa;
 
     //CONSTRUTORES
     public HomeFragment() {
@@ -73,8 +78,6 @@ public class HomeFragment extends Fragment {
         mainViewModel = new ViewModelProvider(getActivity()).get(MainViewModel.class);
         homeAdapter = new HomeAdapter(new PlantaComparator(),this);//homeAdapter está pronto
 
-        rvHomeFragment.setAdapter(homeAdapter);
-
         //liveData recebe
         LiveData<PagingData<Planta>> liveData = mainViewModel.getPageLv();
 
@@ -87,6 +90,19 @@ public class HomeFragment extends Fragment {
         RecyclerView rvHomeFragment = (RecyclerView) view.findViewById(R.id.rvHomeFragment);
         rvHomeFragment.setAdapter(homeAdapter);
         rvHomeFragment.setLayoutManager(new LinearLayoutManager(getContext()));
+
+
+        /**Fazendo Pesquisa*/
+        imbtnPesquisa = view.findViewById(R.id.imbtnPesquisa);
+        etPesquisa = view.findViewById(R.id.etPesquisa);
+
+        imbtnPesquisa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final String textEtPesquisa = etPesquisa.getText().toString();
+            }
+        });
+
 
     }
     public void navPlanta(int id){

@@ -6,8 +6,8 @@ package joao.nicolly.daianny.elisa.activity;
  * criar uma conta, logar, deletar a conta e
  * favoritar receitas assím como escrever comentários.*/
 
-/* TODO fazer nave navegação da home, favoritos e usuarios */
-//TODO: colocar home como opção selecionada ao iniciar
+
+//TODO: Perguntar ao prof porque a primeira tela não carrega
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -38,14 +38,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final MainViewModel vm = new ViewModelProvider(this).get(MainViewModel.class);
+//        final MainViewModel vm = new ViewModelProvider(this).get(MainViewModel.class);
 
         //Mudando com qual item selecionado a activity deve iniciar
         bottomNavigationView = findViewById(R.id.btNav);
+        bottomNavigationView.setSelectedItemId(R.id.homeViewOp);
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                vm.setNavigationOpSelected(item.getItemId());
+//                vm.setNavigationOpSelected(item.getItemId());
                 switch (item.getItemId()){
                     case R.id.favViewOp:
                         // inicializa o Fragmento coloca-o no frame layout, este passo se repete nos outros casos

@@ -25,7 +25,7 @@ public class PlantaViewModel  extends AndroidViewModel {
      * Também modifiquei as informações recebidas pois no banco de dados as plantas apenas possuem id, nome e imagem.
      * então estou tendo que mudar isso no código inteiro, já mudei na classe planta.*/
 
-    public LiveData<Planta> getPlanta(int id, String nome, Bitmap imagem) {
+    public LiveData<Planta> getPlanta(int  id, String nome, Bitmap img, String desc) {
 
        // Cria uma nova linha de execução (thread). O android obriga que chamadas de rede sejam feitas
         // em uma linha de execução separada da principal.
@@ -38,8 +38,12 @@ public class PlantaViewModel  extends AndroidViewModel {
             @Override
             public void run(){
                 // Criação de uma instância de InNatureRepository
-                //classe com os métodos que se comunicamcom o servidor web
-              //   Planta p = InNatureRepository.LoadPlantaDetaial(id);
+                InNatureRepository inNatureRepository= new InNatureRepository((getApplication()));
+                /**Método que loadPlantaDetaisl otem os dados de cada planta
+                 * retorna um objeto planta
+                 */
+                //Planta p = InNatureRepository.LoadPlantaDetaial(id);
+
 
                  //    Resultado da operação dentro do LiveData
 

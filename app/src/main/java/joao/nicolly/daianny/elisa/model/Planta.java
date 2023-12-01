@@ -2,7 +2,12 @@ package joao.nicolly.daianny.elisa.model;
 
 import android.graphics.Bitmap;
 
+import androidx.lifecycle.Observer;
+
 import java.util.ArrayList;
+
+import joao.nicolly.daianny.elisa.activity.PlantaActivity;
+
 /**Esta classe armazena as informações referentes ao objeto planta.*/
 public class Planta {
 
@@ -19,6 +24,9 @@ public class Planta {
         this.nome = nome;
         this.imagem = imagem;
         this.desc = desc;
+    }
+
+    public static void observe(PlantaActivity plantaActivity, Observer<Planta> plantaObserver) {
     }
 
     public int getId() {return id;}

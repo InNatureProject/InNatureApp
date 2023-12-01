@@ -9,19 +9,18 @@ import com.google.common.util.concurrent.ListenableFuture;
 import com.google.common.util.concurrent.ListeningExecutorService;
 import com.google.common.util.concurrent.MoreExecutors;
 
-import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.Executors;
 
-public class InNaturePagingSource extends ListenableFuturePagingSource<Integer,Planta> {
+public class PlantaPagingSource extends ListenableFuturePagingSource<Integer,Planta> {
 
     //Variáveis
     InNatureRepository inNatureRepository;
     Integer initialLoadSize = 0;
 
     //CONSTRUTOR
-    public InNaturePagingSource(InNatureRepository inNatureRepository){
+    public PlantaPagingSource(InNatureRepository inNatureRepository){
         this.inNatureRepository = inNatureRepository;
     }
 

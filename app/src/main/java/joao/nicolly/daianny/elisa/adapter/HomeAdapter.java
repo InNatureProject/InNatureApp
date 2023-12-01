@@ -49,7 +49,7 @@ public class HomeAdapter extends PagingDataAdapter<Planta,MyViewHolder> {
         //passamos o contexto, a url e o image view
         Picasso.with(homeFragment.getContext())
                 .load(planta.getImagem())
-                .into(imgvImagemPlanta);;
+                .into(imgvImagemPlanta);
 
         //colocando o nome
         TextView tvNome = holder.itemView.findViewById(R.id.tvNome);

@@ -26,7 +26,7 @@ public class MainViewModel extends AndroidViewModel {
         super(application);
         //criação e inicialização de variáveis
         InNatureRepository inNatureRepository = new InNatureRepository(application);
-        InNaturePagingSource inNaturePagingSource = new InNaturePagingSource(inNatureRepository);
+        PlantaPagingSource inNaturePagingSource = new PlantaPagingSource(inNatureRepository);
 
         Pager<Integer, Planta> pager = new Pager(new PagingConfig(20), () -> inNaturePagingSource);
         CoroutineScope viewModelScope = ViewModelKt.getViewModelScope(this);

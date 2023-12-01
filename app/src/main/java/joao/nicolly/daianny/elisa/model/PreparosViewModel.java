@@ -23,7 +23,7 @@ public class PreparosViewModel extends AndroidViewModel {
         // atividade Galeria Pública
         InNatureRepository inNatureRepository = new InNatureRepository(getApplication());
         CoroutineScope viewModelScope = ViewModelKt.getViewModelScope(this);
-        Pager<Integer, TipoPreparo> pager = new Pager(new PagingConfig(10), () -> new InNaturePagingSource(inNatureRepository));
+        Pager<Integer, TipoPreparo> pager = new Pager(new PagingConfig(10), () -> new TipoPreparoPagingSource(inNatureRepository));
         tipoPreparos = PagingLiveData.cachedIn(PagingLiveData.getLiveData(pager), viewModelScope);
     }
 

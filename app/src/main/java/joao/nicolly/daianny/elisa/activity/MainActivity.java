@@ -42,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
 
         //Mudando com qual item selecionado a activity deve iniciar
         bottomNavigationView = findViewById(R.id.btNav);
-        bottomNavigationView.setSelectedItemId(R.id.homeViewOp);
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -77,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+        bottomNavigationView.setSelectedItemId(R.id.homeViewOp);
     }
     private void setFragment(Fragment fragment){
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();

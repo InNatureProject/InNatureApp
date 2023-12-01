@@ -52,14 +52,10 @@ public class PlantaActivity extends AppCompatActivity {
 
                         //Obtendo o nome, descrição, imagem
 
-                        TextView
+//                        TextView
                     }
 
                 }
-            }){
-
-            }
-
-
+            });
     }
 }

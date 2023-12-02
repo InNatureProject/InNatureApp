@@ -8,11 +8,11 @@ public class ReceitaPreparo {
 
     private String titulo;
     private String receita;
-    private JSONArray indicacao;
-    private JSONArray contraindicação;
-    private JSONArray efeitoColateral;
+    private ArrayList<String> indicacao;
+    private ArrayList<String> contraindicação;
+    private ArrayList<String> efeitoColateral;
 
-    public ReceitaPreparo(String titulo, String receita,JSONArray indicacao,JSONArray contraindicação,JSONArray efeitoColateral){
+    public ReceitaPreparo(String titulo, String receita,ArrayList<String> indicacao,ArrayList<String> contraindicação,ArrayList<String> efeitoColateral){
         this.titulo = titulo;
         this.receita = receita;
         this.indicacao = indicacao;
@@ -28,15 +28,15 @@ public class ReceitaPreparo {
         return receita;
     }
 
-    public JSONArray getIndicacao() {
+    public ArrayList<String> getIndicacao() {
         return indicacao;
     }
 
-    public JSONArray getContraindicação() {
+    public ArrayList<String> getContraindicação() {
         return contraindicação;
     }
 
-    public JSONArray getEfeitoColateral() {
+    public ArrayList<String> getEfeitoColateral() {
         return efeitoColateral;
     }
 }

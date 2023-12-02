@@ -283,9 +283,13 @@ public class InNatureRepository {
         //Criando as variaveis dos elementos de ReceitaPreparo
         String titulo = "";
         String receita = "";
-        JSONArray indicacoes = new JSONArray();
-        JSONArray contraindicacoes = new JSONArray();
-        JSONArray efeitoscolaterais = new JSONArray();
+        JSONArray Jindicacoes = new JSONArray();
+        JSONArray Jcontraindicacoes = new JSONArray();
+        JSONArray Jefeitoscolaterais = new JSONArray();
+        ArrayList<String> indicacoes = new ArrayList<>();
+        ArrayList<String> contraindicacoes = new ArrayList<>();
+        ArrayList<String> efeitoscolaterais = new ArrayList<>();
+
 
         /**Não é necessário validação de usuário (login, senha ou token) para carregar a receita*/
 
@@ -322,9 +326,18 @@ public class InNatureRepository {
             //Aqui pegamos os elementos de dentro do objeto JSON e armazenamos nas variáveis
             titulo = JReceita.getString("titulo");
             receita = JReceita.getString("receita");
-            indicacoes = JReceita.getJSONArray("indicacao");
-            contraindicacoes = JReceita.getJSONArray("contraindicacao");
-            efeitoscolaterais = JReceita.getJSONArray("efeito colateral");
+            Jindicacoes = JReceita.getJSONArray("indicacao");
+            Jcontraindicacoes = JReceita.getJSONArray("contraindicacao");
+            Jefeitoscolaterais = JReceita.getJSONArray("efeito colateral");
+            for(int i = 0; i < Jindicacoes.length() ;i++){
+                indicacoes.add(Jindicacoes.getString(i));
+            }
+            for(int i = 0;i < Jcontraindicacoes.length();i++){
+                contraindicacoes.add(Jcontraindicacoes.getString(i));
+            }
+            for(int i = 0;i < Jefeitoscolaterais.length();i++){
+                efeitoscolaterais.add(Jefeitoscolaterais.getString(i));
+            }
 
 
         } catch (IOException e) {

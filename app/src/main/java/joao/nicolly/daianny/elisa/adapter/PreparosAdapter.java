@@ -58,13 +58,23 @@ public class PreparosAdapter extends PagingDataAdapter<TipoPreparo,MyViewHolder>
                     .load("https://media.istockphoto.com/id/1350638793/pt/vetorial/foam-bath-on-an-isolated-background-bathtub-with-foam-bubbles-and-rubber-duck-bath-time.webp?s=2048x2048&w=is&k=20&c=XdYVMJsk5Oo9jUrQG92MLclQDnrfuWAjpEllZn8WoVM=")
                     .into(imvTipoP);
         }
+        if(tipoPreparo.getCod_preparo().equals("Inalação")){
+            Picasso.with(preparosActivity.getApplicationContext())
+                    .load("https://media.istockphoto.com/id/1483526897/pt/vetorial/watercolor-eucalyptus-fragrance-electric-wooden-humidifier-aroma-oil-diffuser-illustration.webp?s=2048x2048&w=is&k=20&c=7ZyAkhhZQ2WxjPGsLIvJ-0VmkhK5uiDbzdD9XUCBzC0=")
+                    .into(imvTipoP);
+        }
+        if(tipoPreparo.getCod_preparo().equals("Compressa")){
+            Picasso.with(preparosActivity.getApplicationContext())
+                    .load("https://media.istockphoto.com/id/877109466/pt/vetorial/illustration-of-firs-aid-person-caucasian-foot-with-thermal-bag-top-view-ideal-for-catalogs.webp?s=2048x2048&w=is&k=20&c=deUFdedqq2AUxeVVTPvzqFIvuWX-nu_NwMxZeOof2lo=")
+                    .into(imvTipoP);
+        }
 
 
         // ao clicar em um item da lista, navegamos para a tela que mostra os detalhes do produto
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                preparosActivity.startReceitaPreparoActivity(tipoPreparo.getId());
+                preparosActivity.startReceitaPreparoActivity(tipoPreparo.getId(),tipoPreparo.getIdTipoPreparo());
             }
         });
 

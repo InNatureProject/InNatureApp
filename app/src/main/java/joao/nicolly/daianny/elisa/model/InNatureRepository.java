@@ -255,11 +255,12 @@ public class InNatureRepository {
 
                 // Obtemos os dados de um produtos via JSONObject
 
+                int idTipoPreparo = i;
                 String tipoP = jTipoPreparo.getString("tipo_preparo");
                 String name = jTipoPreparo.getString("titulo");
 
                 // Criamo um objeto do TipoPreparo para guardar esses dados
-                TipoPreparo tipoPreparo = new TipoPreparo(id,tipoP,name);
+                TipoPreparo tipoPreparo = new TipoPreparo(id,tipoP,name,idTipoPreparo);
 
 
                 // Adicionamos o objeto product na lista de produtos

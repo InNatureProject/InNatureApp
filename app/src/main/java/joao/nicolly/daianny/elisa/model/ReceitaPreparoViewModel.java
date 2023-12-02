@@ -46,7 +46,6 @@ public class ReceitaPreparoViewModel extends AndroidViewModel {
                 // O método loadProductDetail obtem os dados detalhados de um produto junto ao servidor.
                 // Ele retorna um objeto do tipo Product, que contém os dados detalhados do produto.
                 ReceitaPreparo r = inNatureRepository.loadReceita(idPlanta, idTipoPreparo);
-                //TODO: fazer loadReceita no inNatureRepository
 
                 // Aqui postamos o resultado da operação dentro do LiveData. Quando fazemos isso,
                 // quem estiver observando o LiveData será avisado de que o resultado está disponível.

@@ -29,7 +29,6 @@ public class ReceitaPreparoActivity extends AppCompatActivity {
         this.idPlanta = i.getIntExtra("idPlanta",0);
         this.idTipoPreparo = i.getIntExtra("idTipoPreparo",0);
 
-        //TODO: Falta fazer loadReceita no InNatureRepository
         ReceitaPreparoViewModel receitaPreparoViewModel = new ViewModelProvider(this).get(ReceitaPreparoViewModel.class);
         // O ViewModel possui o método getProductDetailsLD, que obtém os detalhes de um produto em
         // específico do servidor web.
@@ -46,6 +45,7 @@ public class ReceitaPreparoActivity extends AppCompatActivity {
             public void onChanged(ReceitaPreparo receitaPreparo) {
                 // recenta contém os detalhes da ReceitaPreparo que foram entregues pelo servidor web
                 if(receita != null){
+                    //TODO: aqui deve-se setar as informações de receita no textview de maneira ordeira
 
                 }else {
                     Toast.makeText(ReceitaPreparoActivity.this, "Não foi possível obter os detalhes da receita", Toast.LENGTH_LONG).show();

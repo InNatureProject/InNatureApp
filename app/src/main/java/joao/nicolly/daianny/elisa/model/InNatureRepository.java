@@ -250,7 +250,7 @@ public class InNatureRepository {
             // Cada elemento do JSONArray é um JSONObject que guarda os dados de um tipoPreparo
             for(int i = 0; i < jsonArray.length(); i++) {
 
-                // Obtemos o JSONObject referente a um produto
+                // Obtemos o JSONObject referente a um TipoPreparo
                 JSONObject jTipoPreparo = jsonArray.getJSONObject(i);
 
                 // Obtemos os dados de um produtos via JSONObject
@@ -273,6 +273,68 @@ public class InNatureRepository {
             Log.e("HTTP RESULT", result);
         }
         return tipoPreparoList;
+    }
+    public ReceitaPreparo loadReceita(int idPlanta, int idTipoPreparo){
+
+        //Precisamos passar o id como string então primeiro convertemos o id para string, já que é um int
+        String sid = Integer.toString(idPlanta);
+        ReceitaPreparo receitaPreparo;
+
+        //Criando as variaveis dos elementos de ReceitaPreparo
+        String titulo = "";
+        String receita = "";
+        JSONArray indicacoes = new JSONArray();
+        JSONArray contraindicacoes = new JSONArray();
+        JSONArray efeitoscolaterais = new JSONArray();
+
+        /**Não é necessário validação de usuário (login, senha ou token) para carregar a receita*/
+
+        // Cria uma requisição HTTP a adiciona o parâmetros que devem ser enviados ao servidor
+        HttpRequest httpRequest = new HttpRequest(Config.INNATURE_URL +"command/plantapreparo/"+ sid, "GET", "UTF-8");
+        httpRequest.addParam("id", sid);
+
+        //String onde será guardado o resultado retornado pelo servidor
+        String result = "";
+
+        // Tentativa de Conexão
+        try{
+            //executando a requisição
+            InputStream is = httpRequest.execute();
+
+            //resultado provavelmente será em uma string de formato JSON que devemos manipular de maneira
+            //que devolvamos uma lista de Objetos contendo as informações pertinentes a cada tipoPreparo
+
+            result = Util.inputStream2String(is,"UTF-8");
+
+            // result conterá a informação de todos os tipoPreparo
+            //fechando conecção com servidor
+            httpRequest.finish();
+
+            Log.i("HTTP RESULTADO  DA REQUISIÇÃO",result);
+
+            // A classe JSONObject recebe como parâmetro do construtor uma String no formato JSON e
+            // monta internamente uma estrutura de dados similar ao dicionário em python.
+            JSONArray jsonArray = new JSONArray(result);
+
+            // Obtemos o JSONObject referente a uma receita
+            JSONObject JReceita = jsonArray.getJSONObject(idTipoPreparo);
+
+            //Aqui pegamos os elementos de dentro do objeto JSON e armazenamos nas variáveis
+            titulo = JReceita.getString("titulo");
+            receita = JReceita.getString("receita");
+            indicacoes = JReceita.getJSONArray("indicacao");
+            contraindicacoes = JReceita.getJSONArray("contraindicacao");
+            efeitoscolaterais = JReceita.getJSONArray("efeito colateral");
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+            Log.e("HTTP RESULT", result);
+        }
+        receitaPreparo = new ReceitaPreparo(titulo,receita,indicacoes,contraindicacoes,efeitoscolaterais);
+        return receitaPreparo;
     }
 
     /** Método que cria a requisição httppara obter as informações das plantas

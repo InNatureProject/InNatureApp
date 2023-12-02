@@ -3,11 +3,14 @@ package joao.nicolly.daianny.elisa.adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.paging.PagingDataAdapter;
 import androidx.recyclerview.widget.DiffUtil;
+
+import com.squareup.picasso.Picasso;
 
 import joao.nicolly.daianny.elisa.activity.PreparosActivity;
 import joao.nicolly.daianny.elisa.model.TipoPreparo;
@@ -43,6 +46,19 @@ public class PreparosAdapter extends PagingDataAdapter<TipoPreparo,MyViewHolder>
         // preenche o campo de nome
         TextView tvTipoPreparo = holder.itemView.findViewById(R.id.tvTipoPreparo);
         tvTipoPreparo.setText(tipoPreparo.getNome());
+
+        ImageView imvTipoP = holder.itemView.findViewById(R.id.imvTipoP);
+        if(tipoPreparo.getCod_preparo().equals("Chá")){
+            Picasso.with(preparosActivity.getApplicationContext())
+                    .load("https://img.freepik.com/vetores-premium/uma-ilustracao-dos-desenhos-animados-de-uma-xicara-de-cha-com-um-rosto-sorridente_180868-3002.jpg?w=740")
+                    .into(imvTipoP);
+        }
+        if(tipoPreparo.getCod_preparo().equals("Banho")){
+            Picasso.with(preparosActivity.getApplicationContext())
+                    .load("https://media.istockphoto.com/id/1350638793/pt/vetorial/foam-bath-on-an-isolated-background-bathtub-with-foam-bubbles-and-rubber-duck-bath-time.webp?s=2048x2048&w=is&k=20&c=XdYVMJsk5Oo9jUrQG92MLclQDnrfuWAjpEllZn8WoVM=")
+                    .into(imvTipoP);
+        }
+
 
         // ao clicar em um item da lista, navegamos para a tela que mostra os detalhes do produto
         holder.itemView.setOnClickListener(new View.OnClickListener() {

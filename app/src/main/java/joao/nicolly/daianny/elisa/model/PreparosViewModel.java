@@ -16,6 +16,7 @@ import kotlinx.coroutines.CoroutineScope;
 public class PreparosViewModel extends AndroidViewModel {
 
     private LiveData<PagingData<TipoPreparo>> tipoPreparos;
+    private int id;
     public PreparosViewModel(@NonNull Application application) {
         super(application);
 
@@ -23,9 +24,13 @@ public class PreparosViewModel extends AndroidViewModel {
         // atividade Galeria Pública
         InNatureRepository inNatureRepository = new InNatureRepository(getApplication());
         CoroutineScope viewModelScope = ViewModelKt.getViewModelScope(this);
-        Pager<Integer, TipoPreparo> pager = new Pager(new PagingConfig(10), () -> new TipoPreparoPagingSource(inNatureRepository));
+        Pager<Integer, TipoPreparo> pager = new Pager(new PagingConfig(10), () -> new TipoPreparoPagingSource(inNatureRepository, id));
         tipoPreparos = PagingLiveData.cachedIn(PagingLiveData.getLiveData(pager), viewModelScope);
     }
 
     public LiveData<PagingData<TipoPreparo>> getTipoPreparos() {return tipoPreparos;}
+
+    public void putId(int id) {
+        this.id = id;
+    }
 }

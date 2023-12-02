@@ -205,9 +205,12 @@ public class InNatureRepository {
     }
     /**Metodo que pega os tipos de preparo de uma planta*/
 
-    public List<TipoPreparo> loadTipoPreparos(Integer limit, Integer offSet){
+    public List<TipoPreparo> loadTipoPreparos(Integer limit, Integer offSet,int id){
         //o limit é a quantidade de itens (neste caso TipoPreparo) que requisitaremos do banco de dados
         //o offSet sete determina a partir de qual item pegaremos a quantidade requisitada "limit"
+
+        //Precisamos passar o id como string então primeiro convertemos o id para string, já que é um int
+        String sid = Integer.toString(id);
 
         /**Não é necessário validação de usuário (login, senha ou token) para carregar as plantas*/
 
@@ -215,7 +218,9 @@ public class InNatureRepository {
         List<TipoPreparo> tipoPreparoList = new ArrayList<>();
 
         // Cria uma requisição HTTP a adiciona o parâmetros que devem ser enviados ao servidor
-        HttpRequest httpRequest = new HttpRequest(Config.INNATURE_URL +"command/plantas", "GET", "UTF-8");
+        HttpRequest httpRequest = new HttpRequest(Config.INNATURE_URL +"command/plantapreparo/"+ sid, "GET", "UTF-8");
+        httpRequest.addParam("id", sid);
+
         /**Como não estamos fazendo paginação no banco de dados não enviamos o limit nem o offSet*/
 //        httpRequest.addParam("limit", limit.toString());
 //        httpRequest.addParam("offset",offSet.toString());
@@ -236,7 +241,7 @@ public class InNatureRepository {
             //fechando conecção com servidor
             httpRequest.finish();
 
-            Log.i("HTTP RESULTADO   DA REQUISIÇÃO",result);
+            Log.i("HTTP RESULTADO  DA REQUISIÇÃO",result);
 
             // A classe JSONObject recebe como parâmetro do construtor uma String no formato JSON e
             // monta internamente uma estrutura de dados similar ao dicionário em python.
@@ -246,14 +251,15 @@ public class InNatureRepository {
             for(int i = 0; i < jsonArray.length(); i++) {
 
                 // Obtemos o JSONObject referente a um produto
-                JSONObject jPlanta = jsonArray.getJSONObject(i);
+                JSONObject jTipoPreparo = jsonArray.getJSONObject(i);
 
                 // Obtemos os dados de um produtos via JSONObject
-                int id = jPlanta.getInt("cod_plt");
-                String name = jPlanta.getString("nome");
+
+                String tipoP = jTipoPreparo.getString("tipo_preparo");
+                String name = jTipoPreparo.getString("titulo");
 
                 // Criamo um objeto do TipoPreparo para guardar esses dados
-                TipoPreparo tipoPreparo = new TipoPreparo(id,name);
+                TipoPreparo tipoPreparo = new TipoPreparo(id,tipoP,name);
 
 
                 // Adicionamos o objeto product na lista de produtos

@@ -19,6 +19,7 @@ public class TipoPreparosComparator extends DiffUtil.ItemCallback<TipoPreparo> {
         String oldItemIdStr = Integer.toString(oldItem.getId());
         String newItemIdStr = Integer.toString(newItem.getId());
         return oldItemIdStr.equals(newItemIdStr) &&
+                oldItem.getCod_preparo().equals(newItem.getCod_preparo()) &&
                 oldItem.getNome().equals(newItem.getNome());
     }
 }

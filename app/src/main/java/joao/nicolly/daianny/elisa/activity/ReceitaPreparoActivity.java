@@ -1,13 +1,18 @@
 package joao.nicolly.daianny.elisa.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import joao.nicolly.daianny.elisa.R;
+import joao.nicolly.daianny.elisa.model.ReceitaPreparo;
+import joao.nicolly.daianny.elisa.model.ReceitaPreparoViewModel;
 
 public class ReceitaPreparoActivity extends AppCompatActivity {
     int idPlanta;
@@ -24,9 +29,29 @@ public class ReceitaPreparoActivity extends AppCompatActivity {
         this.idPlanta = i.getIntExtra("idPlanta",0);
         this.idTipoPreparo = i.getIntExtra("idTipoPreparo",0);
 
-        //TODO: é necessário fazer o ReceitaPreparoViewModel
-        // obtemos o ViewModel pois é nele que está o método que se conecta ao servior web.
+        //TODO: Falta fazer loadReceita no InNatureRepository
         ReceitaPreparoViewModel receitaPreparoViewModel = new ViewModelProvider(this).get(ReceitaPreparoViewModel.class);
+        // O ViewModel possui o método getProductDetailsLD, que obtém os detalhes de um produto em
+        // específico do servidor web.
+        //
+        // O método getReceita retorna um LiveData, que na prática é um container que avisa
+        // quando o resultado do servidor chegou. Ele guarda os detalhes de uma receita que o servidor
+        // entregou para a app.
+        LiveData<ReceitaPreparo> receita = receitaPreparoViewModel.getReceita(idPlanta,idTipoPreparo);
+        // Aqui nós observamos o LiveData. Quando o servidor responder, o resultado contendo uma receita
+        // será guardado dentro do LiveData. Neste momento o
+        // LiveData avisa que a receita chegou chamando o método onChanged abaixo.
+        receita.observe(this, new Observer<ReceitaPreparo>() {
+            @Override
+            public void onChanged(ReceitaPreparo receitaPreparo) {
+                // recenta contém os detalhes da ReceitaPreparo que foram entregues pelo servidor web
+                if(receita != null){
+
+                }else {
+                    Toast.makeText(ReceitaPreparoActivity.this, "Não foi possível obter os detalhes da receita", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
 
         TextView tvReceitaPreparo = findViewById(R.id.tvReceitaPreparo);
         tvReceitaPreparo.setText("\n" +

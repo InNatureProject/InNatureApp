@@ -9,7 +9,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import joao.nicolly.daianny.elisa.R;
 import joao.nicolly.daianny.elisa.model.Planta;
@@ -31,7 +34,31 @@ public class PlantaActivity extends AppCompatActivity {
         Intent i = getIntent();
         this.id = i.getIntExtra("id", 0);
 
-        //Navegação para Preparos Activity
+        PlantaViewModel plantaViewModel = new ViewModelProvider(this).get(PlantaViewModel.class);
+
+        //método getPlantasDetailLd retorna o livedata
+        LiveData<Planta> planta= plantaViewModel.getPlanta(id);
+            planta.observe(this, new Observer<Planta>() {
+                @Override
+                public void onChanged(Planta planta) {
+                    if(planta !=null){
+                        TextView tvName = findViewById(R.id.tvName);
+                        tvName.setText(planta.getNome());
+
+                        ImageView imgvPlanta = findViewById(R.id.imgvPlanta);
+                        Picasso.with(getApplicationContext())
+                                .load(planta.getImagem())
+                                .into(imgvPlanta);
+
+                        TextView tvDesc = findViewById(R.id.tvDesc);
+                        tvDesc.setText(planta.getDesc());
+
+                    }
+
+                }
+            });
+
+        //Navegação para PreparosActivity
         btnPreparo = findViewById(R.id.btnPreparo);
         btnPreparo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,20 +69,14 @@ public class PlantaActivity extends AppCompatActivity {
             }
         });
 
-        PlantaViewModel plantaActivity= new ViewModelProvider(this).get(PlantaViewModel.class);
-        // méodo getPlantasDetailLd retorna o livedata
-        //LiveData<Planta> planta= PlantaViewModel.getPlantaDetailsLD(id);
-            Planta.observe(this, new Observer<Planta>() {
-                @Override
-                public void onChanged(Planta planta) {
-                    if(planta !=null){
-
-                        //Obtendo o nome, descrição, imagem
-
-//                        TextView
-                    }
-
-                }
-            });
+        //Navegação para ComentandoActivity
+        Button btnComent = findViewById(R.id.btnComent);
+        btnComent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(PlantaActivity.this, ComentandoActivity.class);
+                startActivity(i);
+            }
+        });
     }
 }

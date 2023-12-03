@@ -58,7 +58,7 @@ public class ReceitaPreparoActivity extends AppCompatActivity {
                     String contraindicacao = organizaTexto(receitaPreparo.getContraindicação());
                     String efeitoColateral = organizaTexto(receitaPreparo.getEfeitoColateral());
 
-                    //TODO: aqui deve-se setar as informações de receita no textview de maneira ordeira
+
                     TextView tvReceitaPreparo = findViewById(R.id.tvReceitaPreparo);
                     tvReceitaPreparo.setText("\n" +
                             "Preparo:\n" +

@@ -70,4 +70,14 @@ public class Config {
         SharedPreferences mPrefs = context.getSharedPreferences("configs",0);
         return  mPrefs.getString("tolken","");
     }
+
+    public static void setImagem(Context context, String url){
+        SharedPreferences mPrefs = context.getSharedPreferences("configs",0);
+        SharedPreferences.Editor mEditor = mPrefs.edit();
+        mEditor.putString("imagemUser",url).commit();
+    }
+    public  static String getImagem(Context context){
+        SharedPreferences mPrefs = context.getSharedPreferences("configs",0);
+        return mPrefs.getString("imagemUser","");
+    }
 }

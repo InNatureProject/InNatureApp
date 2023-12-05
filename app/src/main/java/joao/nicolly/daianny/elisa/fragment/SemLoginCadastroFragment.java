@@ -61,6 +61,7 @@ public class SemLoginCadastroFragment extends Fragment {
             public void onClick(View view) {
                 Intent i = new Intent(getContext(), LoginActivity.class);
                 startActivity(i);
+                return false;
             }
         });
 
@@ -70,6 +71,7 @@ public class SemLoginCadastroFragment extends Fragment {
             public void onClick(View view) {
                 Intent i = new Intent(getContext(), CadastroActivity.class);
                 startActivity(i);
+                return false;
             }
         });
 

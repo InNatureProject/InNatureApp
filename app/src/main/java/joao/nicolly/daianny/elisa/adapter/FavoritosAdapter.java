@@ -67,6 +67,7 @@ public class FavoritosAdapter extends PagingDataAdapter<Planta,MyViewHolder>{
             @Override
             public void onClick(View view) {
                 favoritosFragment.navPlanta(planta.getId());
+                return false;
             }
         });
 

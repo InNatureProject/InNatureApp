@@ -93,6 +93,7 @@ public class EditUserActivity extends AppCompatActivity {
                 }
                 Intent i = new Intent(EditUserActivity.this,MainActivity.class);
                 startActivity(i);
+                return false;
             }
         });
 
@@ -102,6 +103,7 @@ public class EditUserActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //TODO: enviar uma requisição ao banco de dados pedindo pra deletar a conta
+                return false;
             }
         });
 

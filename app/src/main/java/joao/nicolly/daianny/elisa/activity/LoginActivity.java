@@ -50,7 +50,60 @@ public class LoginActivity extends AppCompatActivity {
 
                 EditText etSenha= findViewById(R.id.etSenha);
                 final String senha=etSenha.getText().toString();
+
+                final String etEmailLogin = etEmail.getText().toString();
+                final String etSenhaLogin= etSenha.getText().toString();
                 //TODO: Sanitizar aqui
+
+                if(etEmailLogin.isEmpty()){
+                    Toast.makeText(LoginActivity.this,"O campo de email  não foi preenchido!",Toast.LENGTH_LONG).show();
+                    return ;
+                }
+                if(etSenhaLogin.isEmpty()){
+                    Toast.makeText(LoginActivity.this,"O campo de senha não foi preenchido!",Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+
+
+                //Aqui checamos se há espaços em senha e email e caso haja pedimos que o usuário os retire
+                //Este paço é importante pois caso haja espaço a API do joão rejeitará o cadastro/login do usuário
+                //A única campo, até então, que permite espaço é o nome
+                if(verifEspaco(etEmailLogin)){
+                    Toast.makeText(LoginActivity.this,"Não devem haver espaços no email!",Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if(verifEspaco(etSenhaLogin)){
+                    Toast.makeText(LoginActivity.this,"Não devem haver espaços na senha!",Toast.LENGTH_LONG).show();
+                    return;
+                }
+                //Informamos ao usuário o tamanho mínimo da senha
+                //Caso a senha tenha menos de 6 dígitos o cadastro será impedido de ocorrer
+                if(etSenhaLogin.length() <6){
+                    Toast.makeText(LoginActivity.this,"A senha precisa ter no mínimo 6 dígitos!",Toast.LENGTH_LONG).show();
+                    return;
+                }
+                /*Validando email
+                 *      Aqui verificamos se a variável contendo o email  possui string com extensão de emails comuns*/
+                if(    !( etEmailLogin.contains("@gmail.com") ||
+                        etEmailLogin.contains("@outlook.com") ||
+                        etEmailLogin.contains("@hotmail.com"))){
+                    Toast.makeText(LoginActivity.this,"Favor inserir um email válido!",Toast.LENGTH_LONG).show();
+                    return;
+                }
+                //Sanitizando campos
+                //aqui checamos se não há caracteres maliciosos na string, como por exemplo os utilizados em sql inject
+                if(sanStr(etEmailLogin)){
+                    Toast.makeText(LoginActivity.this,"Favor utilizar apenas letras e números no nome!",Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if(sanStr(etSenhaLogin)){
+                    Toast.makeText(LoginActivity.this,"Favor utilizar apenas letras e números na senha!",Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+
+
 
                 //método  login está no viewmodel, envia informações de senha e email para o servidor.
                 // O servidor tem que verificar as informações
@@ -78,6 +131,7 @@ public class LoginActivity extends AppCompatActivity {
                         }
                     }
                 });
+
 
             }
         });
@@ -115,5 +169,23 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode,@NonNull String[] permissions,@NonNull int[] gratResults){
     super.onRequestPermissionsResult(requestCode,permissions,gratResults);
+    }
+    //método que verifica se há espaços na string
+    private Boolean verifEspaco(String str){
+        for(int i=0; i<str.length(); i++ ){
+            if( str.charAt(i) == ' ' ) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private Boolean sanStr(String str) {
+        for (int i = 0; i < str.length(); i++) {
+            if (str.charAt(i) == '`' || str.charAt(i) == '´' || str.charAt(i) == '|' || str.charAt(i) == '/') {
+                return true;
+            }
+        }
+        return false;
     }
 }

@@ -23,10 +23,13 @@ import joao.nicolly.daianny.elisa.R;
 import joao.nicolly.daianny.elisa.util.Config;
 import joao.nicolly.daianny.elisa.model.LoginViewModel;
 
+//TODO: Sanitizar os campos de email e senha para evitar informações errados ou maliciosas
+
 public class LoginActivity extends AppCompatActivity {
 
     static int RESULT_REQUEST_PERMISSION = 2;
     LoginViewModel loginViewlModel;
+
 
 
     @Override
@@ -47,6 +50,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 EditText etSenha= findViewById(R.id.etSenha);
                 final String senha=etSenha.getText().toString();
+                //TODO: Sanitizar aqui
 
                 //método  login está no viewmodel, envia informações de senha e email para o servidor.
                 // O servidor tem que verificar as informações

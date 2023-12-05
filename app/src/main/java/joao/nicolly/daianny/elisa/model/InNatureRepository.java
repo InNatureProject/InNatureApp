@@ -91,7 +91,7 @@ public class InNatureRepository {
 
         // Resquisição para o servidor
 
-        HttpRequest httpRequest= new HttpRequest(Config.INNATURE_URL+"command/login", "POST", "UTF-8");
+        HttpRequest httpRequest= new HttpRequest(Config.INNATURE_URL+"command/login", "GET", "UTF-8");
         /** Adição as tabelas
          * As informações obtidas serão */
         httpRequest.addParam("email", email);

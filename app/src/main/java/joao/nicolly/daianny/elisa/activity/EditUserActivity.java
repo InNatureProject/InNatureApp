@@ -1,6 +1,7 @@
 package joao.nicolly.daianny.elisa.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LiveData;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +11,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.squareup.picasso.Picasso;
 
 import joao.nicolly.daianny.elisa.R;
 import joao.nicolly.daianny.elisa.util.Config;
@@ -34,6 +37,16 @@ public class EditUserActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_user);
+
+        /*Setando a imagem de perfil*/
+        ImageView imgvFotoPerfil = findViewById(R.id.imgvFotoPerfil);
+        if(!Config.getImagem(EditUserActivity.this).isEmpty()){
+            Picasso.with(getApplicationContext())
+                    .load(Config.getImagem(EditUserActivity.this))
+                    .into(imgvFotoPerfil);
+        } else{
+            LiveData<String> url
+        }
 
         /*aqui pegamos os textView nome e email da tela e
         modificamos o conteúdo para que receba o nome e email do usuário*/

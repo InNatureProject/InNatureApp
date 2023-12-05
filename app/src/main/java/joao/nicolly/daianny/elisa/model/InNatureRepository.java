@@ -57,12 +57,6 @@ public class InNatureRepository {
             httpRequest.finish();
 
             // o resultado é transformado em objeto json que pode ser utilizado
-            /** TODO: Modificações a serem feitas:
-             *      Esta parte foi feita com base no código do professor.
-             *      Para adaptar para nosso trabalho é necessário saber o que a api do João vai nos entregar
-             *      A API está com bug, então vai demorar a saber.
-             *      quando solbermos devemos validar se está correto.
-             *      Se estiver correto devemos guardar tanto o tolking quanto o login e a senha na APP*/
 
             /**Resulte virá com uma string contendo um JSON
              * result = "{"Token":"Token gerado pelo servidor que devemos armadenar","result":true}"*/

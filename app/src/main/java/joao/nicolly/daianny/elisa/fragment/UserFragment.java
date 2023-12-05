@@ -104,6 +104,7 @@ public class UserFragment extends Fragment {
                 Config.setName(getContext(),"");
                 Config.setEmail(getContext(),"");
                 Config.setPassword(getContext(),"");
+                Config.setImagem(getContext(),"");
 
                 Intent i = new Intent(getContext(), MainActivity.class); // cria uma variavel intent que fará a comunicação entre ambas as telas
                 startActivity(i); // inicializa o intente, ou seja, vai para a tela desejada.

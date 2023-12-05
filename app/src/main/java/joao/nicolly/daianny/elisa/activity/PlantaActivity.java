@@ -66,6 +66,7 @@ public class PlantaActivity extends AppCompatActivity {
                 Intent i = new Intent(PlantaActivity.this, PreparosActivity.class);
                 i.putExtra("id",id);
                 startActivity(i);
+                return false;
             }
         });
 
@@ -76,6 +77,7 @@ public class PlantaActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent i = new Intent(PlantaActivity.this, ComentandoActivity.class);
                 startActivity(i);
+                return false;
             }
         });
     }

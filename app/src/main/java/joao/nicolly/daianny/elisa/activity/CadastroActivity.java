@@ -66,25 +66,25 @@ public  class CadastroActivity extends AppCompatActivity {
                 //Verificando se os campos foram preenchidos
                 if(etNomeUsuarioText.isEmpty()){
                     Toast.makeText(CadastroActivity.this,"O campo de nome não foi preenchido!",Toast.LENGTH_LONG).show();
-                    return;
+                    return ;
                 }
                 if(etConfSenhaText.isEmpty()){
                     Toast.makeText(CadastroActivity.this,"O campo de email não foi preenchido!",Toast.LENGTH_LONG).show();
-                    return;
+                    return ;
                 }
                 if(etSenhaText.isEmpty()){
                     Toast.makeText(CadastroActivity.this,"O campo de senha não foi preenchido!",Toast.LENGTH_LONG).show();
-                    return;
+                    return ;
                 }
                 if(etConfSenhaText.isEmpty()){
                     Toast.makeText(CadastroActivity.this,"O campo confirmar senha não foi preenchido!",Toast.LENGTH_LONG).show();
-                    return;
+                    return ;
                 }
 
                 //Checando se as senhas não são iguais
                 if(!etSenhaText.equals(etConfSenhaText)){
                     Toast.makeText(CadastroActivity.this,"A senha confirmada é diferente da desejada!",Toast.LENGTH_LONG).show();
-                    return;
+                    return ;
                 }
 
                 //Aqui checamos se há espaços em senha e email e caso haja pedimos que o usuário os retire
@@ -92,17 +92,17 @@ public  class CadastroActivity extends AppCompatActivity {
                 //A única campo, até então, que permite espaço é o nome
                 if(verifEspaco(etEmailUsuarioText)){
                     Toast.makeText(CadastroActivity.this,"Não devem haver espaços no email!",Toast.LENGTH_LONG).show();
-                    return;
+                    return ;
                 }
                 if(verifEspaco(etSenhaText)){
                     Toast.makeText(CadastroActivity.this,"Não devem haver espaços na senha!",Toast.LENGTH_LONG).show();
-                    return;
+                    return ;
                 }
                 //Informamos ao usuário o tamanho mínimo da senha
                 //Caso a senha tenha menos de 6 dígitos o cadastro será impedido de ocorrer
                 if(etSenhaText.length() <6){
                     Toast.makeText(CadastroActivity.this,"A senha precisa ter no mínimo 6 dígitos!",Toast.LENGTH_LONG).show();
-                    return;
+                    return ;
                 }
                 /*Validando email
                  *      Aqui verificamos se a variável contendo o email  possui string com extensão de emails comuns*/
@@ -110,17 +110,17 @@ public  class CadastroActivity extends AppCompatActivity {
                         etEmailUsuarioText.contains("@outlook.com") ||
                         etEmailUsuarioText.contains("@hotmail.com"))){
                     Toast.makeText(CadastroActivity.this,"Favor inserir um email válido!",Toast.LENGTH_LONG).show();
-                    return;
+                    return ;
                 }
                 //Sanitizando campos
                 //aqui checamos se não há caracteres maliciosos na string, como por exemplo os utilizados em sql inject
                 if(sanStr(etNomeUsuarioText)){
                     Toast.makeText(CadastroActivity.this,"Favor utilizar apenas letras e números no nome!",Toast.LENGTH_LONG).show();
-                    return;
+                    return ;
                 }
                 if(sanStr(etSenhaText)){
                     Toast.makeText(CadastroActivity.this,"Favor utilizar apenas letras e números na senha!",Toast.LENGTH_LONG).show();
-                    return;
+                    return ;
                 }
 
                 /** A parte de sanitização acabou aqui.
@@ -161,6 +161,7 @@ public  class CadastroActivity extends AppCompatActivity {
                         }
                     }
                 });
+
 
 
             }

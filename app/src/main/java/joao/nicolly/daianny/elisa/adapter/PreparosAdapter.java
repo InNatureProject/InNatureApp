@@ -75,6 +75,7 @@ public class PreparosAdapter extends PagingDataAdapter<TipoPreparo,MyViewHolder>
             @Override
             public void onClick(View view) {
                 preparosActivity.startReceitaPreparoActivity(tipoPreparo.getId(),tipoPreparo.getIdTipoPreparo());
+                return false;
             }
         });
 

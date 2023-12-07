@@ -100,7 +100,6 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 final String textEtPesquisa = etPesquisa.getText().toString();
-                return false;
             }
         });
 

@@ -85,7 +85,6 @@ public class UserFragment extends Fragment {
             public void onClick(View view){
                 Intent i = new Intent(getContext(), EditUserActivity.class); // cria uma variavel intent que fará a comunicação entre ambas as telas
                 startActivity(i); // inicializa o intente, ou seja, vai para a tela desejada.
-                return false;
             }
         });
 
@@ -96,7 +95,6 @@ public class UserFragment extends Fragment {
             public void onClick(View view) {
                 Intent i = new Intent(getContext(), AjudaActivity.class); // cria uma variavel intent que fará a comunicação entre ambas as telas
                 startActivity(i); // inicializa o intente, ou seja, vai para a tela desejada.
-                return false;
             }
         });
 
@@ -110,8 +108,6 @@ public class UserFragment extends Fragment {
 
                 Intent i = new Intent(getContext(), MainActivity.class); // cria uma variavel intent que fará a comunicação entre ambas as telas
                 startActivity(i); // inicializa o intente, ou seja, vai para a tela desejada.
-
-                return false;
             }
         });
 

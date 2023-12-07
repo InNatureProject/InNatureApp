@@ -60,7 +60,6 @@ public class HomeAdapter extends PagingDataAdapter<Planta,MyViewHolder> {
             @Override
             public void onClick(View view) {
                 homeFragment.navPlanta(planta.getId());
-                return false;
             }
         });
 

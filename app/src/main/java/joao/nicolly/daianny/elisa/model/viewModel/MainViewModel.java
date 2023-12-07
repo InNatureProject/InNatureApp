@@ -1,4 +1,4 @@
-package joao.nicolly.daianny.elisa.model;
+package joao.nicolly.daianny.elisa.model.viewModel;
 
 import android.app.Application;
 
@@ -12,6 +12,9 @@ import androidx.paging.PagingData;
 import androidx.paging.PagingLiveData;
 
 import joao.nicolly.daianny.elisa.R;
+import joao.nicolly.daianny.elisa.model.InNatureRepository;
+import joao.nicolly.daianny.elisa.model.pagingSource.PlantaPagingSource;
+import joao.nicolly.daianny.elisa.model.objetos.Planta;
 import kotlinx.coroutines.CoroutineScope;
 
 public class MainViewModel extends AndroidViewModel {
@@ -26,9 +29,9 @@ public class MainViewModel extends AndroidViewModel {
         super(application);
         //criação e inicialização de variáveis
         InNatureRepository inNatureRepository = new InNatureRepository(application);
-        PlantaPagingSource inNaturePagingSource = new PlantaPagingSource(inNatureRepository);
+        PlantaPagingSource plantaPagingSource = new PlantaPagingSource(inNatureRepository);
 
-        Pager<Integer, Planta> pager = new Pager(new PagingConfig(20), () -> inNaturePagingSource);
+        Pager<Integer, Planta> pager = new Pager(new PagingConfig(20), () -> plantaPagingSource);
         CoroutineScope viewModelScope = ViewModelKt.getViewModelScope(this);
 
         pageLv = PagingLiveData.cachedIn(PagingLiveData.getLiveData(pager), viewModelScope);

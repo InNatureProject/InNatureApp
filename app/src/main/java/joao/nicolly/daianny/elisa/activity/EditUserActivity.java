@@ -2,6 +2,7 @@ package joao.nicolly.daianny.elisa.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +16,8 @@ import android.widget.Toast;
 import com.squareup.picasso.Picasso;
 
 import joao.nicolly.daianny.elisa.R;
+import joao.nicolly.daianny.elisa.model.viewModel.ImageUserViewModel;
+import joao.nicolly.daianny.elisa.model.viewModel.ReceitaPreparoViewModel;
 import joao.nicolly.daianny.elisa.util.Config;
 
 public class EditUserActivity extends AppCompatActivity {
@@ -22,7 +25,7 @@ public class EditUserActivity extends AppCompatActivity {
     //VARIÁVEIS
 
     //TODO: falta colocar a foto do usuário no imageView
-    ImageView ivMudarFotoPerfil;
+    ImageView imgvFotoPerfil;
     TextView tvEmailVinc;
     TextView tvNomeVinc;
     EditText etNovoNome;
@@ -39,13 +42,14 @@ public class EditUserActivity extends AppCompatActivity {
         setContentView(R.layout.activity_edit_user);
 
         /*Setando a imagem de perfil*/
-        ImageView imgvFotoPerfil = findViewById(R.id.imgvFotoPerfil);
+        imgvFotoPerfil = findViewById(R.id.imgvFotoPerfil);
         if(!Config.getImagem(EditUserActivity.this).isEmpty()){
             Picasso.with(getApplicationContext())
                     .load(Config.getImagem(EditUserActivity.this))
                     .into(imgvFotoPerfil);
         } else{
-            LiveData<String> url
+            ImageUserViewModel imageUserViewModel = new ViewModelProvider(this).get(ImageUserViewModel.class);;
+            LiveData<String> url = imageUserViewModel.getUrl();
         }
 
         /*aqui pegamos os textView nome e email da tela e
@@ -93,7 +97,6 @@ public class EditUserActivity extends AppCompatActivity {
                 }
                 Intent i = new Intent(EditUserActivity.this,MainActivity.class);
                 startActivity(i);
-                return false;
             }
         });
 
@@ -103,7 +106,6 @@ public class EditUserActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //TODO: enviar uma requisição ao banco de dados pedindo pra deletar a conta
-                return false;
             }
         });
 

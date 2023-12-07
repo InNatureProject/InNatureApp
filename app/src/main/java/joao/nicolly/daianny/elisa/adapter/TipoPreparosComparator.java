@@ -3,8 +3,7 @@ package joao.nicolly.daianny.elisa.adapter;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 
-import joao.nicolly.daianny.elisa.model.Planta;
-import joao.nicolly.daianny.elisa.model.TipoPreparo;
+import joao.nicolly.daianny.elisa.model.objetos.TipoPreparo;
 
 public class TipoPreparosComparator extends DiffUtil.ItemCallback<TipoPreparo> {
     @Override

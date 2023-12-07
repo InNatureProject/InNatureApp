@@ -3,7 +3,7 @@ package joao.nicolly.daianny.elisa.adapter;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 
-import joao.nicolly.daianny.elisa.model.Planta;
+import joao.nicolly.daianny.elisa.model.objetos.Planta;
 
 public class PlantaComparator extends DiffUtil.ItemCallback<Planta> {
 

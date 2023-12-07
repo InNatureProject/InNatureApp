@@ -20,9 +20,9 @@ import android.view.ViewGroup;
 import joao.nicolly.daianny.elisa.R;
 import joao.nicolly.daianny.elisa.activity.PlantaActivity;
 import joao.nicolly.daianny.elisa.adapter.FavoritosAdapter;
-import joao.nicolly.daianny.elisa.model.Planta;
+import joao.nicolly.daianny.elisa.model.objetos.Planta;
 import joao.nicolly.daianny.elisa.adapter.PlantaComparator;
-import joao.nicolly.daianny.elisa.model.MainViewModel;
+import joao.nicolly.daianny.elisa.model.viewModel.MainViewModel;
 
 //TODO: aqui tem que haver a requisição das receitas que o usuário favoritou
 /**

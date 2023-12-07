@@ -1,4 +1,4 @@
-package joao.nicolly.daianny.elisa.model;
+package joao.nicolly.daianny.elisa.model.viewModel;
 
 import android.app.Application;
 
@@ -9,6 +9,8 @@ import androidx.lifecycle.MutableLiveData;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+
+import joao.nicolly.daianny.elisa.model.InNatureRepository;
 
 public class LoginViewModel extends AndroidViewModel {
     public LoginViewModel(@NonNull Application application) {

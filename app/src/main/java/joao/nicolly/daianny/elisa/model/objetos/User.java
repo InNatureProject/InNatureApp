@@ -1,4 +1,4 @@
-package joao.nicolly.daianny.elisa.model;
+package joao.nicolly.daianny.elisa.model.objetos;
 
 import android.graphics.Bitmap;
 

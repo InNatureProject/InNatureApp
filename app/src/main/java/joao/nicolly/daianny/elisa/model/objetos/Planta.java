@@ -1,10 +1,6 @@
-package joao.nicolly.daianny.elisa.model;
-
-import android.graphics.Bitmap;
+package joao.nicolly.daianny.elisa.model.objetos;
 
 import androidx.lifecycle.Observer;
-
-import java.util.ArrayList;
 
 import joao.nicolly.daianny.elisa.activity.PlantaActivity;
 

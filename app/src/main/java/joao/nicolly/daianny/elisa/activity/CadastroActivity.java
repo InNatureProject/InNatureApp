@@ -13,7 +13,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import joao.nicolly.daianny.elisa.R;
-import joao.nicolly.daianny.elisa.model.CadastroViewModel;
+import joao.nicolly.daianny.elisa.model.viewModel.CadastroViewModel;
 import joao.nicolly.daianny.elisa.util.Config;
 
 //TODO sanitizar para impedir sql injection ou outros ataques;

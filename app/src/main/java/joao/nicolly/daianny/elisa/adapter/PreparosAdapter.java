@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.DiffUtil;
 import com.squareup.picasso.Picasso;
 
 import joao.nicolly.daianny.elisa.activity.PreparosActivity;
-import joao.nicolly.daianny.elisa.model.TipoPreparo;
+import joao.nicolly.daianny.elisa.model.objetos.TipoPreparo;
 import joao.nicolly.daianny.elisa.R;
 
 public class PreparosAdapter extends PagingDataAdapter<TipoPreparo,MyViewHolder> {

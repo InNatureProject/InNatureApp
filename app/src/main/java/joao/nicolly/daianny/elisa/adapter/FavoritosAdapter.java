@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import joao.nicolly.daianny.elisa.R;
 import joao.nicolly.daianny.elisa.fragment.FavoritosFragment;
-import joao.nicolly.daianny.elisa.model.Planta;
+import joao.nicolly.daianny.elisa.model.objetos.Planta;
 
 import androidx.annotation.NonNull;
 import androidx.paging.PagingDataAdapter;

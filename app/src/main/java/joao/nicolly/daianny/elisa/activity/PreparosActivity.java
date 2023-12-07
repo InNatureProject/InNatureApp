@@ -14,15 +14,14 @@ import android.os.Bundle;
 import joao.nicolly.daianny.elisa.R;
 import joao.nicolly.daianny.elisa.adapter.PreparosAdapter;
 import joao.nicolly.daianny.elisa.adapter.TipoPreparosComparator;
-import joao.nicolly.daianny.elisa.model.PreparosViewModel;
-import joao.nicolly.daianny.elisa.model.TipoPreparo;
+import joao.nicolly.daianny.elisa.model.viewModel.PreparosViewModel;
+import joao.nicolly.daianny.elisa.model.objetos.TipoPreparo;
 
 public class PreparosActivity extends AppCompatActivity {
     int id;
     PreparosAdapter preparosAdapter;
     PreparosViewModel preparosViewModel;
     RecyclerView rvPreparos;
-    //TODO: falta fazer o método no InNatureRepository responsável por carregar tipoPreparo, mas não estou encontrando o local em que é chamado
 
 
     @Override

@@ -1,8 +1,9 @@
-package joao.nicolly.daianny.elisa.model;
+package joao.nicolly.daianny.elisa.model.pagingSource;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.paging.ListenableFuturePagingSource;
+import androidx.paging.PagingSource;
 import androidx.paging.PagingState;
 
 import com.google.common.util.concurrent.ListenableFuture;
@@ -13,28 +14,34 @@ import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.Executors;
 
-public class PlantaPagingSource extends ListenableFuturePagingSource<Integer,Planta> {
+import joao.nicolly.daianny.elisa.model.InNatureRepository;
+import joao.nicolly.daianny.elisa.model.objetos.TipoPreparo;
+
+public class TipoPreparoPagingSource extends ListenableFuturePagingSource<Integer, TipoPreparo> {
+
 
     //Variáveis
     InNatureRepository inNatureRepository;
     Integer initialLoadSize = 0;
+    int id;
 
     //CONSTRUTOR
-    public PlantaPagingSource(InNatureRepository inNatureRepository){
+    public TipoPreparoPagingSource(InNatureRepository inNatureRepository,int id){
         this.inNatureRepository = inNatureRepository;
+        this.id = id;
     }
 
     //MÉTODOS OBRIGATÓRIOS
 
     @Nullable
     @Override
-    public Integer getRefreshKey(@NonNull PagingState<Integer, Planta> pagingState) {
+    public Integer getRefreshKey(@NonNull PagingState<Integer, TipoPreparo> pagingState) {
         return null;
     }
 
     @NonNull
     @Override
-    public ListenableFuture<LoadResult<Integer, Planta>> loadFuture(@NonNull LoadParams<Integer> loadParams) {
+    public ListenableFuture<PagingSource.LoadResult<Integer, TipoPreparo>> loadFuture(@NonNull PagingSource.LoadParams<Integer> loadParams) {
         Integer nextPageNumber = loadParams.getKey();
         if(nextPageNumber == null){
             nextPageNumber = 1;
@@ -53,24 +60,24 @@ public class PlantaPagingSource extends ListenableFuturePagingSource<Integer,Pla
         Integer finalOffSet = offSet;
         Integer finalNextPageNumber = nextPageNumber;
 
-        ListenableFuture<LoadResult<Integer,Planta>> lf = service.submit( new Callable<LoadResult<Integer,Planta>>() {
+        ListenableFuture<PagingSource.LoadResult<Integer,TipoPreparo>> lf = service.submit(new Callable<PagingSource.LoadResult<Integer,TipoPreparo>>() {
 
             /**
-             * O método call pega os próximos 'n' itens a serem exibidos no formato de uma lista de plantas
-             * este método chama o método loadPlanta de InNatureRepository*/
+             * O método call pega os próximos 'n' itens a serem exibidos no formato de uma lista de TipoPreparos
+             * este método chama o método loadTipoPreparos de InNatureRepository*/
 
             @Override
-            public LoadResult<Integer, Planta> call() throws Exception {
-                List<Planta> plantaList = null;
+            public PagingSource.LoadResult<Integer, TipoPreparo> call() throws Exception {
+                List<TipoPreparo> tipoPreparoList = null;
                 //a explicação do que é loadParams.getLoadSize e do que é finalOffSet está em loadPlanta
-                plantaList = inNatureRepository.loadPlanta(loadParams.getLoadSize(),finalOffSet);
+                tipoPreparoList = inNatureRepository.loadTipoPreparos(loadParams.getLoadSize(),finalOffSet,id);
                 Integer nextKey = null;
 
                 //Se o tamanho da lista for
-                if(plantaList.size() >= loadParams.getLoadSize()){
+                if(tipoPreparoList.size() >= loadParams.getLoadSize()){
                     nextKey = finalNextPageNumber + 1;
                 }
-                return new LoadResult.Page<Integer,Planta>(plantaList, null,nextKey);
+                return new PagingSource.LoadResult.Page<Integer,TipoPreparo>(tipoPreparoList, null,nextKey);
 
 
             }

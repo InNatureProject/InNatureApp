@@ -1,4 +1,4 @@
-package joao.nicolly.daianny.elisa.model;
+package joao.nicolly.daianny.elisa.model.viewModel;
 
 import android.app.Application;
 
@@ -11,6 +11,9 @@ import androidx.paging.PagingConfig;
 import androidx.paging.PagingData;
 import androidx.paging.PagingLiveData;
 
+import joao.nicolly.daianny.elisa.model.InNatureRepository;
+import joao.nicolly.daianny.elisa.model.pagingSource.TipoPreparoPagingSource;
+import joao.nicolly.daianny.elisa.model.objetos.TipoPreparo;
 import kotlinx.coroutines.CoroutineScope;
 
 public class PreparosViewModel extends AndroidViewModel {

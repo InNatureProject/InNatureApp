@@ -9,14 +9,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
 import joao.nicolly.daianny.elisa.R;
-import joao.nicolly.daianny.elisa.model.Planta;
-import joao.nicolly.daianny.elisa.model.PlantaViewModel;
+import joao.nicolly.daianny.elisa.model.viewModel.CadastroViewModel;
+import joao.nicolly.daianny.elisa.model.objetos.Planta;
 
 /*TODO: qual a necessidade do scrollview em planta?
 *   se é necessária lá, porque não é necessária na activity_preparo?*/
@@ -34,7 +35,7 @@ public class PlantaActivity extends AppCompatActivity {
         Intent i = getIntent();
         this.id = i.getIntExtra("id", 0);
 
-        PlantaViewModel plantaViewModel = new ViewModelProvider(this).get(PlantaViewModel.class);
+        CadastroViewModel.PlantaViewModel plantaViewModel = new ViewModelProvider(this).get(CadastroViewModel.PlantaViewModel.class);
 
         //método getPlantasDetailLd retorna o livedata
         LiveData<Planta> planta= plantaViewModel.getPlanta(id);
@@ -57,6 +58,16 @@ public class PlantaActivity extends AppCompatActivity {
 
                 }
             });
+        //Favoritando plantas
+        ImageButton imgbtnFavoritar = findViewById(R.id.imgbtnFavoritar);
+        LiveData<Boolean> fav;
+        imgbtnFavoritar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
 
         //Navegação para PreparosActivity
         btnPreparo = findViewById(R.id.btnPreparo);
@@ -66,7 +77,6 @@ public class PlantaActivity extends AppCompatActivity {
                 Intent i = new Intent(PlantaActivity.this, PreparosActivity.class);
                 i.putExtra("id",id);
                 startActivity(i);
-                return false;
             }
         });
 
@@ -77,7 +87,6 @@ public class PlantaActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent i = new Intent(PlantaActivity.this, ComentandoActivity.class);
                 startActivity(i);
-                return false;
             }
         });
     }

@@ -1,4 +1,4 @@
-package joao.nicolly.daianny.elisa.model;
+package joao.nicolly.daianny.elisa.model.objetos;
 
 public class TipoPreparo {
     private int id_planta;
@@ -6,7 +6,7 @@ public class TipoPreparo {
     private String nome;
     int idTipoPreparo;
 
-    TipoPreparo(int id_planta,String cod_preparo, String nome, int idTipoPreparo){
+    public TipoPreparo(int id_planta,String cod_preparo, String nome, int idTipoPreparo){
         this.id_planta = id_planta;
         this.cod_preparo =cod_preparo;
         this.nome = nome;

@@ -1,9 +1,7 @@
 package joao.nicolly.daianny.elisa.model;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.util.Log;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -11,11 +9,12 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.reflect.GenericArrayType;
 import java.util.ArrayList;
 import java.util.List;
 
-import joao.nicolly.daianny.elisa.activity.CadastroActivity;
+import joao.nicolly.daianny.elisa.model.objetos.Planta;
+import joao.nicolly.daianny.elisa.model.objetos.ReceitaPreparo;
+import joao.nicolly.daianny.elisa.model.objetos.TipoPreparo;
 import joao.nicolly.daianny.elisa.util.Config;
 import joao.nicolly.daianny.elisa.util.HttpRequest;
 import joao.nicolly.daianny.elisa.util.Util;
@@ -127,7 +126,6 @@ public class InNatureRepository {
      * Para visualizar as plantas tanto quanto para visualizar comentários não será necessário login.*/
 
 
-    //TODO: Fazer Função loadPlanta
     public List<Planta> loadPlanta(Integer limit, Integer offSet) {
         //o limit é a quantidade de itens (neste caso plantas) que requisitaremos do banco de dados
         //o offSet sete determina a partir de qual item (neste caso planta) pegaremos a quantidade requisitada "limit"
@@ -199,7 +197,7 @@ public class InNatureRepository {
     }
     /**Metodo que pega os tipos de preparo de uma planta*/
 
-    public List<TipoPreparo> loadTipoPreparos(Integer limit, Integer offSet,int id){
+    public List<TipoPreparo> loadTipoPreparos(Integer limit, Integer offSet, int id){
         //o limit é a quantidade de itens (neste caso TipoPreparo) que requisitaremos do banco de dados
         //o offSet sete determina a partir de qual item pegaremos a quantidade requisitada "limit"
 
@@ -344,7 +342,7 @@ public class InNatureRepository {
         return receitaPreparo;
     }
 
-    /** Método que cria a requisição httppara obter as informações das plantas
+    /** Método que cria a requisição htt para obter as informações das plantas
      * LoadPlantaDetail
      */
 
@@ -399,5 +397,16 @@ public class InNatureRepository {
         }
         p = new Planta(codPlanta, nome, imagem, descricao);
         return p;
+    }
+    public String loadImageUser(){
+        String url  = "";
+
+        //TODO: acertar a requisição de acordo com o que o joão falar
+//        HttpRequest httpRequest = new HttpRequest(Config.INNATURE_URL +"command/plantapreparo/"+ sid, "GET", "UTF-8");
+//        httpRequest.addParam("Token", Config.getTolken(context));
+
+        //String onde será guardado o resultado retornado pelo servidor
+        String result = "";
+        return null;//TODO: modificar para retornar url mais tarde;
     }
 }

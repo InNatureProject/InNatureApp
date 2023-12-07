@@ -10,14 +10,11 @@ import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-
 import java.util.ArrayList;
 
 import joao.nicolly.daianny.elisa.R;
-import joao.nicolly.daianny.elisa.model.ReceitaPreparo;
-import joao.nicolly.daianny.elisa.model.ReceitaPreparoViewModel;
+import joao.nicolly.daianny.elisa.model.objetos.ReceitaPreparo;
+import joao.nicolly.daianny.elisa.model.viewModel.ReceitaPreparoViewModel;
 
 public class ReceitaPreparoActivity extends AppCompatActivity {
     int idPlanta;

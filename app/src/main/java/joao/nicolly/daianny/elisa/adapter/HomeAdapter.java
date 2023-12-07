@@ -14,8 +14,7 @@ import com.squareup.picasso.Picasso;
 
 import joao.nicolly.daianny.elisa.R;
 import joao.nicolly.daianny.elisa.fragment.HomeFragment;
-import joao.nicolly.daianny.elisa.model.Planta;
-import kotlinx.coroutines.CoroutineDispatcher;
+import joao.nicolly.daianny.elisa.model.objetos.Planta;
 
 public class HomeAdapter extends PagingDataAdapter<Planta,MyViewHolder> {
     HomeFragment homeFragment;

@@ -26,8 +26,6 @@ import joao.nicolly.daianny.elisa.model.viewModel.MainViewModel;
 import joao.nicolly.daianny.elisa.model.objetos.Planta;
 import joao.nicolly.daianny.elisa.adapter.PlantaComparator;
 
-//TODO: aqui tem, que requisitar as plantas cadastradas e ordenálas  ou por ordem alfabética ou pelas mais populares
-//TODO: como faço para pegar o objeto com plantas e utilizá-lo no resto do código, não apenas no adapter
 
 /**
  * A simple {@link Fragment} subclass.
@@ -56,7 +54,6 @@ public class HomeFragment extends Fragment {
      * @return A new instance of fragment HomeFragment.
      */
 
-    // TODO: Delete os parametors
     //new instance retorna a inicioalização de HomeFragment
     public static HomeFragment newInstance() {return new HomeFragment(); }
 

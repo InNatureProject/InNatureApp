@@ -26,16 +26,10 @@ public class SemLoginCadastroFragment extends Fragment {
     Button btnTelaEntrar;
     Button btnTelaCadastro;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-
-
-    // TODO: Rename and change types of parameters
 
     public SemLoginCadastroFragment() {
         // Required empty public constructor
     }
-    // TODO: Rename and change types and number of parameters
     public static SemLoginCadastroFragment newInstance() {
         SemLoginCadastroFragment fragment = new SemLoginCadastroFragment();
         return fragment;
@@ -61,7 +55,6 @@ public class SemLoginCadastroFragment extends Fragment {
             public void onClick(View view) {
                 Intent i = new Intent(getContext(), LoginActivity.class);
                 startActivity(i);
-                return false;
             }
         });
 
@@ -71,7 +64,6 @@ public class SemLoginCadastroFragment extends Fragment {
             public void onClick(View view) {
                 Intent i = new Intent(getContext(), CadastroActivity.class);
                 startActivity(i);
-                return false;
             }
         });
 

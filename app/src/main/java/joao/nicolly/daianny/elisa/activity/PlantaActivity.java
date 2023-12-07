@@ -19,8 +19,6 @@ import joao.nicolly.daianny.elisa.R;
 import joao.nicolly.daianny.elisa.model.viewModel.CadastroViewModel;
 import joao.nicolly.daianny.elisa.model.objetos.Planta;
 
-/*TODO: qual a necessidade do scrollview em planta?
-*   se é necessária lá, porque não é necessária na activity_preparo?*/
 
 public class PlantaActivity extends AppCompatActivity {
 

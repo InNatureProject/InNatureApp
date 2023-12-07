@@ -75,8 +75,8 @@ public class UserFragment extends Fragment {
         btnDeslogar  = view.findViewById(R.id.btnDeslogar);
 
         //Para que o usuário seja capaz de visualizar seu nome e email:
-        tvName.setText(Config.getName(view.getContext()));//TODO: perguntar o prof se assim está certo
-        tvEmail.setText(Config.getEmail(view.getContext()));//TODO: perguntar ao prof se assim está certo
+        tvName.setText(Config.getName(view.getContext()));
+        tvEmail.setText(Config.getEmail(view.getContext()));
 
         /**Cada botão leva para uma tela diferente, então colocaremos onclick listenner em todos e criaremos um intent levando para a tela desejada*/
 
@@ -107,7 +107,7 @@ public class UserFragment extends Fragment {
                 Config.setImagem(getContext(),"");
 
                 Intent i = new Intent(getContext(), MainActivity.class); // cria uma variavel intent que fará a comunicação entre ambas as telas
-                startActivity(i); // inicializa o intente, ou seja, vai para a tela desejada.
+                startActivity(i); // inicializa o intente, ou seja, vai para a tela desejada
             }
         });
 

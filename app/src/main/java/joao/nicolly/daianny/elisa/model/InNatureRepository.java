@@ -103,11 +103,16 @@ public class InNatureRepository {
 
             JSONObject jsonObject = new JSONObject(result);
 
+            Boolean resultaLog= jsonObject.getBoolean("resultado");
+
+
             // Obtem vo valor da chave sucesso para verificar se a ação ocorreu da forma esperada
             int sucesso= jsonObject.getInt("sucesso");
 
             // ferificação que informa se o usuário fo autenticaddo
-            if (sucesso==1){
+            if (resultaLog){
+            String tolken = jsonObject.getString("Token");
+            Config.setTolken(context,tolken);
                 return true;
             }
 

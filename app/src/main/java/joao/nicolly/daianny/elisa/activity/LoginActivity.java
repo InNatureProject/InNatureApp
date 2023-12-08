@@ -23,7 +23,6 @@ import joao.nicolly.daianny.elisa.R;
 import joao.nicolly.daianny.elisa.util.Config;
 import joao.nicolly.daianny.elisa.model.viewModel.LoginViewModel;
 
-//TODO: Sanitizar os campos de email e senha para evitar informações errados ou maliciosas
 
 public class LoginActivity extends AppCompatActivity {
 

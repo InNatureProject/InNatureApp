@@ -17,7 +17,7 @@ import joao.nicolly.daianny.elisa.R;
 import joao.nicolly.daianny.elisa.activity.EditUserActivity;
 import joao.nicolly.daianny.elisa.activity.AjudaActivity;
 import joao.nicolly.daianny.elisa.activity.MainActivity;
-import joao.nicolly.daianny.elisa.model.viewModel.MainViewModel;
+import joao.nicolly.daianny.elisa.model.viewModel.PlantasViewModel;
 import joao.nicolly.daianny.elisa.util.Config;
 
 
@@ -35,7 +35,7 @@ public class UserFragment extends Fragment {
     Button btnDeslogar;
 
 
-    private MainViewModel mainViewModel;
+    private PlantasViewModel plantasViewModel;
 
     //CONSTRUTOR
     public UserFragment() {

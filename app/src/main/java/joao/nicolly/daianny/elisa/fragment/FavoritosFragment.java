@@ -22,7 +22,8 @@ import joao.nicolly.daianny.elisa.activity.PlantaActivity;
 import joao.nicolly.daianny.elisa.adapter.FavoritosAdapter;
 import joao.nicolly.daianny.elisa.model.objetos.Planta;
 import joao.nicolly.daianny.elisa.adapter.PlantaComparator;
-import joao.nicolly.daianny.elisa.model.viewModel.MainViewModel;
+import joao.nicolly.daianny.elisa.model.viewModel.PlantasFavoritasViewModel;
+import joao.nicolly.daianny.elisa.model.viewModel.PlantasViewModel;
 
 //TODO: aqui tem que haver a requisição das receitas que o usuário favoritou
 /**
@@ -34,7 +35,7 @@ public class FavoritosFragment extends Fragment {
 
     //Variáveis
 
-    private MainViewModel mainViewModel;
+    private PlantasFavoritasViewModel plantasFavoritasViewModel;
     private FavoritosAdapter favoritosAdapter;
 
 
@@ -68,7 +69,7 @@ public class FavoritosFragment extends Fragment {
 
         /**Aqui inicializamos o mainViewModel e o favoritosAdapter*/
         // obtemos o ViewModel pois é nele que está o método que se conecta ao servior web.
-        mainViewModel = new ViewModelProvider(getActivity()).get(MainViewModel.class);
+        plantasFavoritasViewModel= new ViewModelProvider(getActivity()).get(PlantasFavoritasViewModel.class);
         favoritosAdapter = new FavoritosAdapter(new PlantaComparator(), this);
         // O ViewModel possui o método getPageLv, que obtém páginas/blocos de produtos do
         // servidor
@@ -78,7 +79,7 @@ public class FavoritosFragment extends Fragment {
         // O método de getPageLv retorna um LiveData, que na prática é um container que avisa
         // quando o resultado do servidor chegou. Ele guarda a página de produtos que o servidor
         // entregou para a app.
-        LiveData<PagingData<Planta>> liveData = mainViewModel.getPageLv();
+        LiveData<PagingData<Planta>> liveData = plantasFavoritasViewModel.getPageLv();
 
         // Aqui nós observamos o LiveData. Quando o servidor responder, o resultado contendo uma página
         // com 10 produtos será guardado dentro do LiveData. Neste momento o

@@ -14,8 +14,8 @@ import joao.nicolly.daianny.elisa.model.InNatureRepository;
 import joao.nicolly.daianny.elisa.model.objetos.Planta;
 
 
-public class PlantaViewModel extends AndroidViewModel {
-    public PlantaViewModel(@NonNull Application application) {
+public class PlantaDetailViewModel extends AndroidViewModel {
+    public PlantaDetailViewModel(@NonNull Application application) {
         super(application);
     }
 

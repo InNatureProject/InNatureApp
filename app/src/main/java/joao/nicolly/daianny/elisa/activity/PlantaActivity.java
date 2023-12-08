@@ -17,10 +17,9 @@ import android.widget.Toast;
 import com.squareup.picasso.Picasso;
 
 import joao.nicolly.daianny.elisa.R;
-import joao.nicolly.daianny.elisa.model.viewModel.CadastroViewModel;
 import joao.nicolly.daianny.elisa.model.objetos.Planta;
 import joao.nicolly.daianny.elisa.model.viewModel.FavoritandoViewModel;
-import joao.nicolly.daianny.elisa.model.viewModel.PlantaViewModel;
+import joao.nicolly.daianny.elisa.model.viewModel.PlantaDetailViewModel;
 
 
 public class PlantaActivity extends AppCompatActivity {
@@ -36,10 +35,10 @@ public class PlantaActivity extends AppCompatActivity {
         Intent i = getIntent();
         this.id = i.getIntExtra("id", 0);
 
-        PlantaViewModel plantaViewModel = new ViewModelProvider(this).get(PlantaViewModel.class);
+        PlantaDetailViewModel plantaDetailViewModel = new ViewModelProvider(this).get(PlantaDetailViewModel.class);
 
         //método getPlantasDetailLd retorna o livedata
-        LiveData<Planta> planta= plantaViewModel.getPlanta(id);
+        LiveData<Planta> planta= plantaDetailViewModel.getPlanta(id);
             planta.observe(this, new Observer<Planta>() {
                 @Override
                 public void onChanged(Planta planta) {
@@ -94,7 +93,7 @@ public class PlantaActivity extends AppCompatActivity {
     }
     private void favoritandoPlantaEscolhida(){
         FavoritandoViewModel favoritandoViewModel = new ViewModelProvider(this).get(FavoritandoViewModel.class);
-        /**é no view model que haverá a chamada ára a requisição*/
+        /**é no view model que haverá a chamada para função de requisição do Repository requisição*/
         LiveData<Boolean> fav = favoritandoViewModel.favoritandoPlanta(id);//TODO:criar método favoritando planta
         fav.observe(this, new Observer<Boolean>() {
             @Override

@@ -22,7 +22,7 @@ import android.widget.ImageButton;
 import joao.nicolly.daianny.elisa.R;
 import joao.nicolly.daianny.elisa.activity.PlantaActivity;
 import joao.nicolly.daianny.elisa.adapter.HomeAdapter;
-import joao.nicolly.daianny.elisa.model.viewModel.MainViewModel;
+import joao.nicolly.daianny.elisa.model.viewModel.PlantasViewModel;
 import joao.nicolly.daianny.elisa.model.objetos.Planta;
 import joao.nicolly.daianny.elisa.adapter.PlantaComparator;
 
@@ -36,7 +36,7 @@ public class HomeFragment extends Fragment {
 
     //VARIÁVEIS
 
-    private MainViewModel mainViewModel;
+    private PlantasViewModel plantasViewModel;
     private HomeAdapter homeAdapter;
     private RecyclerView rvHomeFragment;
     private EditText etPesquisa;
@@ -72,11 +72,11 @@ public class HomeFragment extends Fragment {
         //iniciando as variáveis mainViewModel e home Adapter
         rvHomeFragment = view.findViewById(R.id.rvHomeFragment);
 
-        mainViewModel = new ViewModelProvider(getActivity()).get(MainViewModel.class);
+        plantasViewModel = new ViewModelProvider(getActivity()).get(PlantasViewModel.class);
         homeAdapter = new HomeAdapter(new PlantaComparator(),this);//homeAdapter está pronto
 
         //liveData recebe
-        LiveData<PagingData<Planta>> liveData = mainViewModel.getPageLv();
+        LiveData<PagingData<Planta>> liveData = plantasViewModel.getPageLv();
 
         liveData.observe(getViewLifecycleOwner(), new Observer<PagingData<Planta>>() {
             @Override

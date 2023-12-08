@@ -16,14 +16,13 @@ import java.util.concurrent.Executors;
 import joao.nicolly.daianny.elisa.model.InNatureRepository;
 import joao.nicolly.daianny.elisa.model.objetos.Planta;
 
-public class PlantaPagingSource extends ListenableFuturePagingSource<Integer, Planta> {
-
+public class PlantasFavoritasPagingSource extends ListenableFuturePagingSource<Integer, Planta> {
     //Variáveis
     InNatureRepository inNatureRepository;
     Integer initialLoadSize = 0;
 
     //CONSTRUTOR
-    public PlantaPagingSource(InNatureRepository inNatureRepository){
+    public PlantasFavoritasPagingSource(InNatureRepository inNatureRepository){
         this.inNatureRepository = inNatureRepository;
     }
 
@@ -66,7 +65,7 @@ public class PlantaPagingSource extends ListenableFuturePagingSource<Integer, Pl
             public LoadResult<Integer, Planta> call() throws Exception {
                 List<Planta> plantaList = null;
                 //a explicação do que é loadParams.getLoadSize e do que é finalOffSet está em loadPlanta
-                plantaList = inNatureRepository.loadPlanta(loadParams.getLoadSize(),finalOffSet);
+                plantaList = inNatureRepository.loadPlantasFavoritas(loadParams.getLoadSize(),finalOffSet);
                 Integer nextKey = null;
 
                 //Se o tamanho da lista for

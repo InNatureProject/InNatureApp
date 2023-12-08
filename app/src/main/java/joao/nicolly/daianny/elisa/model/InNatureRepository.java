@@ -406,12 +406,70 @@ public class InNatureRepository {
     public String loadImageUser(){
         String url  = "";
 
-        //TODO: acertar a requisição de acordo com o que o joão falar
-//        HttpRequest httpRequest = new HttpRequest(Config.INNATURE_URL +"command/plantapreparo/"+ sid, "GET", "UTF-8");
-//        httpRequest.addParam("Token", Config.getTolken(context));
+        //TODO: Devo passar o Token e vou receber a url, é um método post
+        HttpRequest httpRequest = new HttpRequest(Config.INNATURE_URL +"command/getImagem", "POST", "UTF-8");
+        httpRequest.addParam("Token", Config.getTolken(context));
 
         //String onde será guardado o resultado retornado pelo servidor
         String result = "";
         return null;//TODO: modificar para retornar url mais tarde;
     }
+    public Boolean setImageUser(String url){
+        //TODO: método para setar a imagem do usuário no banco de dados
+        //TODO: devo passa o Token e a url como parametros e vou receber uma resposta se foi um sucesso ou não
+        return null;//TODO: depos modificar para retirnar um boolean
+    }
+
+    public Boolean ehFavorita(int id){
+        return null;//TODO: modificar depois para retornar um boolean
+    }
+
+
+
+    public Boolean favoritarPlanta(int id){
+
+        /**Sempre que o usuário clicar no f-botão favoritar ele fovoritará ou desfavoritará a planta no banco de dados*/
+
+        String sid = Integer.toString(id);
+        Boolean b = false;
+
+        // CRIAÇÃO DA REQUISIÇÃO HTTP E ADICIONA OS PARÂMETROS QUE SERÃO ENVIADOS AO BANCO
+        HttpRequest httpRequest = new HttpRequest(Config.INNATURE_URL+"command/planta/" + sid,"POST","UTF-8");
+        httpRequest.addParam("Token",Config.getTolken(context));
+        httpRequest.addParam("id", sid);
+
+        String result= "";
+        try{
+            // Executa a requisição HTTP. É neste momento que o servidor web é contactado. Ao executar
+            // a requisição é aberto um fluxo de dados entre o servidor e a app (InputStream is).
+            InputStream is = httpRequest.execute();
+
+            //resultado provavelmente será em uma string de formato JSON que devemos manipular de maneira
+            //que devolvamos um Objeto contendo informações da planta
+
+            result = Util.inputStream2String(is,"UTF-8");
+
+            //fechando conecção com servidor
+            httpRequest.finish();
+
+            Log.i("HTTP DETAILS RESULT", result);
+            //Veificarseo JSONbject é o mesmo no nosso caso
+
+            // A classe JSONArray recebe como parâmetro do construtor uma String no formato JSON e
+            // monta internamente uma estrutura de dados similar ao dicionário em python.
+
+            //receberemos json no formato:{result:true,info:"string"}
+            JSONObject jsonObject = new JSONObject(result);
+
+            // Obtemos o JSONObject referente a uma planta
+            b = jsonObject.getBoolean("result");
+
+        }catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return b;
+    }
+
 }

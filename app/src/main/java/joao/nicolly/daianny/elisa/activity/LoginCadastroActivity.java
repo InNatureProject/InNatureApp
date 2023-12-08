@@ -22,7 +22,6 @@ protected void onCreate(Bundle savedInstanceState) { //criando a classe que herd
         public void onClick(View view) { //metodo acionado assim que o ouvidor for ativad
             Intent i = new Intent(LoginCadastroActivity.this,LoginActivity.class); //variável criada para passar as telas de mainActivity para o ProximoActivity
             startActivity(i); //inicia a ação
-            return false;
         }
     });
 }

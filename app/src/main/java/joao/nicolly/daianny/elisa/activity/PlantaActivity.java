@@ -12,12 +12,15 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
 import joao.nicolly.daianny.elisa.R;
 import joao.nicolly.daianny.elisa.model.viewModel.CadastroViewModel;
 import joao.nicolly.daianny.elisa.model.objetos.Planta;
+import joao.nicolly.daianny.elisa.model.viewModel.FavoritandoViewModel;
+import joao.nicolly.daianny.elisa.model.viewModel.PlantaViewModel;
 
 
 public class PlantaActivity extends AppCompatActivity {
@@ -33,7 +36,7 @@ public class PlantaActivity extends AppCompatActivity {
         Intent i = getIntent();
         this.id = i.getIntExtra("id", 0);
 
-        CadastroViewModel.PlantaViewModel plantaViewModel = new ViewModelProvider(this).get(CadastroViewModel.PlantaViewModel.class);
+        PlantaViewModel plantaViewModel = new ViewModelProvider(this).get(PlantaViewModel.class);
 
         //método getPlantasDetailLd retorna o livedata
         LiveData<Planta> planta= plantaViewModel.getPlanta(id);
@@ -58,10 +61,11 @@ public class PlantaActivity extends AppCompatActivity {
             });
         //Favoritando plantas
         ImageButton imgbtnFavoritar = findViewById(R.id.imgbtnFavoritar);
-        LiveData<Boolean> fav;
+        /**No caso do botão favoritar ser acionado enviaremos uma requisião ao banco de dados */
         imgbtnFavoritar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                favoritandoPlantaEscolhida();
 
             }
         });
@@ -85,6 +89,21 @@ public class PlantaActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent i = new Intent(PlantaActivity.this, ComentandoActivity.class);
                 startActivity(i);
+            }
+        });
+    }
+    private void favoritandoPlantaEscolhida(){
+        FavoritandoViewModel favoritandoViewModel = new ViewModelProvider(this).get(FavoritandoViewModel.class);
+        /**é no view model que haverá a chamada ára a requisição*/
+        LiveData<Boolean> fav = favoritandoViewModel.favoritandoPlanta(id);//TODO:criar método favoritando planta
+        fav.observe(this, new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                if(aBoolean){
+                    Toast.makeText(PlantaActivity.this,"Planta favoritada com sucesso!",Toast.LENGTH_LONG).show();
+                } else{
+                    Toast.makeText(PlantaActivity.this,"Não foi possível favoritar planta!",Toast.LENGTH_LONG).show();
+                }
             }
         });
     }

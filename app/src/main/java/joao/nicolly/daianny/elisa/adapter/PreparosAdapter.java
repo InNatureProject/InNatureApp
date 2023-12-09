@@ -50,7 +50,7 @@ public class PreparosAdapter extends PagingDataAdapter<TipoPreparo,MyViewHolder>
         ImageView imvTipoP = holder.itemView.findViewById(R.id.imvTipoP);
         if(tipoPreparo.getCod_preparo().equals("Chá")){
             Picasso.with(preparosActivity.getApplicationContext())
-                    .load("https://github.com/InNatureProject/innatureimages/blob/main/ch%C3%A1.avif")
+                    .load("https://raw.githubusercontent.com/InNatureProject/innatureimages/main/cha.avif")
                     .into(imvTipoP);
         }
         if(tipoPreparo.getCod_preparo().equals("Banho")){
@@ -60,7 +60,7 @@ public class PreparosAdapter extends PagingDataAdapter<TipoPreparo,MyViewHolder>
         }
         if(tipoPreparo.getCod_preparo().equals("Inalação")){
             Picasso.with(preparosActivity.getApplicationContext())
-                    .load("https://raw.githubusercontent.com/InNatureProject/innatureimages/main/inala%C3%A7%C3%A3o.webp")
+                    .load("https://raw.githubusercontent.com/InNatureProject/innatureimages/main/inalacao.webp")
                     .into(imvTipoP);
         }
         if(tipoPreparo.getCod_preparo().equals("Compressa")){

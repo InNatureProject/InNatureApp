@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,8 +25,8 @@ public class EditUserActivity extends AppCompatActivity {
 
     //VARIÁVEIS
 
-    //TODO: falta colocar a foto do usuário no imageView
     ImageView imgvFotoPerfil;
+    ImageView ivMudarFotoPerfil;
     TextView tvEmailVinc;
     TextView tvNomeVinc;
     EditText etNovoNome;
@@ -43,14 +44,25 @@ public class EditUserActivity extends AppCompatActivity {
 
         /*Setando a imagem de perfil*/
         imgvFotoPerfil = findViewById(R.id.imgvFotoPerfil);
-        if(!Config.getImagem(EditUserActivity.this).isEmpty()){
-            Picasso.with(getApplicationContext())
-                    .load(Config.getImagem(EditUserActivity.this))
+        //Para que o usuário seja capaz de ver sua imagem
+        if(Config.getImagem(this).isEmpty()){
+            Picasso.with(this)
+                    .load("https://raw.githubusercontent.com/InNatureProject/innatureimages/main/default_ImageUser.jpg")
                     .into(imgvFotoPerfil);
-        } else{
-            ImageUserViewModel imageUserViewModel = new ViewModelProvider(this).get(ImageUserViewModel.class);;
-            LiveData<String> url = imageUserViewModel.getUrl();
+        }else{
+            Picasso.with(this)
+                    .load(Config.getImagem(this))
+                    .into(imgvFotoPerfil);
         }
+        //Para editar a imagem de usuário
+        ivMudarFotoPerfil = findViewById(R.id.ivMudarFotoPerfil);
+        ivMudarFotoPerfil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(EditUserActivity.this,ChooseImageActivity.class);
+                startActivity(i);
+            }
+        });
 
         /*aqui pegamos os textView nome e email da tela e
         modificamos o conteúdo para que receba o nome e email do usuário*/

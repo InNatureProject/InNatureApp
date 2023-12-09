@@ -12,8 +12,8 @@ import java.util.concurrent.Executors;
 
 import joao.nicolly.daianny.elisa.model.InNatureRepository;
 
-public class EhFavoritaViewModel extends AndroidViewModel {
-    public EhFavoritaViewModel(@NonNull Application application) {
+public class EhFavoritoViewModel extends AndroidViewModel {
+    public EhFavoritoViewModel(@NonNull Application application) {
         super(application);
     }
 
@@ -41,7 +41,7 @@ public class EhFavoritaViewModel extends AndroidViewModel {
                  * retorna um JSONObject contendo um boolean
                  * true caso a alteração tenha ocorrido e false caso não
                  */
-                Boolean b = inNatureRepository.ehFavorita(id);
+                Boolean b = inNatureRepository.ehFavorito(id);
 
                 //    Resultado da operação dentro do LiveData
                 booleanMutableLiveData.postValue(b);

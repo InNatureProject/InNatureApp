@@ -50,22 +50,22 @@ public class PreparosAdapter extends PagingDataAdapter<TipoPreparo,MyViewHolder>
         ImageView imvTipoP = holder.itemView.findViewById(R.id.imvTipoP);
         if(tipoPreparo.getCod_preparo().equals("Chá")){
             Picasso.with(preparosActivity.getApplicationContext())
-                    .load("https://img.freepik.com/vetores-premium/uma-ilustracao-dos-desenhos-animados-de-uma-xicara-de-cha-com-um-rosto-sorridente_180868-3002.jpg?w=740")
+                    .load("https://github.com/InNatureProject/innatureimages/blob/main/ch%C3%A1.avif")
                     .into(imvTipoP);
         }
         if(tipoPreparo.getCod_preparo().equals("Banho")){
             Picasso.with(preparosActivity.getApplicationContext())
-                    .load("https://media.istockphoto.com/id/1350638793/pt/vetorial/foam-bath-on-an-isolated-background-bathtub-with-foam-bubbles-and-rubber-duck-bath-time.webp?s=2048x2048&w=is&k=20&c=XdYVMJsk5Oo9jUrQG92MLclQDnrfuWAjpEllZn8WoVM=")
+                    .load("https://raw.githubusercontent.com/InNatureProject/innatureimages/main/Banho.webp")
                     .into(imvTipoP);
         }
         if(tipoPreparo.getCod_preparo().equals("Inalação")){
             Picasso.with(preparosActivity.getApplicationContext())
-                    .load("https://media.istockphoto.com/id/1483526897/pt/vetorial/watercolor-eucalyptus-fragrance-electric-wooden-humidifier-aroma-oil-diffuser-illustration.webp?s=2048x2048&w=is&k=20&c=7ZyAkhhZQ2WxjPGsLIvJ-0VmkhK5uiDbzdD9XUCBzC0=")
+                    .load("https://raw.githubusercontent.com/InNatureProject/innatureimages/main/inala%C3%A7%C3%A3o.webp")
                     .into(imvTipoP);
         }
         if(tipoPreparo.getCod_preparo().equals("Compressa")){
             Picasso.with(preparosActivity.getApplicationContext())
-                    .load("https://media.istockphoto.com/id/877109466/pt/vetorial/illustration-of-firs-aid-person-caucasian-foot-with-thermal-bag-top-view-ideal-for-catalogs.webp?s=2048x2048&w=is&k=20&c=deUFdedqq2AUxeVVTPvzqFIvuWX-nu_NwMxZeOof2lo=")
+                    .load("https://raw.githubusercontent.com/InNatureProject/innatureimages/main/Compressa.webp")
                     .into(imvTipoP);
         }
 

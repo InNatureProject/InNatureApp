@@ -14,22 +14,23 @@
         android:theme="@style/Theme.InNatureApp"
         tools:targetApi="31">
         <activity
+            android:name=".activity.ChooseImageActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.LoginCadastroActivity"
             android:exported="false" />
-        <activity android:name=".activity.AjudaActivity"
-            android:exported="false"/>
+        <activity
+            android:name=".activity.AjudaActivity"
+            android:exported="false" />
         <activity
             android:name=".activity.ReceitaPreparoActivity"
             android:exported="false" />
         <activity
             android:name=".activity.EditUserActivity"
-            android:exported="true">
-
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".activity.PreparosActivity"
-            android:exported="true" >
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".activity.ComentandoActivity"
             android:exported="false" />
@@ -38,17 +39,16 @@
             android:exported="false" />
         <activity
             android:name=".activity.CadastroActivity"
-            android:exported="true">
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".activity.LoginActivity"
-            android:exported="false" >
-        </activity>
+            android:exported="false"></activity>
         <activity
             android:name=".activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

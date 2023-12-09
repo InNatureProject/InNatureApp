@@ -11,7 +11,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import joao.nicolly.daianny.elisa.R;
 import joao.nicolly.daianny.elisa.activity.EditUserActivity;
@@ -28,6 +31,7 @@ import joao.nicolly.daianny.elisa.util.Config;
  */
 public class UserFragment extends Fragment {
     //VARIÁVEIS
+    ImageView imgUser;
     TextView tvName;
     TextView tvEmail;
     Button btnEditarPerfil;
@@ -68,12 +72,23 @@ public class UserFragment extends Fragment {
         // INICIALIZANDO VARIÁVEIS
         // Aqui pegamos cada elemento da tela e jogamos dentro de sua variável
 
+        imgUser =view.findViewById(R.id.imgUser);
         tvName = view.findViewById(R.id.tvName);
         tvEmail = view.findViewById(R.id.tvEmail);
         btnEditarPerfil = view.findViewById(R.id.btnEditarPerfil);
         btnAjuda = view.findViewById(R.id.btnAjuda);
         btnDeslogar  = view.findViewById(R.id.btnDeslogar);
 
+        //Para que o usuário seja capaz de ver sua imagem
+        if(Config.getImagem(view.getContext()).isEmpty()){
+            Picasso.with(view.getContext())
+                    .load("https://raw.githubusercontent.com/InNatureProject/innatureimages/main/default_ImageUser.jpg")
+                    .into(imgUser);
+        }else{
+            Picasso.with(view.getContext())
+                    .load(Config.getImagem(view.getContext()))
+                    .into(imgUser);
+        }
         //Para que o usuário seja capaz de visualizar seu nome e email:
         tvName.setText(Config.getName(view.getContext()));
         tvEmail.setText(Config.getEmail(view.getContext()));

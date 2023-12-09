@@ -18,7 +18,7 @@ import com.squareup.picasso.Picasso;
 
 import joao.nicolly.daianny.elisa.R;
 import joao.nicolly.daianny.elisa.model.objetos.Planta;
-import joao.nicolly.daianny.elisa.model.viewModel.EhFavoritaViewModel;
+import joao.nicolly.daianny.elisa.model.viewModel.EhFavoritoViewModel;
 import joao.nicolly.daianny.elisa.model.viewModel.FavoritandoViewModel;
 import joao.nicolly.daianny.elisa.model.viewModel.PlantaDetailViewModel;
 
@@ -97,8 +97,8 @@ public class PlantaActivity extends AppCompatActivity {
         });
     }
     private void favoritandoPlantaEscolhida(){
-        EhFavoritaViewModel ehFavoritaViewModel = new ViewModelProvider(this).get(EhFavoritaViewModel.class);
-        LiveData<Boolean> ehFav = ehFavoritaViewModel.ehPlantaFavorita(id);//todo:fazer  esPlanta no viewModel
+        EhFavoritoViewModel ehFavoritoViewModel = new ViewModelProvider(this).get(EhFavoritoViewModel.class);
+        LiveData<Boolean> ehFav = ehFavoritoViewModel.ehPlantaFavorita(id);//todo:fazer  esPlanta no viewModel
 
         FavoritandoViewModel favoritandoViewModel = new ViewModelProvider(this).get(FavoritandoViewModel.class);
         ehFav.observe(this, new Observer<Boolean>() {

@@ -495,14 +495,14 @@ public class InNatureRepository {
     return null;//TODO: depos modificar para retirnar um boolean
     }
 
-    public Boolean ehFavorita(int id){
+    public Boolean ehFavorito(int id){
     String sid = Integer.toString(id);
     Boolean b = false;
 
     // CRIAÇÃO DA REQUISIÇÃO HTTP E ADICIONA OS PARÂMETROS QUE SERÃO ENVIADOS AO BANCO
-    HttpRequest httpRequest = new HttpRequest(Config.INNATURE_URL+"command/ehFavorita","POST","UTF-8");
+    HttpRequest httpRequest = new HttpRequest(Config.INNATURE_URL+"command/ehFavorito","POST","UTF-8");
     httpRequest.addParam("Token",Config.getTolken(context));
-    httpRequest.addParam("id", sid);
+    httpRequest.addParam("Planta", sid);
 
     String result= "";
     try{
@@ -550,7 +550,7 @@ public class InNatureRepository {
     // CRIAÇÃO DA REQUISIÇÃO HTTP E ADICIONA OS PARÂMETROS QUE SERÃO ENVIADOS AO BANCO
     HttpRequest httpRequest = new HttpRequest(Config.INNATURE_URL+"command/favoritar","POST","UTF-8");
     httpRequest.addParam("Token",Config.getTolken(context));
-    httpRequest.addParam("id", sid);
+    httpRequest.addParam("Planta", sid);
 
     String result= "";
     try{

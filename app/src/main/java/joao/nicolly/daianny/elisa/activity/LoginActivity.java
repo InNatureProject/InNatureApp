@@ -25,6 +25,7 @@ import joao.nicolly.daianny.elisa.model.viewModel.LoginViewModel;
 
 
 public class LoginActivity extends AppCompatActivity {
+    //TODO: lembrar que ao logar o usuário tambémé necessário pegar a imagem escolhida que foi armazenada no banco de dados
 
     static int RESULT_REQUEST_PERMISSION = 2;
     LoginViewModel loginViewlModel;

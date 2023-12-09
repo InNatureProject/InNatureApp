@@ -98,7 +98,7 @@ public class PlantaActivity extends AppCompatActivity {
     }
     private void favoritandoPlantaEscolhida(){
         EhFavoritoViewModel ehFavoritoViewModel = new ViewModelProvider(this).get(EhFavoritoViewModel.class);
-        LiveData<Boolean> ehFav = ehFavoritoViewModel.ehPlantaFavorita(id);//todo:fazer  esPlanta no viewModel
+        LiveData<Boolean> ehFav = ehFavoritoViewModel.ehPlantaFavorita(id);
 
         FavoritandoViewModel favoritandoViewModel = new ViewModelProvider(this).get(FavoritandoViewModel.class);
         ehFav.observe(this, new Observer<Boolean>() {

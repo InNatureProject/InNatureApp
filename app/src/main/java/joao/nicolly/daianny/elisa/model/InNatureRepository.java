@@ -82,47 +82,47 @@ public class InNatureRepository {
     /***/
     public boolean login(String email, String senha ){
 
-    // Resquisição para o servidor
+        // Resquisição para o servidor
 
-    HttpRequest httpRequest= new HttpRequest(Config.INNATURE_URL+"command/login", "GET", "UTF-8");
-    /** Adição as tabelas
-     * As informações obtidas serão */
-    httpRequest.addParam("email", email);
-    httpRequest.addParam("senha", senha);
+        HttpRequest httpRequest= new HttpRequest(Config.INNATURE_URL+"command/login", "GET", "UTF-8");
+        /** Adição as tabelas
+         * As informações obtidas serão */
+        httpRequest.addParam("email", email);
+        httpRequest.addParam("senha", senha);
 
-    String result="";
+        String result="";
 
-    try {
-        // executa a requisição HTTP. É neste momento que o servidor é consultado
-        InputStream is = httpRequest.execute();
-
-
-
-        result = Util.inputStream2String(is,"UTF-8");
-        Log.i("HTTP RESULTADO DO CADASTRO",result);
-
-        JSONObject jsonObject = new JSONObject(result);
-
-        Boolean resultaLog= jsonObject.getBoolean("resultado");
+        try {
+            // executa a requisição HTTP. É neste momento que o servidor é consultado
+            InputStream is = httpRequest.execute();
 
 
-        // Obtem vo valor da chave sucesso para verificar se a ação ocorreu da forma esperada
-        int sucesso= jsonObject.getInt("sucesso");
 
-        // ferificação que informa se o usuário fo autenticaddo
-        if (resultaLog){
-        String tolken = jsonObject.getString("Token");
-        Config.setTolken(context,tolken);
-            return true;
-        }
+            result = Util.inputStream2String(is,"UTF-8");
+            Log.i("HTTP RESULTADO DO CADASTRO",result);
 
-    } catch (IOException e) {
-        e.printStackTrace();
-    } catch (JSONException e) {
-        throw new RuntimeException(e);
-     }
+            JSONObject jsonObject = new JSONObject(result);
 
-    return false;
+            Boolean resultaLog= jsonObject.getBoolean("resultado");
+
+
+            // Obtem vo valor da chave sucesso para verificar se a ação ocorreu da forma esperada
+            int sucesso= jsonObject.getInt("sucesso");
+
+            // ferificação que informa se o usuário fo autenticaddo
+            if (resultaLog){
+            String tolken = jsonObject.getString("Token");
+            Config.setTolken(context,tolken);
+                return true;
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+         }
+
+        return false;
     }
 
     /**
@@ -132,119 +132,47 @@ public class InNatureRepository {
 
 
     public List<Planta> loadPlanta(Integer limit, Integer offSet) {
-    //o limit é a quantidade de itens (neste caso plantas) que requisitaremos do banco de dados
-    //o offSet sete determina a partir de qual item (neste caso planta) pegaremos a quantidade requisitada "limit"
+        //o limit é a quantidade de itens (neste caso plantas) que requisitaremos do banco de dados
+        //o offSet sete determina a partir de qual item (neste caso planta) pegaremos a quantidade requisitada "limit"
 
-    /**Não é necessário validação de usuário (login, senha ou token) para carregar as plantas*/
+        /**Não é necessário validação de usuário (login, senha ou token) para carregar as plantas*/
 
-    // cria a lista de plantas incicialmente vazia, que será retornada como resultado
-    List<Planta> plantaList = new ArrayList<>();
+        // cria a lista de plantas incicialmente vazia, que será retornada como resultado
+        List<Planta> plantaList = new ArrayList<>();
 
-    // Cria uma requisição HTTP a adiciona o parâmetros que devem ser enviados ao servidor
-    HttpRequest httpRequest = new HttpRequest(Config.INNATURE_URL +"command/plantas", "GET", "UTF-8");
-    /**Como não estamos fazendo paginação no banco de dados não enviamos o limit nem o offSet*/
-    //        httpRequest.addParam("limit", limit.toString());
-    //        httpRequest.addParam("offset",offSet.toString());
+        // Cria uma requisição HTTP a adiciona o parâmetros que devem ser enviados ao servidor
+        HttpRequest httpRequest = new HttpRequest(Config.INNATURE_URL +"command/plantas", "GET", "UTF-8");
+        /**Como não estamos fazendo paginação no banco de dados não enviamos o limit nem o offSet*/
+        //        httpRequest.addParam("limit", limit.toString());
+        //        httpRequest.addParam("offset",offSet.toString());
 
-    //String onde será guardado o resultado retornado pelo servidor
-    String result = "";
+        //String onde será guardado o resultado retornado pelo servidor
+        String result = "";
 
-    // Tentativa de Conexão
-    try{
-        //executando a requisição
-        InputStream is = httpRequest.execute();
+        // Tentativa de Conexão
+        try{
+            //executando a requisição
+            InputStream is = httpRequest.execute();
 
-        //resultado provavelmente será em uma string de formato JSON que devemos manipular de maneira
-        // que devolvamos uma lista de Objetos contendo as informações pertinentes a cada planta.
+            //resultado provavelmente será em uma string de formato JSON que devemos manipular de maneira
+            // que devolvamos uma lista de Objetos contendo as informações pertinentes a cada planta.
 
-        result = Util.inputStream2String(is,"UTF-8");
+            result = Util.inputStream2String(is,"UTF-8");
 
-        // result conterá a informação de todas as plantas
-        // result = [{"cod_plt":1,"nome":"Capim Limão","imagem":"https://fenixculatra.github.io/PlantasMedicinais/imagens/capim-limao.jpg","descricao":null},{"cod_plt":2,"nome":"Camomila","imagem":"https://fenixculatra.github.io/PlantasMedicinais/imagens/camomila.jpg","descricao":null},{"cod_plt":3,"nome":"Hortelã","imagem":"https://fenixculatra.github.io/PlantasMedicinais/imagens/hortela.jpg","descricao":null},{"cod_plt":4,"nome":"Erva-Cidreira","imagem":"https://fenixculatra.github.io/PlantasMedicinais/imagens/erva-cidreira.jpg","descricao":null},{"cod_plt":5,"nome":"Chá Verde","imagem":"https://fenixculatra.github.io/PlantasMedicinais/imagens/cha-verde.jpg","descricao":null}]
-        //fechando conecção com servidor
-        httpRequest.finish();
+            // result conterá a informação de todas as plantas
+            // result = [{"cod_plt":1,"nome":"Capim Limão","imagem":"https://fenixculatra.github.io/PlantasMedicinais/imagens/capim-limao.jpg","descricao":null},{"cod_plt":2,"nome":"Camomila","imagem":"https://fenixculatra.github.io/PlantasMedicinais/imagens/camomila.jpg","descricao":null},{"cod_plt":3,"nome":"Hortelã","imagem":"https://fenixculatra.github.io/PlantasMedicinais/imagens/hortela.jpg","descricao":null},{"cod_plt":4,"nome":"Erva-Cidreira","imagem":"https://fenixculatra.github.io/PlantasMedicinais/imagens/erva-cidreira.jpg","descricao":null},{"cod_plt":5,"nome":"Chá Verde","imagem":"https://fenixculatra.github.io/PlantasMedicinais/imagens/cha-verde.jpg","descricao":null}]
+            //fechando conecção com servidor
+            httpRequest.finish();
 
-        Log.i("HTTP RESULTADO   DA REQUISIÇÃO",result);
+            Log.i("HTTP RESULTADO   DA REQUISIÇÃO",result);
 
-        // A classe JSONObject recebe como parâmetro do construtor uma String no formato JSON e
-        // monta internamente uma estrutura de dados similar ao dicionário em python.
-        JSONArray jsonArray = new JSONArray(result);
+            // A classe JSONObject recebe como parâmetro do construtor uma String no formato JSON e
+            // monta internamente uma estrutura de dados similar ao dicionário em python.
+            JSONArray jsonArray = new JSONArray(result);
 
-        // os produtos são obtidos da String JSON e adicionados à lista de
-        // plantas a ser retornada como resultado.
-
-
-        // Cada elemento do JSONArray é um JSONObject que guarda os dados de um produto
-        for(int i = 0; i < jsonArray.length(); i++) {
-
-            // Obtemos o JSONObject referente a um produto
-            JSONObject jPlanta = jsonArray.getJSONObject(i);
-
-            // Obtemos os dados de um produtos via JSONObject
-            int id = jPlanta.getInt("cod_plt");
-            String name = jPlanta.getString("nome");
-            String img = jPlanta.getString("imagem");
-            String desc = jPlanta.getString("descricao");
-
-            // Criamo um objeto do tipo Product para guardar esses dados
-            Planta planta = new Planta(id,name, img, desc);
-
-            // Adicionamos o objeto product na lista de produtos
-            plantaList.add(planta);
-        }
-    } catch (IOException e) {
-        e.printStackTrace();
-    } catch (JSONException e) {
-        e.printStackTrace();
-        Log.e("HTTP RESULT", result);
-    }
-    return plantaList;
-    }
-
-    public List<Planta> loadPlantasFavoritas(Integer limit, Integer offSet){
-    //o limit é a quantidade de itens (neste caso plantas) que requisitaremos do banco de dados
-    //o offSet sete determina a partir de qual item (neste caso planta) pegaremos a quantidade requisitada "limit"
-
-    /**Neste caso é necessária a validação do usuário através de Token para carregar as plantas*/
-
-    // cria a lista de plantas incicialmente vazia, que será retornada como resultado
-    List<Planta> plantaList = new ArrayList<>();
-
-    // Cria uma requisição HTTP a adiciona o parâmetros que devem ser enviados ao servidor
-    HttpRequest httpRequest = new HttpRequest(Config.INNATURE_URL +"command/favoritos", "POST", "UTF-8");
-    httpRequest.addParam("Token",Config.getTolken(context));
-    /**Como não estamos fazendo paginação no banco de dados não enviamos o limit nem o offSet*/
-    //        httpRequest.addParam("limit", limit.toString());
-    //        httpRequest.addParam("offset",offSet.toString());
-
-    //String onde será guardado o resultado retornado pelo servidor
-    String result = "";
-
-    // Tentativa de Conexão
-    try{
-        //executando a requisição
-        InputStream is = httpRequest.execute();
-
-        //resultado provavelmente será em uma string de formato JSON que devemos manipular de maneira
-        // que devolvamos uma lista de Objetos contendo as informações pertinentes a cada planta.
-
-        result = Util.inputStream2String(is,"UTF-8");
-
-        // result conterá a informação de todas as plantas
-        // result = [{"cod_plt":1,"nome":"Capim Limão","imagem":"https://fenixculatra.github.io/PlantasMedicinais/imagens/capim-limao.jpg","descricao":null},{"cod_plt":2,"nome":"Camomila","imagem":"https://fenixculatra.github.io/PlantasMedicinais/imagens/camomila.jpg","descricao":null},{"cod_plt":3,"nome":"Hortelã","imagem":"https://fenixculatra.github.io/PlantasMedicinais/imagens/hortela.jpg","descricao":null},{"cod_plt":4,"nome":"Erva-Cidreira","imagem":"https://fenixculatra.github.io/PlantasMedicinais/imagens/erva-cidreira.jpg","descricao":null},{"cod_plt":5,"nome":"Chá Verde","imagem":"https://fenixculatra.github.io/PlantasMedicinais/imagens/cha-verde.jpg","descricao":null}]
-        //fechando conecção com servidor
-        httpRequest.finish();
-
-        Log.i("HTTP RESULTADO   DA REQUISIÇÃO",result);
-
-        // A classe JSONObject recebe como parâmetro do construtor uma String no formato JSON e
-        // monta internamente uma estrutura de dados similar ao dicionário em python.
-        JSONObject jsonObject = new JSONObject(result);
-        //o jsonObject ficará como {"result":true,"data":[]}
-        if(jsonObject.getBoolean("result")){
-            JSONArray jsonArray = jsonObject.getJSONArray("data");
             // os produtos são obtidos da String JSON e adicionados à lista de
             // plantas a ser retornada como resultado.
+
 
             // Cada elemento do JSONArray é um JSONObject que guarda os dados de um produto
             for(int i = 0; i < jsonArray.length(); i++) {
@@ -264,162 +192,234 @@ public class InNatureRepository {
                 // Adicionamos o objeto product na lista de produtos
                 plantaList.add(planta);
             }
-
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+            Log.e("HTTP RESULT", result);
         }
-
-    } catch (IOException e) {
-        e.printStackTrace();
-    } catch (JSONException e) {
-        e.printStackTrace();
-        Log.e("HTTP RESULT", result);
+        return plantaList;
     }
-    return plantaList;
+
+    public List<Planta> loadPlantasFavoritas(Integer limit, Integer offSet){
+        //o limit é a quantidade de itens (neste caso plantas) que requisitaremos do banco de dados
+        //o offSet sete determina a partir de qual item (neste caso planta) pegaremos a quantidade requisitada "limit"
+
+        /**Neste caso é necessária a validação do usuário através de Token para carregar as plantas*/
+
+        // cria a lista de plantas incicialmente vazia, que será retornada como resultado
+        List<Planta> plantaList = new ArrayList<>();
+
+        // Cria uma requisição HTTP a adiciona o parâmetros que devem ser enviados ao servidor
+        HttpRequest httpRequest = new HttpRequest(Config.INNATURE_URL +"command/favoritos", "POST", "UTF-8");
+        httpRequest.addParam("Token",Config.getTolken(context));
+        /**Como não estamos fazendo paginação no banco de dados não enviamos o limit nem o offSet*/
+        //        httpRequest.addParam("limit", limit.toString());
+        //        httpRequest.addParam("offset",offSet.toString());
+
+        //String onde será guardado o resultado retornado pelo servidor
+        String result = "";
+
+        // Tentativa de Conexão
+        try{
+            //executando a requisição
+            InputStream is = httpRequest.execute();
+
+            //resultado provavelmente será em uma string de formato JSON que devemos manipular de maneira
+            // que devolvamos uma lista de Objetos contendo as informações pertinentes a cada planta.
+
+            result = Util.inputStream2String(is,"UTF-8");
+
+            // result conterá a informação de todas as plantas
+            // result = [{"cod_plt":1,"nome":"Capim Limão","imagem":"https://fenixculatra.github.io/PlantasMedicinais/imagens/capim-limao.jpg","descricao":null},{"cod_plt":2,"nome":"Camomila","imagem":"https://fenixculatra.github.io/PlantasMedicinais/imagens/camomila.jpg","descricao":null},{"cod_plt":3,"nome":"Hortelã","imagem":"https://fenixculatra.github.io/PlantasMedicinais/imagens/hortela.jpg","descricao":null},{"cod_plt":4,"nome":"Erva-Cidreira","imagem":"https://fenixculatra.github.io/PlantasMedicinais/imagens/erva-cidreira.jpg","descricao":null},{"cod_plt":5,"nome":"Chá Verde","imagem":"https://fenixculatra.github.io/PlantasMedicinais/imagens/cha-verde.jpg","descricao":null}]
+            //fechando conecção com servidor
+            httpRequest.finish();
+
+            Log.i("HTTP RESULTADO   DA REQUISIÇÃO",result);
+
+            // A classe JSONObject recebe como parâmetro do construtor uma String no formato JSON e
+            // monta internamente uma estrutura de dados similar ao dicionário em python.
+            JSONObject jsonObject = new JSONObject(result);
+            //o jsonObject ficará como {"result":true,"data":[]}
+            if(jsonObject.getBoolean("result")){
+                JSONArray jsonArray = jsonObject.getJSONArray("data");
+                // os produtos são obtidos da String JSON e adicionados à lista de
+                // plantas a ser retornada como resultado.
+
+                // Cada elemento do JSONArray é um JSONObject que guarda os dados de um produto
+                for(int i = 0; i < jsonArray.length(); i++) {
+
+                    // Obtemos o JSONObject referente a um produto
+                    JSONObject jPlanta = jsonArray.getJSONObject(i);
+
+                    // Obtemos os dados de um produtos via JSONObject
+                    int id = jPlanta.getInt("cod_plt");
+                    String name = jPlanta.getString("nome");
+                    String img = jPlanta.getString("imagem");
+                    String desc = jPlanta.getString("descricao");
+
+                    // Criamo um objeto do tipo Product para guardar esses dados
+                    Planta planta = new Planta(id,name, img, desc);
+
+                    // Adicionamos o objeto product na lista de produtos
+                    plantaList.add(planta);
+                }
+
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+            Log.e("HTTP RESULT", result);
+        }
+        return plantaList;
     }
     /**Metodo que pega os tipos de preparo de uma planta*/
 
     public List<TipoPreparo> loadTipoPreparos(Integer limit, Integer offSet, int id){
-    //o limit é a quantidade de itens (neste caso TipoPreparo) que requisitaremos do banco de dados
-    //o offSet sete determina a partir de qual item pegaremos a quantidade requisitada "limit"
+        //o limit é a quantidade de itens (neste caso TipoPreparo) que requisitaremos do banco de dados
+        //o offSet sete determina a partir de qual item pegaremos a quantidade requisitada "limit"
 
-    //Precisamos passar o id como string então primeiro convertemos o id para string, já que é um int
-    String sid = Integer.toString(id);
+        //Precisamos passar o id como string então primeiro convertemos o id para string, já que é um int
+        String sid = Integer.toString(id);
 
-    /**Não é necessário validação de usuário (login, senha ou token) para carregar as plantas*/
+        /**Não é necessário validação de usuário (login, senha ou token) para carregar as plantas*/
 
-    // cria a lista de plantas incicialmente vazia, que será retornada como resultado
-    List<TipoPreparo> tipoPreparoList = new ArrayList<>();
+        // cria a lista de plantas incicialmente vazia, que será retornada como resultado
+        List<TipoPreparo> tipoPreparoList = new ArrayList<>();
 
-    // Cria uma requisição HTTP a adiciona o parâmetros que devem ser enviados ao servidor
-    HttpRequest httpRequest = new HttpRequest(Config.INNATURE_URL +"command/plantapreparo/"+ sid, "GET", "UTF-8");
-    httpRequest.addParam("id", sid);
+        // Cria uma requisição HTTP a adiciona o parâmetros que devem ser enviados ao servidor
+        HttpRequest httpRequest = new HttpRequest(Config.INNATURE_URL +"command/plantapreparo/"+ sid, "GET", "UTF-8");
+        httpRequest.addParam("id", sid);
 
-    /**Como não estamos fazendo paginação no banco de dados não enviamos o limit nem o offSet*/
-    //        httpRequest.addParam("limit", limit.toString());
-    //        httpRequest.addParam("offset",offSet.toString());
+        /**Como não estamos fazendo paginação no banco de dados não enviamos o limit nem o offSet*/
+        //        httpRequest.addParam("limit", limit.toString());
+        //        httpRequest.addParam("offset",offSet.toString());
 
-    //String onde será guardado o resultado retornado pelo servidor
-    String result = "";
-    // Tentativa de Conexão
-    try{
-        //executando a requisição
-        InputStream is = httpRequest.execute();
+        //String onde será guardado o resultado retornado pelo servidor
+        String result = "";
+        // Tentativa de Conexão
+        try{
+            //executando a requisição
+            InputStream is = httpRequest.execute();
 
-        //resultado provavelmente será em uma string de formato JSON que devemos manipular de maneira
-        //que devolvamos uma lista de Objetos contendo as informações pertinentes a cada tipoPreparo
+            //resultado provavelmente será em uma string de formato JSON que devemos manipular de maneira
+            //que devolvamos uma lista de Objetos contendo as informações pertinentes a cada tipoPreparo
 
-        result = Util.inputStream2String(is,"UTF-8");
+            result = Util.inputStream2String(is,"UTF-8");
 
-        // result conterá a informação de todos os tipoPreparo
-        //fechando conecção com servidor
-        httpRequest.finish();
+            // result conterá a informação de todos os tipoPreparo
+            //fechando conecção com servidor
+            httpRequest.finish();
 
-        Log.i("HTTP RESULTADO  DA REQUISIÇÃO",result);
+            Log.i("HTTP RESULTADO  DA REQUISIÇÃO",result);
 
-        // A classe JSONObject recebe como parâmetro do construtor uma String no formato JSON e
-        // monta internamente uma estrutura de dados similar ao dicionário em python.
-        JSONArray jsonArray = new JSONArray(result);
+            // A classe JSONObject recebe como parâmetro do construtor uma String no formato JSON e
+            // monta internamente uma estrutura de dados similar ao dicionário em python.
+            JSONArray jsonArray = new JSONArray(result);
 
-        // Cada elemento do JSONArray é um JSONObject que guarda os dados de um tipoPreparo
-        for(int i = 0; i < jsonArray.length(); i++) {
+            // Cada elemento do JSONArray é um JSONObject que guarda os dados de um tipoPreparo
+            for(int i = 0; i < jsonArray.length(); i++) {
 
-            // Obtemos o JSONObject referente a um TipoPreparo
-            JSONObject jTipoPreparo = jsonArray.getJSONObject(i);
+                // Obtemos o JSONObject referente a um TipoPreparo
+                JSONObject jTipoPreparo = jsonArray.getJSONObject(i);
 
-            // Obtemos os dados de um produtos via JSONObject
+                // Obtemos os dados de um produtos via JSONObject
 
-            int idTipoPreparo = i;
-            String tipoP = jTipoPreparo.getString("tipo_preparo");
-            String name = jTipoPreparo.getString("titulo");
+                int idTipoPreparo = i;
+                String tipoP = jTipoPreparo.getString("tipo_preparo");
+                String name = jTipoPreparo.getString("titulo");
 
-            // Criamo um objeto do TipoPreparo para guardar esses dados
-            TipoPreparo tipoPreparo = new TipoPreparo(id,tipoP,name,idTipoPreparo);
+                // Criamo um objeto do TipoPreparo para guardar esses dados
+                TipoPreparo tipoPreparo = new TipoPreparo(id,tipoP,name,idTipoPreparo);
 
 
-            // Adicionamos o objeto product na lista de produtos
-            tipoPreparoList.add(tipoPreparo);
+                // Adicionamos o objeto product na lista de produtos
+                tipoPreparoList.add(tipoPreparo);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+            Log.e("HTTP RESULT", result);
         }
-    } catch (IOException e) {
-        e.printStackTrace();
-    } catch (JSONException e) {
-        e.printStackTrace();
-        Log.e("HTTP RESULT", result);
-    }
-    return tipoPreparoList;
+        return tipoPreparoList;
     }
     public ReceitaPreparo loadReceita(int idPlanta, int idTipoPreparo){
 
-    //Precisamos passar o id como string então primeiro convertemos o id para string, já que é um int
-    String sid = Integer.toString(idPlanta);
-    ReceitaPreparo receitaPreparo;
+        //Precisamos passar o id como string então primeiro convertemos o id para string, já que é um int
+        String sid = Integer.toString(idPlanta);
+        ReceitaPreparo receitaPreparo;
 
-    //Criando as variaveis dos elementos de ReceitaPreparo
-    String titulo = "";
-    String receita = "";
-    JSONArray Jindicacoes = new JSONArray();
-    JSONArray Jcontraindicacoes = new JSONArray();
-    JSONArray Jefeitoscolaterais = new JSONArray();
-    ArrayList<String> indicacoes = new ArrayList<>();
-    ArrayList<String> contraindicacoes = new ArrayList<>();
-    ArrayList<String> efeitoscolaterais = new ArrayList<>();
+        //Criando as variaveis dos elementos de ReceitaPreparo
+        String titulo = "";
+        String receita = "";
+        JSONArray Jindicacoes = new JSONArray();
+        JSONArray Jcontraindicacoes = new JSONArray();
+        JSONArray Jefeitoscolaterais = new JSONArray();
+        ArrayList<String> indicacoes = new ArrayList<>();
+        ArrayList<String> contraindicacoes = new ArrayList<>();
+        ArrayList<String> efeitoscolaterais = new ArrayList<>();
 
 
-    /**Não é necessário validação de usuário (login, senha ou token) para carregar a receita*/
+        /**Não é necessário validação de usuário (login, senha ou token) para carregar a receita*/
 
-    // Cria uma requisição HTTP a adiciona o parâmetros que devem ser enviados ao servidor
-    HttpRequest httpRequest = new HttpRequest(Config.INNATURE_URL +"command/plantapreparo/"+ sid, "GET", "UTF-8");
-    httpRequest.addParam("id", sid);
+        // Cria uma requisição HTTP a adiciona o parâmetros que devem ser enviados ao servidor
+        HttpRequest httpRequest = new HttpRequest(Config.INNATURE_URL +"command/plantapreparo/"+ sid, "GET", "UTF-8");
+        httpRequest.addParam("id", sid);
 
-    //String onde será guardado o resultado retornado pelo servidor
-    String result = "";
+        //String onde será guardado o resultado retornado pelo servidor
+        String result = "";
 
-    // Tentativa de Conexão
-    try{
-        //executando a requisição
-        InputStream is = httpRequest.execute();
+        // Tentativa de Conexão
+        try{
+            //executando a requisição
+            InputStream is = httpRequest.execute();
 
-        //resultado provavelmente será em uma string de formato JSON que devemos manipular de maneira
-        //que devolvamos uma lista de Objetos contendo as informações pertinentes a cada tipoPreparo
+            //resultado provavelmente será em uma string de formato JSON que devemos manipular de maneira
+            //que devolvamos uma lista de Objetos contendo as informações pertinentes a cada tipoPreparo
 
-        result = Util.inputStream2String(is,"UTF-8");
+            result = Util.inputStream2String(is,"UTF-8");
 
-        // result conterá a informação de todos os tipoPreparo
-        //fechando conecção com servidor
-        httpRequest.finish();
+            // result conterá a informação de todos os tipoPreparo
+            //fechando conecção com servidor
+            httpRequest.finish();
 
-        Log.i("HTTP RESULTADO  DA REQUISIÇÃO",result);
+            Log.i("HTTP RESULTADO  DA REQUISIÇÃO",result);
 
-        // A classe JSONObject recebe como parâmetro do construtor uma String no formato JSON e
-        // monta internamente uma estrutura de dados similar ao dicionário em python.
-        JSONArray jsonArray = new JSONArray(result);
+            // A classe JSONObject recebe como parâmetro do construtor uma String no formato JSON e
+            // monta internamente uma estrutura de dados similar ao dicionário em python.
+            JSONArray jsonArray = new JSONArray(result);
 
-        // Obtemos o JSONObject referente a uma receita
-        JSONObject JReceita = jsonArray.getJSONObject(idTipoPreparo);
+            // Obtemos o JSONObject referente a uma receita
+            JSONObject JReceita = jsonArray.getJSONObject(idTipoPreparo);
 
-        //Aqui pegamos os elementos de dentro do objeto JSON e armazenamos nas variáveis
-        titulo = JReceita.getString("titulo");
-        receita = JReceita.getString("receita");
-        Jindicacoes = JReceita.getJSONArray("indicacao");
-        Jcontraindicacoes = JReceita.getJSONArray("contraindicacao");
-        Jefeitoscolaterais = JReceita.getJSONArray("efeito colateral");
-        for(int i = 0; i < Jindicacoes.length() ;i++){
-            indicacoes.add(Jindicacoes.getString(i));
+            //Aqui pegamos os elementos de dentro do objeto JSON e armazenamos nas variáveis
+            titulo = JReceita.getString("titulo");
+            receita = JReceita.getString("receita");
+            Jindicacoes = JReceita.getJSONArray("indicacao");
+            Jcontraindicacoes = JReceita.getJSONArray("contraindicacao");
+            Jefeitoscolaterais = JReceita.getJSONArray("efeito colateral");
+            for(int i = 0; i < Jindicacoes.length() ;i++){
+                indicacoes.add(Jindicacoes.getString(i));
+            }
+            for(int i = 0;i < Jcontraindicacoes.length();i++){
+                contraindicacoes.add(Jcontraindicacoes.getString(i));
+            }
+            for(int i = 0;i < Jefeitoscolaterais.length();i++){
+                efeitoscolaterais.add(Jefeitoscolaterais.getString(i));
+            }
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+            Log.e("HTTP RESULT", result);
         }
-        for(int i = 0;i < Jcontraindicacoes.length();i++){
-            contraindicacoes.add(Jcontraindicacoes.getString(i));
-        }
-        for(int i = 0;i < Jefeitoscolaterais.length();i++){
-            efeitoscolaterais.add(Jefeitoscolaterais.getString(i));
-        }
-
-
-    } catch (IOException e) {
-        e.printStackTrace();
-    } catch (JSONException e) {
-        e.printStackTrace();
-        Log.e("HTTP RESULT", result);
-    }
-    receitaPreparo = new ReceitaPreparo(titulo,receita,indicacoes,contraindicacoes,efeitoscolaterais);
-    return receitaPreparo;
+        receitaPreparo = new ReceitaPreparo(titulo,receita,indicacoes,contraindicacoes,efeitoscolaterais);
+        return receitaPreparo;
     }
 
     /** Método que cria a requisição htt para obter as informações das plantas
@@ -428,162 +428,202 @@ public class InNatureRepository {
 
     public Planta loadPlantaDetail(int id){
 
-    String sid = Integer.toString(id);
+        String sid = Integer.toString(id);
 
-    Planta p;
-    int codPlanta = 0;
-    String nome = "";
-    String imagem = "";
-    String descricao = "";
+        Planta p;
+        int codPlanta = 0;
+        String nome = "";
+        String imagem = "";
+        String descricao = "";
 
-    // CRIAÇÃO DA REQUISIÇÃO HTTP E ADICIONA OS PARÂMETROS QUE SERÃO ENVIADOS AO BANCO
-    HttpRequest httpRequest = new HttpRequest(Config.INNATURE_URL+"command/planta/" + sid,"GET","UTF-8");
-    httpRequest.addParam("id", sid);
+        // CRIAÇÃO DA REQUISIÇÃO HTTP E ADICIONA OS PARÂMETROS QUE SERÃO ENVIADOS AO BANCO
+        HttpRequest httpRequest = new HttpRequest(Config.INNATURE_URL+"command/planta/" + sid,"GET","UTF-8");
+        httpRequest.addParam("id", sid);
 
-    String result= "";
-    try{
-        // Executa a requisição HTTP. É neste momento que o servidor web é contactado. Ao executar
-        // a requisição é aberto um fluxo de dados entre o servidor e a app (InputStream is).
-        InputStream is = httpRequest.execute();
+        String result= "";
+        try{
+            // Executa a requisição HTTP. É neste momento que o servidor web é contactado. Ao executar
+            // a requisição é aberto um fluxo de dados entre o servidor e a app (InputStream is).
+            InputStream is = httpRequest.execute();
 
-        //resultado provavelmente será em uma string de formato JSON que devemos manipular de maneira
-        //que devolvamos um Objeto contendo informações da planta
+            //resultado provavelmente será em uma string de formato JSON que devemos manipular de maneira
+            //que devolvamos um Objeto contendo informações da planta
 
-        result = Util.inputStream2String(is,"UTF-8");
+            result = Util.inputStream2String(is,"UTF-8");
 
-        //fechando conecção com servidor
-        httpRequest.finish();
+            //fechando conecção com servidor
+            httpRequest.finish();
 
-        Log.i("HTTP DETAILS RESULT", result);
-        //Veificarseo JSONbject é o mesmo no nosso caso
+            Log.i("HTTP DETAILS RESULT", result);
+            //Veificarseo JSONbject é o mesmo no nosso caso
 
-        // A classe JSONArray recebe como parâmetro do construtor uma String no formato JSON e
-        // monta internamente uma estrutura de dados similar ao dicionário em python.
-        JSONArray jsonArray = new JSONArray(result);
+            // A classe JSONArray recebe como parâmetro do construtor uma String no formato JSON e
+            // monta internamente uma estrutura de dados similar ao dicionário em python.
+            JSONArray jsonArray = new JSONArray(result);
 
-        // Obtemos o JSONObject referente a uma planta
-        JSONObject JPlanta = jsonArray.getJSONObject(0);
+            // Obtemos o JSONObject referente a uma planta
+            JSONObject JPlanta = jsonArray.getJSONObject(0);
 
-        codPlanta = JPlanta.getInt("cod_plt");
-        nome = JPlanta.getString("nome");
-        imagem = JPlanta.getString("imagem");
-        descricao = JPlanta.getString("descricao");
+            codPlanta = JPlanta.getInt("cod_plt");
+            nome = JPlanta.getString("nome");
+            imagem = JPlanta.getString("imagem");
+            descricao = JPlanta.getString("descricao");
 
 
-    }catch (IOException e) {
-        e.printStackTrace();
-    } catch (JSONException e) {
-        e.printStackTrace();
-    }
-    p = new Planta(codPlanta, nome, imagem, descricao);
-    return p;
+        }catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        p = new Planta(codPlanta, nome, imagem, descricao);
+        return p;
     }
     public String loadImageUser(){
-    String url  = "";
 
-    //TODO: Devo passar o Token e vou receber a url, é um método post
-    HttpRequest httpRequest = new HttpRequest(Config.INNATURE_URL +"command/getImagem", "POST", "UTF-8");
-    httpRequest.addParam("Token", Config.getTolken(context));
+        String url  = "";
 
-    //String onde será guardado o resultado retornado pelo servidor
-    String result = "";
-    return null;//TODO: modificar para retornar url mais tarde;
+        //TODO: Devo passar o Token e vou receber a url, é um método post
+        HttpRequest httpRequest = new HttpRequest(Config.INNATURE_URL +"command/getImagem", "POST", "UTF-8");
+        httpRequest.addParam("Token", Config.getTolken(context));
+
+        //String onde será guardado o resultado retornado pelo servidor
+        String result = "";
+        return null;//TODO: modificar para retornar url mais tarde;
     }
     public Boolean setImageUser(String url){
-    //TODO: método para setar a imagem do usuário no banco de dados
-    //TODO: devo passa o Token e a url como parametros e vou receber uma resposta se foi um sucesso ou não
-    return null;//TODO: depos modificar para retirnar um boolean
+
+        //TODO: método para setar a imagem do usuário no banco de dados
+        //TODO: devo passa o Token e a url como parametros e vou receber uma resposta se foi um sucesso ou não
+
+        Boolean b = false;
+        // CRIAÇÃO DA REQUISIÇÃO HTTP E ADICIONA OS PARÂMETROS QUE SERÃO ENVIADOS AO BANCO
+        HttpRequest httpRequest = new HttpRequest(Config.INNATURE_URL+"command/setImagem","POST","UTF-8");
+        httpRequest.addParam("Token",Config.getTolken(context));
+        httpRequest.addParam("url", url);
+
+        String result= "";
+        try{
+            // Executa a requisição HTTP. É neste momento que o servidor web é contactado. Ao executar
+            // a requisição é aberto um fluxo de dados entre o servidor e a app (InputStream is).
+            InputStream is = httpRequest.execute();
+
+            //resultado provavelmente será em uma string de formato JSON que devemos manipular de maneira
+            //que devolvamos um Objeto contendo informações da planta
+
+            result = Util.inputStream2String(is,"UTF-8");
+
+            //fechando conecção com servidor
+            httpRequest.finish();
+
+            Log.i("HTTP DETAILS RESULT", result);
+            //Veificarseo JSONbject é o mesmo no nosso caso
+
+            // A classe JSONArray recebe como parâmetro do construtor uma String no formato JSON e
+            // monta internamente uma estrutura de dados similar ao dicionário em python.
+
+            //receberemos json no formato:{result:true,info:"string"}
+            JSONObject jsonObject = new JSONObject(result);
+
+            // Obtemos o JSONObject referente a uma planta
+            b = jsonObject.getBoolean("result");
+
+        }catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return b;
     }
 
     public Boolean ehFavorito(int id){
-    String sid = Integer.toString(id);
-    Boolean b = false;
+        String sid = Integer.toString(id);
+        Boolean b = false;
 
-    // CRIAÇÃO DA REQUISIÇÃO HTTP E ADICIONA OS PARÂMETROS QUE SERÃO ENVIADOS AO BANCO
-    HttpRequest httpRequest = new HttpRequest(Config.INNATURE_URL+"command/ehFavorito","POST","UTF-8");
-    httpRequest.addParam("Token",Config.getTolken(context));
-    httpRequest.addParam("Planta", sid);
+        // CRIAÇÃO DA REQUISIÇÃO HTTP E ADICIONA OS PARÂMETROS QUE SERÃO ENVIADOS AO BANCO
+        HttpRequest httpRequest = new HttpRequest(Config.INNATURE_URL+"command/ehFavorito","POST","UTF-8");
+        httpRequest.addParam("Token",Config.getTolken(context));
+        httpRequest.addParam("Planta", sid);
 
-    String result= "";
-    try{
-        // Executa a requisição HTTP. É neste momento que o servidor web é contactado. Ao executar
-        // a requisição é aberto um fluxo de dados entre o servidor e a app (InputStream is).
-        InputStream is = httpRequest.execute();
+        String result= "";
+        try{
+            // Executa a requisição HTTP. É neste momento que o servidor web é contactado. Ao executar
+            // a requisição é aberto um fluxo de dados entre o servidor e a app (InputStream is).
+            InputStream is = httpRequest.execute();
 
-        //resultado provavelmente será em uma string de formato JSON que devemos manipular de maneira
-        //que devolvamos um Objeto contendo informações da planta
+            //resultado provavelmente será em uma string de formato JSON que devemos manipular de maneira
+            //que devolvamos um Objeto contendo informações da planta
 
-        result = Util.inputStream2String(is,"UTF-8");
+            result = Util.inputStream2String(is,"UTF-8");
 
-        //fechando conecção com servidor
-        httpRequest.finish();
+            //fechando conecção com servidor
+            httpRequest.finish();
 
-        Log.i("HTTP DETAILS RESULT", result);
-        //Veificarseo JSONbject é o mesmo no nosso caso
+            Log.i("HTTP DETAILS RESULT", result);
+            //Veificarseo JSONbject é o mesmo no nosso caso
 
-        // A classe JSONArray recebe como parâmetro do construtor uma String no formato JSON e
-        // monta internamente uma estrutura de dados similar ao dicionário em python.
+            // A classe JSONArray recebe como parâmetro do construtor uma String no formato JSON e
+            // monta internamente uma estrutura de dados similar ao dicionário em python.
 
-        //receberemos json no formato:{result:true,info:"string"}
-        JSONObject jsonObject = new JSONObject(result);
+            //receberemos json no formato:{result:true,info:"string"}
+            JSONObject jsonObject = new JSONObject(result);
 
-        // Obtemos o JSONObject referente a uma planta
-        b = jsonObject.getBoolean("result");
+            // Obtemos o JSONObject referente a uma planta
+            b = jsonObject.getBoolean("result");
 
-    }catch (IOException e) {
-        e.printStackTrace();
-    } catch (JSONException e) {
-        e.printStackTrace();
-    }
-    return b;
+        }catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return b;
     }
 
     /**Método responsável pela função de favoritar*/
 
     public Boolean favoritarPlanta(int id){
 
-    /**Sempre que o usuário clicar no f-botão favoritar ele fovoritará ou desfavoritará a planta no banco de dados*/
+        /**Sempre que o usuário clicar no f-botão favoritar ele fovoritará ou desfavoritará a planta no banco de dados*/
 
-    String sid = Integer.toString(id);
-    Boolean b = false;
+        String sid = Integer.toString(id);
+        Boolean b = false;
 
-    // CRIAÇÃO DA REQUISIÇÃO HTTP E ADICIONA OS PARÂMETROS QUE SERÃO ENVIADOS AO BANCO
-    HttpRequest httpRequest = new HttpRequest(Config.INNATURE_URL+"command/favoritar","POST","UTF-8");
-    httpRequest.addParam("Token",Config.getTolken(context));
-    httpRequest.addParam("Planta", sid);
+        // CRIAÇÃO DA REQUISIÇÃO HTTP E ADICIONA OS PARÂMETROS QUE SERÃO ENVIADOS AO BANCO
+        HttpRequest httpRequest = new HttpRequest(Config.INNATURE_URL+"command/favoritar","POST","UTF-8");
+        httpRequest.addParam("Token",Config.getTolken(context));
+        httpRequest.addParam("Planta", sid);
 
-    String result= "";
-    try{
-        // Executa a requisição HTTP. É neste momento que o servidor web é contactado. Ao executar
-        // a requisição é aberto um fluxo de dados entre o servidor e a app (InputStream is).
-        InputStream is = httpRequest.execute();
+        String result= "";
+        try{
+            // Executa a requisição HTTP. É neste momento que o servidor web é contactado. Ao executar
+            // a requisição é aberto um fluxo de dados entre o servidor e a app (InputStream is).
+            InputStream is = httpRequest.execute();
 
-        //resultado provavelmente será em uma string de formato JSON que devemos manipular de maneira
-        //que devolvamos um Objeto contendo informações da planta
+            //resultado provavelmente será em uma string de formato JSON que devemos manipular de maneira
+            //que devolvamos um Objeto contendo informações da planta
 
-        result = Util.inputStream2String(is,"UTF-8");
+            result = Util.inputStream2String(is,"UTF-8");
 
-        //fechando conecção com servidor
-        httpRequest.finish();
+            //fechando conecção com servidor
+            httpRequest.finish();
 
-        Log.i("HTTP DETAILS RESULT", result);
-        //Veificarseo JSONbject é o mesmo no nosso caso
+            Log.i("HTTP DETAILS RESULT", result);
+            //Veificarseo JSONbject é o mesmo no nosso caso
 
-        // A classe JSONArray recebe como parâmetro do construtor uma String no formato JSON e
-        // monta internamente uma estrutura de dados similar ao dicionário em python.
+            // A classe JSONArray recebe como parâmetro do construtor uma String no formato JSON e
+            // monta internamente uma estrutura de dados similar ao dicionário em python.
 
-        //receberemos json no formato:{result:true,info:"string"}
-        JSONObject jsonObject = new JSONObject(result);
+            //receberemos json no formato:{result:true,info:"string"}
+            JSONObject jsonObject = new JSONObject(result);
 
-        // Obtemos o JSONObject referente a uma planta
-        b = jsonObject.getBoolean("result");
+            // Obtemos o JSONObject referente a uma planta
+            b = jsonObject.getBoolean("result");
 
-    }catch (IOException e) {
-        e.printStackTrace();
-    } catch (JSONException e) {
-        e.printStackTrace();
+        }catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return b;
     }
-    return b;
-    }
 
-    }
+}

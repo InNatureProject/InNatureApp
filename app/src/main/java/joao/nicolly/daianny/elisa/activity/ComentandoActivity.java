@@ -12,6 +12,7 @@ import joao.nicolly.daianny.elisa.adapter.ComentariosAdapter;
 import joao.nicolly.daianny.elisa.model.viewModel.ComentandoViewModel;
 
 public class ComentandoActivity extends AppCompatActivity {
+    ComentariosAdapter comentariosAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,10 +25,10 @@ public class ComentandoActivity extends AppCompatActivity {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         rvComentarios.setLayoutManager(layoutManager);
 
-        ComentariosAdapter comentariosAdapter= new ComentariosAdapter(this, new ComentarioComparator());
+        comentariosAdapter = new ComentariosAdapter(this, new ComentarioComparator());
         rvComentarios.setAdapter(comentariosAdapter);
 
-         obtemos o ViewModel pois é nele que está o método que se conecta ao servior web.
+        //obtemos o ViewModel pois é nele que está o método que se conecta ao servior web.
         ComentandoViewModel comentandoViewModel = new ViewModelProvider(this).get(ComentandoViewModel.class);
 
     }

@@ -3,13 +3,31 @@ package joao.nicolly.daianny.elisa.model.objetos;
 import java.util.Date;
 
 public class Comentario {
-    private String autor;//oooo
-    private Date data;
+    int id;
+    private String autor;
     private String comentario;
+    private String fotoAutor;
 
-    public Comentario(String autor, Date data, String comentario) {
+    public Comentario(int id,String autor,String fotoAutor, String comentario) {
         this.autor = autor;
-        this.data = data;
+        this.fotoAutor = fotoAutor;
         this.comentario = comentario;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getAutor() {
+        return autor;
+    }
+
+
+    public String getComentario() {
+        return comentario;
+    }
+
+    public String getFotoAutor() {
+        return fotoAutor;
     }
 }

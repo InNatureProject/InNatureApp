@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.AjudaActivity">
+
     <TextView
         android:id="@+id/textView9"
         android:layout_width="wrap_content"
@@ -12,14 +13,14 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
-        android:text="O erro é algum dos problemas abaixo?"
+        android:text="Qual o erro encontrado?"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <CheckBox
-        android:id="@+id/checkBox"
+        android:id="@+id/cbTrava"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginStart="8dp"
@@ -31,7 +32,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
     <CheckBox
-        android:id="@+id/checkBox2"
+        android:id="@+id/cbSemAcesso"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginStart="8dp"
@@ -40,10 +41,10 @@
         android:text="Não consigo acessar as plantas"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox" />
+        app:layout_constraintTop_toBottomOf="@+id/cbTrava" />
 
     <CheckBox
-        android:id="@+id/checkBox3"
+        android:id="@+id/cbMuitoLento"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginStart="8dp"
@@ -52,20 +53,20 @@
         android:text="Aplicativo muito lento"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox2" />
+        app:layout_constraintTop_toBottomOf="@+id/cbSemAcesso" />
 
     <CheckBox
-        android:id="@+id/checkBox4"
+        android:id="@+id/cbOutro"
         android:layout_width="83dp"
         android:layout_height="50dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="Outro"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox3" />
+        app:layout_constraintTop_toBottomOf="@+id/cbMuitoLento" />
 
     <Button
-        android:id="@+id/button6"
+        android:id="@+id/btnSend"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
@@ -75,7 +76,7 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <EditText
-        android:id="@+id/editTextTextMultiLine"
+        android:id="@+id/etDescreva"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
@@ -86,8 +87,8 @@
         android:gravity="start|top"
         android:hint="Descreva o problema aqui"
         android:inputType="textMultiLine"
-        app:layout_constraintBottom_toTopOf="@+id/button6"
+        app:layout_constraintBottom_toTopOf="@+id/btnSend"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/checkBox4"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox3" />
+        app:layout_constraintStart_toEndOf="@+id/cbOutro"
+        app:layout_constraintTop_toBottomOf="@+id/cbMuitoLento" />
 </androidx.constraintlayout.widget.ConstraintLayout>

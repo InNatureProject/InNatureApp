@@ -83,8 +83,9 @@ public class InNatureRepository {
     public boolean login(String email, String senha ){
 
         // Resquisição para o servidor
+        Boolean b= false;
 
-        HttpRequest httpRequest= new HttpRequest(Config.INNATURE_URL+"command/login", "GET", "UTF-8");
+        HttpRequest httpRequest= new HttpRequest(Config.INNATURE_URL+"command/login", "POST", "UTF-8");
         /** Adição as tabelas
          * As informações obtidas serão */
         httpRequest.addParam("email", email);
@@ -101,15 +102,14 @@ public class InNatureRepository {
             result = Util.inputStream2String(is,"UTF-8");
             Log.i("HTTP RESULTADO DO CADASTRO",result);
 
+            httpRequest.finish();
+
             JSONObject jsonObject = new JSONObject(result);
+
 
             Boolean resultaLog= jsonObject.getBoolean("resultado");
 
-
-            // Obtem vo valor da chave sucesso para verificar se a ação ocorreu da forma esperada
-            int sucesso= jsonObject.getInt("sucesso");
-
-            // ferificação que informa se o usuário fo autenticaddo
+            // ferificação que informa se o usuário foi autenticaddo
             if (resultaLog){
             String tolken = jsonObject.getString("Token");
             Config.setTolken(context,tolken);

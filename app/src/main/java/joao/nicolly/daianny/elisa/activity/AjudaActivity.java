@@ -54,6 +54,9 @@ public class AjudaActivity extends AppCompatActivity {
                 if(cbOutro.isSelected()){
                     final String strOutro = etDescreva.getText().toString();
                 }
+                // Pega o campo com descrição do problema
+                String texto = etDescreva.getText().toString();
+
             }
         });
 

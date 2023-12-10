@@ -107,7 +107,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 //método  login está no viewmodel, envia informações de senha e email para o servidor.
                 // O servidor tem que verificar as informações
-                LiveData<Boolean> resultLD= loginViewlModel.login(senha,email);
+                LiveData<Boolean> resultLD= loginViewlModel.login(email,senha);
 
                 // LiveData trás a resposta do servidor
                 resultLD.observe(LoginActivity.this, new Observer<Boolean>() {

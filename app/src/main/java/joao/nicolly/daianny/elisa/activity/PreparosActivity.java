@@ -45,7 +45,7 @@ public class PreparosActivity extends AppCompatActivity {
 
         // obtemos o ViewModel pois é nele que está o método que se conecta ao servior web.
         preparosViewModel = new ViewModelProvider(this).get(PreparosViewModel.class);
-        preparosViewModel.putId(id);
+        preparosViewModel.setId(id);
 
         // O ViewModel possui o método getTipoPreparos, que obtém páginas/blocos de produtos do servidor
         // web. Cada página contém 10 produtos. Quando o usuário rola a tela, novas páginas de produtos

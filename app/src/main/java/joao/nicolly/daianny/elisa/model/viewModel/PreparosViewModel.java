@@ -33,7 +33,7 @@ public class PreparosViewModel extends AndroidViewModel {
 
     public LiveData<PagingData<TipoPreparo>> getTipoPreparos() {return tipoPreparos;}
 
-    public void putId(int id) {
+    public void setId(int id) {
         this.id = id;
     }
 }

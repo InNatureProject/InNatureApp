@@ -58,8 +58,6 @@ public class AjudaActivity extends AppCompatActivity {
                     startActivity(Intent.createChooser(i, "Escolha o APP"));
                 } catch (ActivityNotFoundException e) {
                     Toast.makeText(AjudaActivity.this, "Não há nenhum app que posso realizar essa operação", Toast.LENGTH_LONG).show();
-
-
                 }
             }
 

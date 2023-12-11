@@ -90,6 +90,7 @@ public class InNatureRepository {
          * As informações obtidas serão */
         httpRequest.addParam("email", email);
         httpRequest.addParam("senha", senha);
+        Boolean resultado=false;
 
         String result="";
 
@@ -101,26 +102,34 @@ public class InNatureRepository {
 
 
             httpRequest.finish();
-            Log.i("HTTP RESULTADO DO CADASTRO",result);
+            Log.i("HTTP RESULTADO DO LOGIN",result);
 
             JSONObject jsonObject = new JSONObject(result);
 
 
-            Boolean resultado = jsonObject.getBoolean("result");
+            resultado = jsonObject.getBoolean("result");
 
             if(resultado){
-                String tolken = jsonObject.getString("Token");
+                String tolken = jsonObject.getString("data");
+                String nome = jsonObject.getString("Nome");
+                String imagem= jsonObject.getString("Imagem");
+
+
                 Config.setTolken(context,tolken);
+                Config.setImagem(context,imagem);
+                Config.setName(context,nome);
+
             }
 
 
         } catch (IOException e) {
             e.printStackTrace();
         } catch (JSONException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
+            Log.e("HTTP RESULT", result);
          }
 
-        return false;
+        return resultado;
     }
 
     /**

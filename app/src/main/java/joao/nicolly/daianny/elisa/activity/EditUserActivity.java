@@ -125,4 +125,7 @@ public class EditUserActivity extends AppCompatActivity {
 
 
     }
+    private void alteração(String dado, String qualDado){
+
+    }
 }

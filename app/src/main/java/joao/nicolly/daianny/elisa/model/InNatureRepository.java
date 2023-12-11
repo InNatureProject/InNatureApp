@@ -110,11 +110,12 @@ public class InNatureRepository {
 
             resultado = jsonObject.getBoolean("result");
 
-            if(resultado){
-                String tolken = jsonObject.getString("data");
-                String nome = jsonObject.getString("Nome");
-                String imagem= jsonObject.getString("Imagem");
 
+            if(resultado){
+                JSONObject jsonInformacoes = jsonObject.getJSONObject("data");
+                String tolken = jsonInformacoes.getString("Token");
+                String nome = jsonInformacoes.getString("Nome");
+                String imagem= jsonInformacoes.getString("Imagem");
 
                 Config.setTolken(context,tolken);
                 Config.setImagem(context,imagem);
@@ -660,6 +661,7 @@ public class InNatureRepository {
     public  Boolean addComent(int id, String contentComent){
         String sid = Integer.toString(id);
         Boolean b = false;
+        //TODO: descobrir porque o contentComent está chegando vazio
 
         // CRIAÇÃO DA REQUISIÇÃO HTTP E ADICIONA OS PARÂMETROS QUE SERÃO ENVIADOS AO BANCO
         HttpRequest httpRequest = new HttpRequest(Config.INNATURE_URL+"command/comentar","POST","UTF-8");

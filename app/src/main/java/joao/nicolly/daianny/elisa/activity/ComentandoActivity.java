@@ -20,22 +20,49 @@ import joao.nicolly.daianny.elisa.R;
 import joao.nicolly.daianny.elisa.adapter.ComentarioComparator;
 import joao.nicolly.daianny.elisa.adapter.ComentariosAdapter;
 import joao.nicolly.daianny.elisa.model.objetos.Comentario;
-import joao.nicolly.daianny.elisa.model.objetos.TipoPreparo;
 import joao.nicolly.daianny.elisa.model.viewModel.AddComentViewModel;
 import joao.nicolly.daianny.elisa.model.viewModel.ComentandoViewModel;
-import joao.nicolly.daianny.elisa.model.viewModel.EhFavoritoViewModel;
-import joao.nicolly.daianny.elisa.model.viewModel.FavoritandoViewModel;
 import joao.nicolly.daianny.elisa.util.Config;
 
 public class ComentandoActivity extends AppCompatActivity {
     ComentariosAdapter comentariosAdapter;
+    String contentComent;
+    EditText etComentando;
+    ImageButton btnAddComent;
     int id;
-
-    @Override
+//
+//    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comentando);
 
+
+
+
+
+
+        //Para que o usuário cadastrado possa comentar'
+        etComentando = findViewById(R.id.etComentando);
+        btnAddComent = findViewById(R.id.btnAddComent);
+        btnAddComent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                contentComent = etComentando.getText().toString();
+                Toast.makeText(ComentandoActivity.this,"teste:" + contentComent,Toast.LENGTH_LONG).show();
+                if(!taCadastrado()){
+                    Intent i = new Intent(ComentandoActivity.this,LoginCadastroActivity.class);
+                    startActivity(i);
+                } else{
+                    //para impedir multiplas requisições e bug no código impedimos o usuário de clicar mais de uma vez
+                    //antes da requisição ao banco de dados ser concluida;
+                    btnAddComent.setClickable(false);
+                    adicionandoComentario();
+                    btnAddComent.setClickable(true);
+                }
+
+            }
+        });
+//
         Intent i = getIntent();
         this.id = i.getIntExtra("id",0);
 
@@ -79,27 +106,6 @@ public class ComentandoActivity extends AppCompatActivity {
             }
         });
 
-        //Para que o usuário cadastrado possa comentar
-        EditText etComentando = findViewById(R.id.etComentando);
-        String contentComent = etComentando.getText().toString();
-        ImageButton btnAddComent = findViewById(R.id.btnAddComent);
-
-        btnAddComent.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(!taCadastrado()){
-                    Intent i = new Intent(ComentandoActivity.this,LoginCadastroActivity.class);
-                    startActivity(i);
-                } else{
-                    //para impedir multiplas requisições e bug no código impedimos o usuário de clicar mais de uma vez
-                    //antes da requisição ao banco de dados ser concluida;
-                    btnAddComent.setClickable(false);
-                    adicionandoComentario(contentComent);
-                    btnAddComent.setClickable(true);
-                }
-
-            }
-        });
 
     }
     private Boolean taCadastrado(){
@@ -109,7 +115,7 @@ public class ComentandoActivity extends AppCompatActivity {
             return true;
         }
     }
-    private void adicionandoComentario(String contentComent){
+    private void adicionandoComentario(){
         AddComentViewModel addComentViewModel = new ViewModelProvider(this).get(AddComentViewModel.class);
         LiveData<Boolean> add = addComentViewModel.addComent(id, contentComent);
 
@@ -121,24 +127,10 @@ public class ComentandoActivity extends AppCompatActivity {
             public void onChanged(Boolean aBoolean) {
                 if(aBoolean){
                     /**é no view model que haverá a chamada para função de requisição do Repository requisição*/
-
-                    LiveData<PagingData<Comentario>> comentarios = comentandoViewModel.getComentarios();
-                    reLoadComentario(comentarios);
-
-
+                    Toast.makeText(ComentandoActivity.this,"Novo Comentário enviado com sucesso!",Toast.LENGTH_LONG).show();
                 } else{
                     Toast.makeText(ComentandoActivity.this,"Não foi possível adicionar comentário!",Toast.LENGTH_LONG).show();
                 }
-            }
-        });
-    }
-    private void reLoadComentario(LiveData<PagingData<Comentario>> comentarios){
-        comentarios.observe(this, new Observer<PagingData<Comentario>>() {
-            @Override
-            public void onChanged(PagingData<Comentario> comentarioPagingData) {
-                // Adiciona a nova página de comentarios ao Adapter do RecycleView. Isso faz com que
-                // novos produtos apareçam no RecycleView.
-                comentariosAdapter.submitData(getLifecycle(),comentarioPagingData);
             }
         });
     }

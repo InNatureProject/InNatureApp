@@ -92,6 +92,7 @@ public class PlantaActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(PlantaActivity.this, ComentandoActivity.class);
+                i.putExtra("id", id);
                 startActivity(i);
             }
         });

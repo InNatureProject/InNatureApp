@@ -13,6 +13,7 @@ import androidx.paging.PagingLiveData;
 
 import joao.nicolly.daianny.elisa.model.InNatureRepository;
 import joao.nicolly.daianny.elisa.model.objetos.Comentario;
+import joao.nicolly.daianny.elisa.model.objetos.TipoPreparo;
 import joao.nicolly.daianny.elisa.model.pagingSource.ComentariosPagingSource;
 import kotlinx.coroutines.CoroutineScope;
 
@@ -30,6 +31,8 @@ public class ComentandoViewModel extends AndroidViewModel {
         comentarios = PagingLiveData.cachedIn(PagingLiveData.getLiveData(pager), viewModelScope);
         //TODO: Fazer ComentariosPagingSource
     }
+
+    public LiveData<PagingData<Comentario>> getComentarios() {return comentarios;}
 
     public void setId(int id) {
         this.id = id;

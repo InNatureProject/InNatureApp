@@ -38,9 +38,15 @@ public class ComentariosAdapter extends PagingDataAdapter<Comentario,MyViewHolde
 
         // Colocando a imagem do autor
         ImageView imgUserComent = holder.itemView.findViewById(R.id.imgUserComent);
-        Picasso.with(comentandoActivity.getApplicationContext())
-                .load(comentario.getFotoAutor())
-                .into(imgUserComent);
+        if(comentario.getFotoAutor().isEmpty()){
+            Picasso.with(comentandoActivity.getApplicationContext())
+                    .load("https://raw.githubusercontent.com/InNatureProject/innatureimages/main/default_ImageUser.jpg")
+                    .into(imgUserComent);
+        }else{
+            Picasso.with(comentandoActivity.getApplicationContext())
+                    .load(comentario.getFotoAutor())
+                    .into(imgUserComent);
+        }
 
         // colocando o UserName do autor no comentario
         TextView tvNomeAutor = holder.itemView.findViewById(R.id.tvNomeAutor);

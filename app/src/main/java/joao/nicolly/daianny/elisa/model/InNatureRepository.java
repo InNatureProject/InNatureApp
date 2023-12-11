@@ -84,13 +84,14 @@ public class InNatureRepository {
     public boolean login(String email, String senha ){
 
         // Resquisição para o servidor
-        Boolean b= false;
 
-        HttpRequest httpRequest= new HttpRequest(Config.INNATURE_URL+"command/login", "POST", "UTF-8");
+
+        HttpRequest httpRequest= new HttpRequest(Config.INNATURE_URL+"command/logar", "POST", "UTF-8");
         /** Adição as tabelas
          * As informações obtidas serão */
         httpRequest.addParam("email", email);
         httpRequest.addParam("senha", senha);
+        Boolean resultado=false;
 
         String result="";
 
@@ -98,32 +99,38 @@ public class InNatureRepository {
             // executa a requisição HTTP. É neste momento que o servidor é consultado
             InputStream is = httpRequest.execute();
 
-
-
             result = Util.inputStream2String(is,"UTF-8");
-            Log.i("HTTP RESULTADO DO CADASTRO",result);
+
 
             httpRequest.finish();
+            Log.i("HTTP RESULTADO DO LOGIN",result);
 
             JSONObject jsonObject = new JSONObject(result);
 
 
-            Boolean resultaLog= jsonObject.getBoolean("resultado");
+            resultado = jsonObject.getBoolean("result");
 
-            // ferificação que informa se o usuário foi autenticaddo
-            if (resultaLog){
-            String tolken = jsonObject.getString("Token");
-            Config.setTolken(context,tolken);
-                return true;
+            if(resultado){
+                String tolken = jsonObject.getString("data");
+                String nome = jsonObject.getString("Nome");
+                String imagem= jsonObject.getString("Imagem");
+
+
+                Config.setTolken(context,tolken);
+                Config.setImagem(context,imagem);
+                Config.setName(context,nome);
+
             }
+
 
         } catch (IOException e) {
             e.printStackTrace();
         } catch (JSONException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
+            Log.e("HTTP RESULT", result);
          }
 
-        return false;
+        return resultado;
     }
 
     /**

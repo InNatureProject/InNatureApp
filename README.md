@@ -11,7 +11,6 @@ Telas a serem feitas:
  - Login-> tela deve ter campo de email, campo de senha e botão para deslogar
  - Perfil -> Informações do usuário, botão de ajuda e deslogar
  - Cadastro -> Campo de nome, senha e email, e umbotão de cadastrar
- - Comentário -> Caixa de texto e botão de enviar
  - Ajuda -> Caixa de descrição e botão. O endereço de email e o assunto são fixos
 
 
@@ -22,8 +21,8 @@ Telas a serem feitas:
 - Paging Source: 4
 - VielwModel: 15
 - Fragment 4
-- Arquivos XML= 42
-- Activity: 11
+- Arquivos XML= 40
+- Activity: 10
 - Adapter: 8
 - objrct: 5
  

@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
@@ -26,6 +25,7 @@ import joao.nicolly.daianny.elisa.util.Config;
 
 public class ComentandoActivity extends AppCompatActivity {
     ComentariosAdapter comentariosAdapter;
+    LiveData<PagingData<Comentario>> comentarios;
     String contentComent;
     EditText etComentando;
     ImageButton btnAddComent;
@@ -58,6 +58,7 @@ public class ComentandoActivity extends AppCompatActivity {
                     btnAddComent.setClickable(false);
                     adicionandoComentario();
                     btnAddComent.setClickable(true);
+                    comentariosAdapter.refresh();
                 }
 
             }
@@ -66,6 +67,10 @@ public class ComentandoActivity extends AppCompatActivity {
         Intent i = getIntent();
         this.id = i.getIntExtra("id",0);
 
+        setandoComentarios();
+
+    }
+    private void setandoComentarios(){
         // Aqui configuramos o RecycleView
         RecyclerView rvComentarios = findViewById(R.id.rvComentarios);
         rvComentarios.setHasFixedSize(true);
@@ -86,7 +91,7 @@ public class ComentandoActivity extends AppCompatActivity {
         // quando o resultado do servidor chegou. Ele guarda a página de comentarios que o servidor
         // entregou para a app.
 
-        LiveData<PagingData<Comentario>> comentarios = comentandoViewModel.getComentarios();
+        comentarios = comentandoViewModel.getComentarios();
         // Aqui nós observamos o LiveData. Quando o servidor responder, o resultado contendo uma página
         // com 10 produtos será guardado dentro do LiveData. Neste momento o
         // LiveData avisa que uma nova página de produtos chegou chamando o método onChanged abaixo.
@@ -105,8 +110,6 @@ public class ComentandoActivity extends AppCompatActivity {
 
             }
         });
-
-
     }
     private Boolean taCadastrado(){
         if(Config.getTolken(this).isEmpty()){

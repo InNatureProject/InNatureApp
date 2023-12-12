@@ -18,15 +18,17 @@ Telas a serem feitas:
   TOTAL DE ARQUIVOS EM CADA PASTA
   
 
--Activity: 11
--Adapter: 8
--Object: 5
+
 - Paging Source: 4
-- - Vielodel: 15
+- VielwModel: 15
 - Fragment 4
 - Arquivos XML= 42
+- Activity: 11
+- Adapter: 8
+- objrct: 5
  
-
+# Comentar todas as linhas do código para facilitar
+Marcacar as funcionalidades a serem feitas com TODO  
     
 
   

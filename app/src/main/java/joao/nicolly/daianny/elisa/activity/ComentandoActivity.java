@@ -58,7 +58,7 @@ public class ComentandoActivity extends AppCompatActivity {
                     btnAddComent.setClickable(false);
                     adicionandoComentario();
                     btnAddComent.setClickable(true);
-                    comentariosAdapter.refresh();
+                    atualizandoComentarios();
                 }
 
             }
@@ -107,9 +107,32 @@ public class ComentandoActivity extends AppCompatActivity {
                 // Adiciona a nova página de comentarios ao Adapter do RecycleView. Isso faz com que
                 // novos produtos apareçam no RecycleView.
                 comentariosAdapter.submitData(getLifecycle(),comentarioPagingData);
+                comentariosAdapter.notifyDataSetChanged();
 
             }
         });
+    }
+    private void atualizandoComentarios(){
+        ComentandoViewModel comentandoViewModel = new ViewModelProvider(this).get(ComentandoViewModel.class);
+        comentandoViewModel.setId(id);
+
+        comentarios = comentandoViewModel.getComentarios();
+
+        comentarios.observe(this, new Observer<PagingData<Comentario>>() {
+            /**
+             * Esse método é chamado sempre que uma nova página de comentarios é entregue à app pelo
+             * servidor web.
+             * @param comentarioPagingData contém uma página de comentarios
+             */
+            @Override
+            public void onChanged(PagingData<Comentario> comentarioPagingData) {
+                // Adiciona a nova página de comentarios ao Adapter do RecycleView. Isso faz com que
+                // novos produtos apareçam no RecycleView.
+                comentariosAdapter.refresh();
+
+            }
+        });
+
     }
     private Boolean taCadastrado(){
         if(Config.getTolken(this).isEmpty()){

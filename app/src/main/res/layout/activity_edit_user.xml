@@ -9,8 +9,8 @@
 
     <ImageView
         android:id="@+id/ivMudarFotoPerfil"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
@@ -32,57 +32,19 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
 
-    <TextView
-        android:id="@+id/tvNomeVinc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="Nome de usuario"
-        android:textSize="16dp"
-        app:layout_constraintEnd_toStartOf="@+id/etNovoNome"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvEmailVinc" />
-
-    <Button
-        android:id="@+id/btnDelConta"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="Deletar conta"
-        android:textColor="#FF0000"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <Button
         android:id="@+id/btnConfMudancas"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="32dp"
         android:text="Comfirmar mudanças"
         android:textColor="#505050"
-        app:layout_constraintBottom_toTopOf="@+id/btnDelConta"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <EditText
-        android:id="@+id/etNovoNome"
-        android:layout_width="250dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:ems="10"
-        android:hint="Novo nome de usuario"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvEmailVinc" />
 
     <TextView
         android:id="@+id/tvEmailVinc"
@@ -92,111 +54,22 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:text="Email vinculado"
-        android:textSize="16dp"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvNomeVinc" />
+
+    <TextView
+        android:id="@+id/tvNomeVinc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:text="Nome"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivMudarFotoPerfil" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/clPainel"
-        android:layout_width="380dp"
-        android:layout_height="253dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/painelplantas_bg"
-        app:layout_constraintBottom_toTopOf="@+id/btnConfMudancas"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.02"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <TextView
-            android:id="@+id/textView21"
-            android:layout_width="303dp"
-            android:layout_height="42dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:text="Para trocar a senha digite a senha desejada nos campos abaixo:"
-            android:textAlignment="center"
-            android:textColor="#FF0000"
-            android:textSize="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-
-        <LinearLayout
-            android:id="@+id/linearLayout"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:weightSum="1"
-            app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
-
-            <TextView
-                android:id="@+id/textView22"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.32"
-                android:text="Senha"
-                android:textAlignment="center"
-                android:textColor="#000000"
-                tools:layout_editor_absoluteX="16dp"
-                tools:layout_editor_absoluteY="63dp" />
-
-            <EditText
-                android:id="@+id/etNovaSenha"
-                android:layout_width="200dp"
-                android:layout_height="50dp"
-                android:layout_weight="0.50"
-                android:hint="Nova senha"
-                android:inputType="textPassword"
-                tools:layout_editor_absoluteX="124dp"
-                tools:layout_editor_absoluteY="55dp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/linearLayout2"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="32dp"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:weightSum="1"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent">
-
-
-            <TextView
-                android:id="@+id/textView23"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.32"
-                android:text="Confirmar Senha"
-                android:textAlignment="center"
-                android:textColor="#000000"
-                tools:layout_editor_absoluteX="16dp"
-                tools:layout_editor_absoluteY="116dp" />
-
-            <EditText
-                android:id="@+id/etConfNovaSenha"
-                android:layout_width="200dp"
-                android:layout_height="50dp"
-                android:layout_weight="0.50"
-                android:hint="Comfirme a senha"
-                android:inputType="textPassword"
-                tools:layout_editor_absoluteX="124dp"
-                tools:layout_editor_absoluteY="108dp" />
-
-        </LinearLayout>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

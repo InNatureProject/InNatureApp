@@ -27,6 +27,7 @@ import joao.nicolly.daianny.elisa.model.objetos.Planta;
 import joao.nicolly.daianny.elisa.adapter.PlantaComparator;
 
 
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link HomeFragment#newInstance} factory method to
@@ -36,11 +37,14 @@ public class HomeFragment extends Fragment {
 
     //VARIÁVEIS
 
+//    PlantaBuscadaViewModew plantaBuscadaViewModel;
     private PlantasViewModel plantasViewModel;
     private HomeAdapter homeAdapter;
     private RecyclerView rvHomeFragment;
+//    private PlantaBuscadaAdapter plantaBuscadaAdapter;
     private EditText etPesquisa;
     private ImageButton imbtnPesquisa;
+    private String plantaBuscada;
 
     //CONSTRUTORES
     public HomeFragment() {
@@ -84,22 +88,22 @@ public class HomeFragment extends Fragment {
                 homeAdapter.submitData(getViewLifecycleOwner().getLifecycle(), plantaPagingData);
             }
         });
-        RecyclerView rvHomeFragment = (RecyclerView) view.findViewById(R.id.rvHomeFragment);
+        rvHomeFragment = (RecyclerView) view.findViewById(R.id.rvHomeFragment);
         rvHomeFragment.setAdapter(homeAdapter);
         rvHomeFragment.setLayoutManager(new LinearLayoutManager(getContext()));
 
 
         /**Fazendo Pesquisa*/
-        imbtnPesquisa = view.findViewById(R.id.imbtnPesquisa);
-        etPesquisa = view.findViewById(R.id.etPesquisa);
+//        imbtnPesquisa = view.findViewById(R.id.imbtnPesquisa);
+//        etPesquisa = view.findViewById(R.id.etPesquisa);
 
-        imbtnPesquisa.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String textEtPesquisa = etPesquisa.getText().toString();
-                pesquisandoPlanta(textEtPesquisa);
-            }
-        });
+//        imbtnPesquisa.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                String textEtPesquisa = etPesquisa.getText().toString();
+////                pesquisandoPlanta(textEtPesquisa);
+//            }
+//        });
 
 
     }
@@ -109,9 +113,22 @@ public class HomeFragment extends Fragment {
         startActivity(i);
     }
 
-    private void pesquisandoPlanta(String strPesquisa){
-        String plantaBuscada = strPesquisa.replaceAll(" ","&");
-    }
+//    private void pesquisandoPlanta(String strPesquisa){
+//        plantaBuscada = strPesquisa.replaceAll(" ","&");
+//        // obtemos o ViewModel pois é nele que está o método que se conecta ao servior web.
+//        plantaBuscadaViewModel= new ViewModelProvider(getActivity()).get(PlantaBuscadaViewModew.class);
+//        plantaBuscadaViewModel.setPlantaBuscada(plantaBuscada);
+//        plantaBuscadaAdapter = new PlantaBuscadaAdapter(new PlantaComparator(),this);
+//
+//        LiveData<PagingData<Planta>> liveData = plantaBuscadaViewModel.getPageLv();
+//        liveData.observe(this, new Observer<PagingData<Planta>>() {
+//            @Override
+//            public void onChanged(PagingData<Planta> plantaPagingData) {
+//                plantaBuscadaAdapter.submitData(getViewLifecycleOwner().getLifecycle(), plantaPagingData);
+//            }
+//        });
+//        rvHomeFragment.setAdapter(plantaBuscadaAdapter);
+//    }
 
     //TODO: a pesquisa ainda não foi feita
     /*TODO: Para fazer a parte da pesquisa é necessário colocar um listerning na variável do botão de pesquisa

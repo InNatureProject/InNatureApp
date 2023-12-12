@@ -77,47 +77,20 @@ public class EditUserActivity extends AppCompatActivity {
         btnConfMudancas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //pegamos os elementos que contem as novas informações
-                etNovoNome = findViewById(R.id.etNovoNome);
-                etNovaSenha = findViewById(R.id.etNovaSenha);
-                etConfNovaSenha = findViewById(R.id.etConfNovaSenha);
 
-                //pegamos as informações dentro deles
-                String novoNome = etNovoNome.getText().toString();
-                String novaSenha = etNovaSenha.getText().toString();
-                String confNovaSenha = etConfNovaSenha.getText().toString();
-
-                /**Só modificamos as informações cujos campos possuíam strings, se o campo estáva vazio não a modificamos*/
-                if(!novoNome.isEmpty()){
-                    Config.setName(EditUserActivity.this,novoNome);
-                    Toast.makeText(EditUserActivity.this,"Nome de usuário atualizado com sucesso!",Toast.LENGTH_LONG).show();
-                    //TODO:devemos enviar  o novo nome para ser salvo no banco de dados, provavelmete será gerado um novo tolken de acesso
-                }
-                if(!novaSenha.isEmpty()){
-                    if(novaSenha.equals(confNovaSenha)){
-                        Config.setPassword(EditUserActivity.this,novaSenha);
-                        //mensagem avisando o sucesso ao atualizar a senha
-                        Toast.makeText(EditUserActivity.this,"Senha atualizada com sucesso!",Toast.LENGTH_LONG).show();
-                        //TODO: devemos enviar a nova senha para ser salva no banco de dados, provavelmete será gerado um novo tolking de acesso
-                    }
-                    else{
-                        //mensagem de falha
-                        Toast.makeText(EditUserActivity.this,"A senha confirmada é diferente da desejada!",Toast.LENGTH_LONG).show();
-                    }
-                }
-                Intent i = new Intent(EditUserActivity.this,MainActivity.class);
+                Intent i = new Intent(EditUserActivity.this, MainActivity.class);
                 startActivity(i);
             }
         });
 
         //Caso o usuário opte por deletar a conta:
-        btnDelConta = findViewById(R.id.btnDelConta);
-        btnDelConta.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //TODO: enviar uma requisição ao banco de dados pedindo pra deletar a conta
-            }
-        });
+//        btnDelConta = findViewById(R.id.btnDelConta);
+//        btnDelConta.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                //TODO: enviar uma requisição ao banco de dados pedindo pra deletar a conta
+//            }
+//        });
 
 
 

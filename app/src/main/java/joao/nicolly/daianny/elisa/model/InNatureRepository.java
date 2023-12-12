@@ -209,6 +209,80 @@ public class InNatureRepository {
         return comentariosList;
 
     }
+    public List<Planta> loadPlantaBuscada( String busque, Integer limit, Integer offSet){
+        busque = "ca";
+        //o limit é a quantidade de itens (neste caso plantas) que requisitaremos do banco de dados
+        //o offSet sete determina a partir de qual item (neste caso planta) pegaremos a quantidade requisitada "limit"
+
+        /**Não é necessário validação de usuário (login, senha ou token) para carregar as plantas*/
+
+
+        // cria a lista de plantas incicialmente vazia, que será retornada como resultado
+        List<Planta> plantaList = new ArrayList<>();
+
+        // Cria uma requisição HTTP a adiciona o parâmetros que devem ser enviados ao servidor
+        HttpRequest httpRequest = new HttpRequest(Config.INNATURE_URL +"command/searchPlanta/" + busque, "GET", "UTF-8");
+        /**Como não estamos fazendo paginação no banco de dados não enviamos o limit nem o offSet*/
+        //        httpRequest.addParam("limit", limit.toString());
+        //        httpRequest.addParam("offset",offSet.toString());
+
+        //String onde será guardado o resultado retornado pelo servidor
+        String result = "";
+
+        // Tentativa de Conexão
+        try{
+            //executando a requisição
+            InputStream is = httpRequest.execute();
+
+            //resultado provavelmente será em uma string de formato JSON que devemos manipular de maneira
+            // que devolvamos uma lista de Objetos contendo as informações pertinentes a cada planta.
+
+            result = Util.inputStream2String(is,"UTF-8");
+
+            // result conterá a informação de todas as plantas
+            // result = [{"cod_plt":1,"nome":"Capim Limão","imagem":"https://fenixculatra.github.io/PlantasMedicinais/imagens/capim-limao.jpg","descricao":null},{"cod_plt":2,"nome":"Camomila","imagem":"https://fenixculatra.github.io/PlantasMedicinais/imagens/camomila.jpg","descricao":null},{"cod_plt":3,"nome":"Hortelã","imagem":"https://fenixculatra.github.io/PlantasMedicinais/imagens/hortela.jpg","descricao":null},{"cod_plt":4,"nome":"Erva-Cidreira","imagem":"https://fenixculatra.github.io/PlantasMedicinais/imagens/erva-cidreira.jpg","descricao":null},{"cod_plt":5,"nome":"Chá Verde","imagem":"https://fenixculatra.github.io/PlantasMedicinais/imagens/cha-verde.jpg","descricao":null}]
+            //fechando conecção com servidor
+            httpRequest.finish();
+
+            Log.i("HTTP RESULTADO   DA REQUISIÇÃO",result);
+
+            // A classe JSONObject recebe como parâmetro do construtor uma String no formato JSON e
+            // monta internamente uma estrutura de dados similar ao dicionário em python.
+            JSONObject jsonObject = new JSONObject(result);
+
+            // os produtos são obtidos da String JSON e adicionados à lista de
+            // plantas a ser retornada como resultado.
+
+            if(jsonObject.getBoolean("result")){
+                JSONArray jsonArray = new JSONArray(jsonObject.getJSONArray("data"));
+                // Cada elemento do JSONArray é um JSONObject que guarda os dados de um produto
+                for(int i = 0; i < jsonArray.length(); i++) {
+
+                    // Obtemos o JSONObject referente a um produto
+                    JSONObject jPlanta = jsonArray.getJSONObject(i);
+
+                    // Obtemos os dados de um produtos via JSONObject
+                    int id = jPlanta.getInt("cod_plt");
+                    String name = jPlanta.getString("nome");
+                    String img = jPlanta.getString("imagem");
+                    String desc = jPlanta.getString("descricao");
+
+                    // Criamo um objeto do tipo Product para guardar esses dados
+                    Planta planta = new Planta(id,name, img, desc);
+
+                    // Adicionamos o objeto product na lista de produtos
+                    plantaList.add(planta);
+            }
+
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+            Log.e("HTTP RESULT", result);
+        }
+        return plantaList;
+    }
 
 
     public List<Planta> loadPlanta(Integer limit, Integer offSet) {

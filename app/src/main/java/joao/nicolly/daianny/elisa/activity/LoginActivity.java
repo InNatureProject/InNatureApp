@@ -25,7 +25,7 @@ import joao.nicolly.daianny.elisa.model.viewModel.LoginViewModel;
 
 
 public class LoginActivity extends AppCompatActivity {
-    //TODO: lembrar que ao logar o usuário tambémé necessário pegar a imagem escolhida que foi armazenada no banco de dados
+
 
     static int RESULT_REQUEST_PERMISSION = 2;
     LoginViewModel loginViewlModel;
@@ -53,7 +53,6 @@ public class LoginActivity extends AppCompatActivity {
 
                 final String etEmailLogin = etEmail.getText().toString();
                 final String etSenhaLogin= etSenha.getText().toString();
-                //TODO: Sanitizar aqui
 
                 if(etEmailLogin.isEmpty()){
                     Toast.makeText(LoginActivity.this,"O campo de email  não foi preenchido!",Toast.LENGTH_LONG).show();

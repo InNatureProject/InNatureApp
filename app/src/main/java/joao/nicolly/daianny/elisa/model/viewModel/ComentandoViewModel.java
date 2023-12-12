@@ -29,7 +29,6 @@ public class ComentandoViewModel extends AndroidViewModel {
         CoroutineScope viewModelScope = ViewModelKt.getViewModelScope(this);
         Pager<Integer, Comentario> pager = new Pager(new PagingConfig(20), () -> new ComentariosPagingSource(inNatureRepository, id));
         comentarios = PagingLiveData.cachedIn(PagingLiveData.getLiveData(pager), viewModelScope);
-        //TODO: Fazer ComentariosPagingSource
     }
 
     public LiveData<PagingData<Comentario>> getComentarios() {return comentarios;}

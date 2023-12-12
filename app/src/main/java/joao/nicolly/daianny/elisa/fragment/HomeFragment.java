@@ -96,7 +96,8 @@ public class HomeFragment extends Fragment {
         imbtnPesquisa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final String textEtPesquisa = etPesquisa.getText().toString();
+                String textEtPesquisa = etPesquisa.getText().toString();
+                pesquisandoPlanta(textEtPesquisa);
             }
         });
 
@@ -106,6 +107,10 @@ public class HomeFragment extends Fragment {
         Intent i = new Intent(getContext(), PlantaActivity.class); // cria uma variavel intent que fará a comunicação entre ambas as telas// cria uma variavel intent que fará a comunicação entre ambas as telas
         i.putExtra("id",id);
         startActivity(i);
+    }
+
+    private void pesquisandoPlanta(String strPesquisa){
+        String plantaBuscada = strPesquisa.replaceAll(" ","&");
     }
 
     //TODO: a pesquisa ainda não foi feita

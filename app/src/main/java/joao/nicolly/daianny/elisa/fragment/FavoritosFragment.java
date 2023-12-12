@@ -25,7 +25,6 @@ import joao.nicolly.daianny.elisa.adapter.PlantaComparator;
 import joao.nicolly.daianny.elisa.model.viewModel.PlantasFavoritasViewModel;
 import joao.nicolly.daianny.elisa.model.viewModel.PlantasViewModel;
 
-//TODO: aqui tem que haver a requisição das receitas que o usuário favoritou
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link FavoritosFragment#newInstance} factory method to

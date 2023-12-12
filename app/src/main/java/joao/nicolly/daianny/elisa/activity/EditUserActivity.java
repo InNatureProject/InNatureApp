@@ -17,8 +17,6 @@ import android.widget.Toast;
 import com.squareup.picasso.Picasso;
 
 import joao.nicolly.daianny.elisa.R;
-import joao.nicolly.daianny.elisa.model.viewModel.ImageUserViewModel;
-import joao.nicolly.daianny.elisa.model.viewModel.ReceitaPreparoViewModel;
 import joao.nicolly.daianny.elisa.util.Config;
 
 public class EditUserActivity extends AppCompatActivity {

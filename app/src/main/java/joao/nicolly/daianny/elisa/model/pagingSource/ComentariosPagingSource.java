@@ -64,7 +64,7 @@ public class ComentariosPagingSource extends ListenableFuturePagingSource<Intege
             public LoadResult<Integer, Comentario> call() throws Exception {
                 List<Comentario> comentariosList = null;
                 //a explicação do que é loadParams.getLoadSize e do que é finalOffSet está em loadPlanta
-                comentariosList = inNatureRepository.loadComentarios(id, loadParams.getLoadSize(),finalOffSet);//TODO: fazer loadComentarios
+                comentariosList = inNatureRepository.loadComentarios(id, loadParams.getLoadSize(),finalOffSet);
                 Integer nextKey = null;
 
                 //Se o tamanho da lista for

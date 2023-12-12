@@ -189,7 +189,6 @@ public class InNatureRepository {
                 JSONObject JComentario = jsonArray.getJSONObject(i);
 
                 // Obtemos os dados de um produtos via JSONObject
-                //TODO:mudar o nome dos parametros de acordo com as informações do joão
                 int comentId = JComentario.getInt("cod_cmt");
                 String nomeAutor = JComentario.getString("nome");
                 String comentarioContent = JComentario.getString("descricao");
@@ -559,22 +558,9 @@ public class InNatureRepository {
         p = new Planta(codPlanta, nome, imagem, descricao);
         return p;
     }
-    public String loadImageUser(){
 
-        String url  = "";
-
-        //TODO: Devo passar o Token e vou receber a url, é um método post
-        HttpRequest httpRequest = new HttpRequest(Config.INNATURE_URL +"command/getImagem", "POST", "UTF-8");
-        httpRequest.addParam("Token", Config.getTolken(context));
-
-        //String onde será guardado o resultado retornado pelo servidor
-        String result = "";
-        return null;//TODO: modificar para retornar url mais tarde;
-    }
     public Boolean setImageUser(String url){
 
-        //TODO: método para setar a imagem do usuário no banco de dados
-        //TODO: devo passa o Token e a url como parametros e vou receber uma resposta se foi um sucesso ou não
 
         Boolean b = false;
         // CRIAÇÃO DA REQUISIÇÃO HTTP E ADICIONA OS PARÂMETROS QUE SERÃO ENVIADOS AO BANCO
@@ -661,7 +647,6 @@ public class InNatureRepository {
     public  Boolean addComent(int id, String contentComent){
         String sid = Integer.toString(id);
         Boolean b = false;
-        //TODO: descobrir porque o contentComent está chegando vazio
 
         // CRIAÇÃO DA REQUISIÇÃO HTTP E ADICIONA OS PARÂMETROS QUE SERÃO ENVIADOS AO BANCO
         HttpRequest httpRequest = new HttpRequest(Config.INNATURE_URL+"command/comentar","POST","UTF-8");

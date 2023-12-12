@@ -2,7 +2,7 @@
 
 Telas a serem feitas:
 
- -Home -> Deve conter uma lista de plantas, um menu inferior com icones de:home, favoritos e perfil
+  -Home -> Deve conter uma lista de plantas, um menu inferior com icones de:home, favoritos e perfil
  - Planta -> Deve conter uma imagem, uma descrição e dois botões. O botão de preparos e o de comentar
  - Tipos de preparo -> Deve conter botões com os tipos de preparo de cada planta
  - Preparo -> Contém a descrição de cada preparo
